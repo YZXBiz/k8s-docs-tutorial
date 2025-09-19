@@ -3,31 +3,31 @@
 ## Table of Contents
 
 1. [Service Fundamentals](#1-service-fundamentals)
-   1.1. [What are Services](#11-what-are-services)
-   1.2. [Service Architecture](#12-service-architecture)
-   1.3. [Labels and Selectors](#13-labels-and-selectors)
+    1.1. [What are Services](#11-what-are-services)
+    1.2. [Service Architecture](#12-service-architecture)
+    1.3. [Labels and Selectors](#13-labels-and-selectors)
 
 2. [Service Types](#2-service-types)
-   2.1. [ClusterIP Services](#21-clusterip-services)
-   2.2. [NodePort Services](#22-nodeport-services)
-   2.3. [LoadBalancer Services](#23-loadbalancer-services)
-   2.4. [ExternalName Services](#24-externalname-services)
+    2.1. [ClusterIP Services](#21-clusterip-services)
+    2.2. [NodePort Services](#22-nodeport-services)
+    2.3. [LoadBalancer Services](#23-loadbalancer-services)
+    2.4. [ExternalName Services](#24-externalname-services)
 
 3. [Service Configuration](#3-service-configuration)
-   3.1. [Service Definition](#31-service-definition)
-   3.2. [Endpoint Management](#32-endpoint-management)
-   3.3. [Service Discovery](#33-service-discovery)
+    3.1. [Service Definition](#31-service-definition)
+    3.2. [Endpoint Management](#32-endpoint-management)
+    3.3. [Service Discovery](#33-service-discovery)
 
 4. [Service Operations](#4-service-operations)
-   4.1. [Creating Services](#41-creating-services)
-   4.2. [Managing Services](#42-managing-services)
-   4.3. [Testing Connectivity](#43-testing-connectivity)
-   4.4. [Troubleshooting Services](#44-troubleshooting-services)
+    4.1. [Creating Services](#41-creating-services)
+    4.2. [Managing Services](#42-managing-services)
+    4.3. [Testing Connectivity](#43-testing-connectivity)
+    4.4. [Troubleshooting Services](#44-troubleshooting-services)
 
 5. [Service Best Practices](#5-service-best-practices)
-   5.1. [Design Patterns](#51-design-patterns)
-   5.2. [Performance Considerations](#52-performance-considerations)
-   5.3. [Security Guidelines](#53-security-guidelines)
+    5.1. [Design Patterns](#51-design-patterns)
+    5.2. [Performance Considerations](#52-performance-considerations)
+    5.3. [Security Guidelines](#53-security-guidelines)
 
 ---
 
@@ -89,9 +89,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    app: web-server
-    tier: frontend
-    version: v2
+     app: web-server
+     tier: frontend
+     version: v2
 spec:
   # ... pod specification
 
@@ -103,11 +103,11 @@ metadata:
   name: web-service
 spec:
   selector:
-    app: web-server      # Matches all Pods with app=web-server
-    tier: frontend       # AND tier=frontend
+     app: web-server      # Matches all Pods with app=web-server
+     tier: frontend       # AND tier=frontend
   ports:
   - port: 80
-    targetPort: 8080
+     targetPort: 8080
 ```
 
 This works like a smart phone directory where you can find employees by department ("app: web-server") and role ("tier: frontend"). The directory automatically updates when people join or leave these departments.
@@ -129,11 +129,11 @@ metadata:
 spec:
   type: ClusterIP        # Default type - internal only
   selector:
-    app: backend
+     app: backend
   ports:
   - port: 8080          # Port that Service listens on
-    targetPort: 3000    # Port that Pods listen on
-    protocol: TCP
+     targetPort: 3000    # Port that Pods listen on
+     protocol: TCP
 ```
 
 **Key Characteristics:**
@@ -157,11 +157,11 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: frontend
+     app: frontend
   ports:
   - port: 80           # ClusterIP port (internal)
-    targetPort: 8080   # Pod port
-    nodePort: 30080    # External port on each node
+     targetPort: 8080   # Pod port
+     nodePort: 30080    # External port on each node
 ```
 
 **Access Patterns:**
@@ -190,10 +190,10 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: web-app
+     app: web-app
   ports:
   - port: 80
-    targetPort: 8080
+     targetPort: 8080
 ```
 
 **Service Progression:**
@@ -240,24 +240,24 @@ metadata:
   name: my-service
   namespace: production
   labels:
-    app: web-app
-    component: frontend
+     app: web-app
+     component: frontend
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   type: LoadBalancer
   selector:
-    app: web-app
-    tier: frontend
+     app: web-app
+     tier: frontend
   ports:
   - name: http
-    port: 80
-    targetPort: 8080
-    protocol: TCP
+     port: 80
+     targetPort: 8080
+     protocol: TCP
   - name: https
-    port: 443
-    targetPort: 8443
-    protocol: TCP
+     port: 443
+     targetPort: 8443
+     protocol: TCP
   sessionAffinity: ClientIP
 ```
 
@@ -320,10 +320,10 @@ metadata:
   name: web-service
 spec:
   selector:
-    app: web-app
+     app: web-app
   ports:
   - port: 80
-    targetPort: 8080
+     targetPort: 8080
   type: ClusterIP
 ```
 

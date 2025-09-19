@@ -7,27 +7,27 @@
 ## Table of Contents
 
 1. [API Security Fundamentals](#1-api-security-fundamentals)
-   1.1. [Request Security Flow](#11-request-security-flow)
-   1.2. [Security Layer Architecture](#12-security-layer-architecture)
-   1.3. [API Request Lifecycle](#13-api-request-lifecycle)
+    1.1. [Request Security Flow](#11-request-security-flow)
+    1.2. [Security Layer Architecture](#12-security-layer-architecture)
+    1.3. [API Request Lifecycle](#13-api-request-lifecycle)
 
 2. [Authentication Layer](#2-authentication-layer)
-   2.1. [Authentication Fundamentals](#21-authentication-fundamentals)
-   2.2. [Authentication Methods](#22-authentication-methods)
-   2.3. [Kubeconfig Structure](#23-kubeconfig-structure)
-   2.4. [External Identity Integration](#24-external-identity-integration)
+    2.1. [Authentication Fundamentals](#21-authentication-fundamentals)
+    2.2. [Authentication Methods](#22-authentication-methods)
+    2.3. [Kubeconfig Structure](#23-kubeconfig-structure)
+    2.4. [External Identity Integration](#24-external-identity-integration)
 
 3. [Authorization with RBAC](#3-authorization-with-rbac)
-   3.1. [RBAC Fundamentals](#31-rbac-fundamentals)
-   3.2. [RBAC Components](#32-rbac-components)
-   3.3. [Role Configuration](#33-role-configuration)
-   3.4. [Cluster-Level Authorization](#34-cluster-level-authorization)
-   3.5. [Real-World RBAC Examples](#35-real-world-rbac-examples)
+    3.1. [RBAC Fundamentals](#31-rbac-fundamentals)
+    3.2. [RBAC Components](#32-rbac-components)
+    3.3. [Role Configuration](#33-role-configuration)
+    3.4. [Cluster-Level Authorization](#34-cluster-level-authorization)
+    3.5. [Real-World RBAC Examples](#35-real-world-rbac-examples)
 
 4. [Admission Control](#4-admission-control)
-   4.1. [Admission Control Fundamentals](#41-admission-control-fundamentals)
-   4.2. [Controller Types](#42-controller-types)
-   4.3. [Policy Enforcement](#43-policy-enforcement)
+    4.1. [Admission Control Fundamentals](#41-admission-control-fundamentals)
+    4.2. [Controller Types](#42-controller-types)
+    4.3. [Policy Enforcement](#43-policy-enforcement)
 
 ---
 
@@ -58,14 +58,14 @@ The Kubernetes API security architecture implements a three-layer defense system
 
 ```
 Client Request → [TLS Encryption] → API Server
-                                        ↓
-                                  Authentication
-                                        ↓
-                                  Authorization
-                                        ↓
-                                 Admission Control
-                                        ↓
-                                   API Processing
+                                         ↓
+                                   Authentication
+                                         ↓
+                                   Authorization
+                                         ↓
+                                  Admission Control
+                                         ↓
+                                    API Processing
 ```
 
 This layered approach ensures that even if one security mechanism has vulnerabilities, additional layers provide protection. It's similar to how modern bank vaults use multiple independent locking mechanisms - each layer must be successfully navigated.
@@ -129,20 +129,20 @@ apiVersion: v1
 kind: Config
 clusters:                        # Cluster definitions with endpoints and certificates
 - cluster:
-    name: prod-shield             # Friendly cluster name
-    server: https://<api-server-url>:443     # API server endpoint
-    certificate-authority-data: LS0tLS1C...  # Cluster CA certificate
+     name: prod-shield             # Friendly cluster name
+     server: https://<api-server-url>:443     # API server endpoint
+     certificate-authority-data: LS0tLS1C...  # Cluster CA certificate
 users:                          # User credentials and authentication data
 - name: njfury                   # User identifier
   user:
-    as-user-extra: {}
-    token: eyJhbGciOiJSUzI1NiIsImtpZCI6...  # Authentication token
+     as-user-extra: {}
+     token: eyJhbGciOiJSUzI1NiIsImtpZCI6...  # Authentication token
 contexts:                       # Cluster + User combinations
 - context:
-    name: shield-admin           # Context name
-    cluster: prod-shield         # Target cluster
-    user: njfury                 # Authentication user
-    namespace: default           # Default namespace
+     name: shield-admin           # Context name
+     cluster: prod-shield         # Target cluster
+     user: njfury                 # Authentication user
+     namespace: default           # Default namespace
 current-context: shield-admin    # Active context for kubectl
 ```
 
@@ -313,9 +313,9 @@ rules:
 
 ```
 ClusterRole (read-deployments)
-    ├── RoleBinding (namespace: frontend)
-    ├── RoleBinding (namespace: backend)
-    └── RoleBinding (namespace: database)
+     ├── RoleBinding (namespace: frontend)
+     ├── RoleBinding (namespace: backend)
+     └── RoleBinding (namespace: database)
 ```
 
 This pattern allows a single ClusterRole definition to be selectively applied to specific namespaces through individual RoleBindings.
@@ -339,8 +339,8 @@ $ kubectl config view
 users:
 - name: docker-desktop
   user:
-    client-certificate-data: DATA+OMITTED
-    client-key-data: DATA+OMITTED
+     client-certificate-data: DATA+OMITTED
+     client-key-data: DATA+OMITTED
 ```
 
 **Decoding Certificate Information:**
@@ -348,9 +348,9 @@ users:
 ```bash
 # Extract username and group from certificate (Linux/Mac with jq)
 $ kubectl config view --raw -o json \
-    | jq ".users[] | select(.name==\"docker-desktop\")" \
-    | jq -r '.user["client-certificate-data"]' \
-    | base64 -d | openssl x509 -text | grep "Subject:"
+     | jq ".users[] | select(.name==\"docker-desktop\")" \
+     | jq -r '.user["client-certificate-data"]' \
+     | base64 -d | openssl x509 -text | grep "Subject:"
 
 Subject: O=kubeadm:cluster-admins, CN=kubernetes-admin
 ```
@@ -369,7 +369,7 @@ PolicyRule:
   Resources  Non-Resource URLs  Resource Names  Verbs
   ---------  -----------------  --------------  -----
   *.*        []                 []              [*]
-             [*]                []              [*]
+              [*]                []              [*]
 ```
 
 This grants unlimited access to all resources and operations - equivalent to root access in traditional systems.
@@ -394,12 +394,12 @@ Admission controllers operate after successful authentication and authorization,
 
 ```
 Authenticated & Authorized Request
-            ↓
-    Mutating Controllers
-            ↓
-    Validating Controllers
-            ↓
-        API Processing
+             ↓
+     Mutating Controllers
+             ↓
+     Validating Controllers
+             ↓
+         API Processing
 ```
 
 ### 4.2. Controller Types

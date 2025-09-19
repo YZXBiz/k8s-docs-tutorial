@@ -3,29 +3,29 @@
 ## Table of Contents
 
 1. [Ingress Fundamentals](#1-ingress-fundamentals)
-   1.1. [What is Ingress](#11-what-is-ingress)
-   1.2. [Ingress Architecture](#12-ingress-architecture)
-   1.3. [Controllers vs Resources](#13-controllers-vs-resources)
+    1.1. [What is Ingress](#11-what-is-ingress)
+    1.2. [Ingress Architecture](#12-ingress-architecture)
+    1.3. [Controllers vs Resources](#13-controllers-vs-resources)
 
 2. [Ingress Configuration](#2-ingress-configuration)
-   2.1. [Installing Ingress Controllers](#21-installing-ingress-controllers)
-   2.2. [Ingress Classes](#22-ingress-classes)
-   2.3. [Basic Routing Rules](#23-basic-routing-rules)
+    2.1. [Installing Ingress Controllers](#21-installing-ingress-controllers)
+    2.2. [Ingress Classes](#22-ingress-classes)
+    2.3. [Basic Routing Rules](#23-basic-routing-rules)
 
 3. [Ingress Routing](#3-ingress-routing)
-   3.1. [Host-based Routing](#31-host-based-routing)
-   3.2. [Path-based Routing](#32-path-based-routing)
-   3.3. [Advanced Routing Features](#33-advanced-routing-features)
+    3.1. [Host-based Routing](#31-host-based-routing)
+    3.2. [Path-based Routing](#32-path-based-routing)
+    3.3. [Advanced Routing Features](#33-advanced-routing-features)
 
 4. [Ingress Operations](#4-ingress-operations)
-   4.1. [Creating and Managing Resources](#41-creating-and-managing-resources)
-   4.2. [SSL/TLS Configuration](#42-ssltls-configuration)
-   4.3. [Testing and Troubleshooting](#43-testing-and-troubleshooting)
+    4.1. [Creating and Managing Resources](#41-creating-and-managing-resources)
+    4.2. [SSL/TLS Configuration](#42-ssltls-configuration)
+    4.3. [Testing and Troubleshooting](#43-testing-and-troubleshooting)
 
 5. [Ingress Best Practices](#5-ingress-best-practices)
-   5.1. [Performance Optimization](#51-performance-optimization)
-   5.2. [Security Guidelines](#52-security-guidelines)
-   5.3. [Production Deployment](#53-production-deployment)
+    5.1. [Performance Optimization](#51-performance-optimization)
+    5.2. [Security Guidelines](#52-security-guidelines)
+    5.3. [Production Deployment](#53-production-deployment)
 
 ---
 
@@ -58,7 +58,7 @@ spec:
   type: LoadBalancer  # $$$$ - One expensive load balancer
   ports:
   - port: 80
-    targetPort: 8080
+     targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -68,7 +68,7 @@ spec:
   type: LoadBalancer  # $$$$ - Another expensive load balancer
   ports:
   - port: 80
-    targetPort: 8080
+     targetPort: 8080
 # ... repeat for all 25 services = 25x the cost!
 ```
 
@@ -79,21 +79,21 @@ Ingress operates through a combination of Ingress Controllers and Ingress Resour
 **Ingress Components:**
 ```
 Internet Traffic
-        │
-        ▼
-   [Cloud Load Balancer] ◄─── Created automatically
-        │
-        ▼
-   [Ingress Controller] ◄─── You install this
-        │
-        ▼
-   [Ingress Rules] ◄─── You create these
-        │
-        ▼
-   [ClusterIP Services] ◄─── Your backend services
-        │
-        ▼
-   [Application Pods] ◄─── Your actual applications
+         │
+         ▼
+    [Cloud Load Balancer] ◄─── Created automatically
+         │
+         ▼
+    [Ingress Controller] ◄─── You install this
+         │
+         ▼
+    [Ingress Rules] ◄─── You create these
+         │
+         ▼
+    [ClusterIP Services] ◄─── Your backend services
+         │
+         ▼
+    [Application Pods] ◄─── Your actual applications
 ```
 
 This is like a hotel where the cloud load balancer is the main entrance, the Ingress Controller is the concierge staff, Ingress Rules are the directory board, and Services are the actual hotel buildings.
@@ -107,25 +107,25 @@ metadata:
 spec:
   rules:
   - host: restaurant.hotel.com    # Guest asks for restaurant
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: restaurant-service  # Concierge directs to restaurant building
-            port:
-              number: 80
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: restaurant-service  # Concierge directs to restaurant building
+             port:
+               number: 80
   - host: spa.hotel.com          # Guest asks for spa
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: spa-service    # Concierge directs to spa building
-            port:
-              number: 80
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: spa-service    # Concierge directs to spa building
+             port:
+               number: 80
 ```
 
 ### 1.3. Controllers vs Resources
@@ -223,15 +223,15 @@ spec:
   ingressClassName: nginx
   rules:
   - host: app.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: app-service
-            port:
-              number: 80
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: app-service
+             port:
+               number: 80
 ```
 
 **Key Routing Fields:**
@@ -258,25 +258,25 @@ spec:
   ingressClassName: nginx
   rules:
   - host: api.example.com      # API requests
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api-service
-            port:
-              number: 8080
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: api-service
+             port:
+               number: 8080
   - host: admin.example.com    # Admin interface
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: admin-service
-            port:
-              number: 3000
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: admin-service
+             port:
+               number: 3000
 ```
 
 ### 3.2. Path-based Routing
@@ -292,34 +292,34 @@ kind: Ingress
 metadata:
   name: path-based
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
   - host: example.com
-    http:
-      paths:
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: api-service
-            port:
-              number: 8080
-      - path: /web
-        pathType: Prefix
-        backend:
-          service:
-            name: web-service
-            port:
-              number: 80
-      - path: /admin
-        pathType: Prefix
-        backend:
-          service:
-            name: admin-service
-            port:
-              number: 3000
+     http:
+       paths:
+       - path: /api
+         pathType: Prefix
+         backend:
+           service:
+             name: api-service
+             port:
+               number: 8080
+       - path: /web
+         pathType: Prefix
+         backend:
+           service:
+             name: web-service
+             port:
+               number: 80
+       - path: /admin
+         pathType: Prefix
+         backend:
+           service:
+             name: admin-service
+             port:
+               number: 3000
 ```
 
 **Path Types:**
@@ -338,23 +338,23 @@ kind: Ingress
 metadata:
   name: advanced-routing
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rate-limit: "100"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+     nginx.ingress.kubernetes.io/rewrite-target: /$2
+     nginx.ingress.kubernetes.io/use-regex: "true"
+     nginx.ingress.kubernetes.io/rate-limit: "100"
+     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
   - host: example.com
-    http:
-      paths:
-      - path: /api/v1(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: api-v1-service
-            port:
-              number: 8080
+     http:
+       paths:
+       - path: /api/v1(/|$)(.*)
+         pathType: ImplementationSpecific
+         backend:
+           service:
+             name: api-v1-service
+             port:
+               number: 8080
 ```
 
 **Advanced Features:**
@@ -379,10 +379,10 @@ metadata:
   name: api-service
 spec:
   selector:
-    app: api
+     app: api
   ports:
   - port: 8080
-    targetPort: 8080
+     targetPort: 8080
   type: ClusterIP
 ---
 apiVersion: v1
@@ -390,13 +390,13 @@ kind: Pod
 metadata:
   name: api-pod
   labels:
-    app: api
+     app: api
 spec:
   containers:
   - name: api
-    image: nginx:latest
-    ports:
-    - containerPort: 8080
+     image: nginx:latest
+     ports:
+     - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -404,10 +404,10 @@ metadata:
   name: web-service
 spec:
   selector:
-    app: web
+     app: web
   ports:
   - port: 80
-    targetPort: 80
+     targetPort: 80
   type: ClusterIP
 ---
 apiVersion: v1
@@ -415,13 +415,13 @@ kind: Pod
 metadata:
   name: web-pod
   labels:
-    app: web
+     app: web
 spec:
   containers:
   - name: web
-    image: nginx:latest
-    ports:
-    - containerPort: 80
+     image: nginx:latest
+     ports:
+     - containerPort: 80
 ```
 
 **Deploy the backend services:**
@@ -442,52 +442,52 @@ kind: Ingress
 metadata:
   name: complete-routing
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
   # HOST-BASED ROUTING: Different applications
   - host: api.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api-service
-            port:
-              number: 8080
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: api-service
+             port:
+               number: 8080
 
   - host: web.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: web-service
-            port:
-              number: 80
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: web-service
+             port:
+               number: 80
 
   # PATH-BASED ROUTING: Different services under one domain
   - host: example.com
-    http:
-      paths:
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: api-service
-            port:
-              number: 8080
+     http:
+       paths:
+       - path: /api
+         pathType: Prefix
+         backend:
+           service:
+             name: api-service
+             port:
+               number: 8080
 
-      - path: /web
-        pathType: Prefix
-        backend:
-          service:
-            name: web-service
-            port:
-              number: 80
+       - path: /web
+         pathType: Prefix
+         backend:
+           service:
+             name: web-service
+             port:
+               number: 80
 ```
 
 **Deploy the Ingress routing:**
@@ -510,25 +510,25 @@ kind: Ingress
 metadata:
   name: tls-ingress
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - secure.example.com
-    secretName: example-tls
+     - secure.example.com
+     secretName: example-tls
   rules:
   - host: secure.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: secure-service
-            port:
-              number: 80
+     http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: secure-service
+             port:
+               number: 80
 ```
 
 **Manual TLS Certificate:**
@@ -565,7 +565,7 @@ Rules:
   api.example.com   /       api-service:8080 (10.244.1.5:8080)
   web.example.com   /       web-service:80 (10.244.1.6:80)
   example.com       /api    api-service:8080 (10.244.1.5:8080)
-                    /web    web-service:80 (10.244.1.6:80)
+                     /web    web-service:80 (10.244.1.6:80)
 ```
 
 `★ Insight ─────────────────────────────────────`
@@ -608,16 +608,16 @@ metadata:
   namespace: ingress-nginx
 spec:
   template:
-    spec:
-      containers:
-      - name: controller
-        resources:
-          requests:
-            cpu: 100m
-            memory: 90Mi
-          limits:
-            cpu: 1000m
-            memory: 256Mi
+     spec:
+       containers:
+       - name: controller
+         resources:
+           requests:
+             cpu: 100m
+             memory: 90Mi
+           limits:
+             cpu: 1000m
+             memory: 256Mi
 ```
 
 **Controller Configuration:**
@@ -653,13 +653,13 @@ kind: Ingress
 metadata:
   name: secure-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/auth-basic: "Authentication Required"
-    nginx.ingress.kubernetes.io/auth-basic-realm: "Protected Area"
-    nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12"
-    nginx.ingress.kubernetes.io/rate-limit: "100"
-    nginx.ingress.kubernetes.io/rate-limit-rps: "10"
+     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+     nginx.ingress.kubernetes.io/auth-basic: "Authentication Required"
+     nginx.ingress.kubernetes.io/auth-basic-realm: "Protected Area"
+     nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12"
+     nginx.ingress.kubernetes.io/rate-limit: "100"
+     nginx.ingress.kubernetes.io/rate-limit-rps: "10"
 spec:
   # ... secure routing rules
 ```
@@ -672,19 +672,19 @@ metadata:
   name: ingress-controller-policy
 spec:
   podSelector:
-    matchLabels:
-      app.kubernetes.io/name: ingress-nginx
+     matchLabels:
+       app.kubernetes.io/name: ingress-nginx
   policyTypes:
   - Ingress
   - Egress
   ingress:
   - from:
-    - namespaceSelector: {}
-    ports:
-    - protocol: TCP
-      port: 80
-    - protocol: TCP
-      port: 443
+     - namespaceSelector: {}
+     ports:
+     - protocol: TCP
+       port: 80
+     - protocol: TCP
+       port: 443
 ```
 
 ### 5.3. Production Deployment
@@ -698,20 +698,20 @@ metadata:
 spec:
   replicas: 3  # Multiple controller instances
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
+     type: RollingUpdate
+     rollingUpdate:
+       maxUnavailable: 1
   template:
-    spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: ingress-nginx
-              topologyKey: kubernetes.io/hostname
+     spec:
+       affinity:
+         podAntiAffinity:
+           preferredDuringSchedulingIgnoredDuringExecution:
+           - weight: 100
+             podAffinityTerm:
+               labelSelector:
+                 matchLabels:
+                   app.kubernetes.io/name: ingress-nginx
+               topologyKey: kubernetes.io/hostname
 ```
 
 **Monitoring and Observability:**
@@ -721,9 +721,9 @@ kind: Ingress
 metadata:
   name: monitoring-ingress
   annotations:
-    nginx.ingress.kubernetes.io/enable-access-log: "true"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "X-Request-ID: $req_id";
+     nginx.ingress.kubernetes.io/enable-access-log: "true"
+     nginx.ingress.kubernetes.io/configuration-snippet: |
+       more_set_headers "X-Request-ID: $req_id";
 spec:
   # ... monitoring endpoints
 ```

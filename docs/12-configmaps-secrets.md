@@ -3,29 +3,29 @@
 ## Table of Contents
 
 1. [Configuration Management Fundamentals](#1-configuration-management-fundamentals)
-   1.1. [Application vs Configuration Separation](#11-application-vs-configuration-separation)
-   1.2. [Configuration Management Benefits](#12-configuration-management-benefits)
-   1.3. [Kubernetes Configuration Objects](#13-kubernetes-configuration-objects)
+    1.1. [Application vs Configuration Separation](#11-application-vs-configuration-separation)
+    1.2. [Configuration Management Benefits](#12-configuration-management-benefits)
+    1.3. [Kubernetes Configuration Objects](#13-kubernetes-configuration-objects)
 
 2. [ConfigMaps](#2-configmaps)
-   2.1. [ConfigMap Fundamentals](#21-configmap-fundamentals)
-   2.2. [Creating ConfigMaps](#22-creating-configmaps)
-   2.3. [Using ConfigMaps in Pods](#23-using-configmaps-in-pods)
+    2.1. [ConfigMap Fundamentals](#21-configmap-fundamentals)
+    2.2. [Creating ConfigMaps](#22-creating-configmaps)
+    2.3. [Using ConfigMaps in Pods](#23-using-configmaps-in-pods)
 
 3. [Secrets](#3-secrets)
-   3.1. [Secret Fundamentals](#31-secret-fundamentals)
-   3.2. [Secret Types and Creation](#32-secret-types-and-creation)
-   3.3. [Using Secrets in Applications](#33-using-secrets-in-applications)
+    3.1. [Secret Fundamentals](#31-secret-fundamentals)
+    3.2. [Secret Types and Creation](#32-secret-types-and-creation)
+    3.3. [Using Secrets in Applications](#33-using-secrets-in-applications)
 
 4. [Configuration Patterns](#4-configuration-patterns)
-   4.1. [Environment-Specific Configuration](#41-environment-specific-configuration)
-   4.2. [Configuration File Management](#42-configuration-file-management)
-   4.3. [Dynamic Configuration Updates](#43-dynamic-configuration-updates)
+    4.1. [Environment-Specific Configuration](#41-environment-specific-configuration)
+    4.2. [Configuration File Management](#42-configuration-file-management)
+    4.3. [Dynamic Configuration Updates](#43-dynamic-configuration-updates)
 
 5. [Security and Best Practices](#5-security-and-best-practices)
-   5.1. [Configuration Security](#51-configuration-security)
-   5.2. [Secret Management Best Practices](#52-secret-management-best-practices)
-   5.3. [Troubleshooting Configuration Issues](#53-troubleshooting-configuration-issues)
+    5.1. [Configuration Security](#51-configuration-security)
+    5.2. [Secret Management Best Practices](#52-secret-management-best-practices)
+    5.3. [Troubleshooting Configuration Issues](#53-troubleshooting-configuration-issues)
 
 ---
 
@@ -120,13 +120,13 @@ data:
 
   # Configuration file content
   nginx.conf: |
-    server {
-        listen 80;
-        server_name example.com;
-        location / {
-            proxy_pass http://backend;
-        }
-    }
+     server {
+         listen 80;
+         server_name example.com;
+         location / {
+             proxy_pass http://backend;
+         }
+     }
 ```
 
 **ConfigMap Data Types:**
@@ -187,10 +187,10 @@ data:
 
   # Configuration file
   app.properties: |
-    server.port=8080
-    spring.datasource.url=jdbc:postgresql://postgres:5432/mydb
-    logging.level.com.example=INFO
-    management.endpoints.web.exposure.include=health,metrics
+     server.port=8080
+     spring.datasource.url=jdbc:postgresql://postgres:5432/mydb
+     logging.level.com.example=INFO
+     management.endpoints.web.exposure.include=health,metrics
 ```
 
 ### 2.3. Using ConfigMaps in Pods
@@ -207,19 +207,19 @@ metadata:
 spec:
   containers:
   - name: app
-    image: myapp:latest
-    env:
-    # Single value from ConfigMap
-    - name: DATABASE_HOST
-      valueFrom:
-        configMapKeyRef:
-          name: app-config
-          key: database_host
+     image: myapp:latest
+     env:
+     # Single value from ConfigMap
+     - name: DATABASE_HOST
+       valueFrom:
+         configMapKeyRef:
+           name: app-config
+           key: database_host
 
-    # All key-value pairs from ConfigMap
-    envFrom:
-    - configMapRef:
-        name: web-config
+     # All key-value pairs from ConfigMap
+     envFrom:
+     - configMapRef:
+         name: web-config
 ```
 
 **Volume Mount Configuration:**
@@ -232,23 +232,23 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:alpine
-    volumeMounts:
-    - name: nginx-config
-      mountPath: /etc/nginx/nginx.conf
-      subPath: nginx.conf
-    - name: app-properties
-      mountPath: /app/config
+     image: nginx:alpine
+     volumeMounts:
+     - name: nginx-config
+       mountPath: /etc/nginx/nginx.conf
+       subPath: nginx.conf
+     - name: app-properties
+       mountPath: /app/config
   volumes:
   - name: nginx-config
-    configMap:
-      name: nginx-config
+     configMap:
+       name: nginx-config
   - name: app-properties
-    configMap:
-      name: web-config
-      items:
-      - key: app.properties
-        path: application.properties
+     configMap:
+       name: web-config
+       items:
+       - key: app.properties
+         path: application.properties
 ```
 
 ## 3. Secrets
@@ -368,32 +368,32 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: database-client
+     matchLabels:
+       app: database-client
   template:
-    metadata:
-      labels:
-        app: database-client
-    spec:
-      containers:
-      - name: app
-        image: myapp:latest
-        env:
-        # Individual secret values
-        - name: DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: database-credentials
-              key: username
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: database-credentials
-              key: password
-        # All secret values as environment variables
-        envFrom:
-        - secretRef:
-            name: database-credentials
+     metadata:
+       labels:
+         app: database-client
+     spec:
+       containers:
+       - name: app
+         image: myapp:latest
+         env:
+         # Individual secret values
+         - name: DB_USERNAME
+           valueFrom:
+             secretKeyRef:
+               name: database-credentials
+               key: username
+         - name: DB_PASSWORD
+           valueFrom:
+             secretKeyRef:
+               name: database-credentials
+               key: password
+         # All secret values as environment variables
+         envFrom:
+         - secretRef:
+             name: database-credentials
 ```
 
 **Volume Mount Usage:**
@@ -406,36 +406,36 @@ metadata:
 spec:
   replicas: 2
   selector:
-    matchLabels:
-      app: web-server
+     matchLabels:
+       app: web-server
   template:
-    metadata:
-      labels:
-        app: web-server
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:alpine
-        volumeMounts:
-        - name: tls-certs
-          mountPath: /etc/nginx/certs
-          readOnly: true
-        - name: auth-config
-          mountPath: /etc/nginx/auth
-          readOnly: true
-        ports:
-        - containerPort: 443
-      volumes:
-      - name: tls-certs
-        secret:
-          secretName: tls-secret
-      - name: auth-config
-        secret:
-          secretName: auth-credentials
-          items:
-          - key: htpasswd
-            path: .htpasswd
-            mode: 0400
+     metadata:
+       labels:
+         app: web-server
+     spec:
+       containers:
+       - name: nginx
+         image: nginx:alpine
+         volumeMounts:
+         - name: tls-certs
+           mountPath: /etc/nginx/certs
+           readOnly: true
+         - name: auth-config
+           mountPath: /etc/nginx/auth
+           readOnly: true
+         ports:
+         - containerPort: 443
+       volumes:
+       - name: tls-certs
+         secret:
+           secretName: tls-secret
+       - name: auth-config
+         secret:
+           secretName: auth-credentials
+           items:
+           - key: htpasswd
+             path: .htpasswd
+             mode: 0400
 ```
 
 ## 4. Configuration Patterns
@@ -485,21 +485,21 @@ metadata:
 spec:
   replicas: ${REPLICA_COUNT}
   selector:
-    matchLabels:
-      app: web-app
+     matchLabels:
+       app: web-app
   template:
-    metadata:
-      labels:
-        app: web-app
-    spec:
-      containers:
-      - name: app
-        image: myapp:${VERSION}
-        envFrom:
-        - configMapRef:
-            name: app-config    # Environment-specific ConfigMap
-        - secretRef:
-            name: app-secrets   # Environment-specific Secrets
+     metadata:
+       labels:
+         app: web-app
+     spec:
+       containers:
+       - name: app
+         image: myapp:${VERSION}
+         envFrom:
+         - configMapRef:
+             name: app-config    # Environment-specific ConfigMap
+         - secretRef:
+             name: app-secrets   # Environment-specific Secrets
 ```
 
 ### 4.2. Configuration File Management
@@ -517,49 +517,49 @@ metadata:
 data:
   # Application configuration
   application.yml: |
-    server:
-      port: 8080
-      servlet:
-        context-path: /api
+     server:
+       port: 8080
+       servlet:
+         context-path: /api
 
-    spring:
-      datasource:
-        url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
-        username: ${DB_USERNAME}
-        password: ${DB_PASSWORD}
+     spring:
+       datasource:
+         url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+         username: ${DB_USERNAME}
+         password: ${DB_PASSWORD}
 
-      redis:
-        host: ${REDIS_HOST}
-        port: ${REDIS_PORT}
+       redis:
+         host: ${REDIS_HOST}
+         port: ${REDIS_PORT}
 
-    logging:
-      level:
-        com.example: ${LOG_LEVEL}
-        org.springframework: WARN
+     logging:
+       level:
+         com.example: ${LOG_LEVEL}
+         org.springframework: WARN
 
   # Logging configuration
   logback.xml: |
-    <configuration>
-      <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-          <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-      </appender>
+     <configuration>
+       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+         <encoder>
+           <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+         </encoder>
+       </appender>
 
-      <logger name="com.example" level="${LOG_LEVEL:-INFO}"/>
+       <logger name="com.example" level="${LOG_LEVEL:-INFO}"/>
 
-      <root level="INFO">
-        <appender-ref ref="STDOUT" />
-      </root>
-    </configuration>
+       <root level="INFO">
+         <appender-ref ref="STDOUT" />
+       </root>
+     </configuration>
 
   # NGINX upstream configuration
   upstream.conf: |
-    upstream backend {
-        server backend-1:8080 weight=3;
-        server backend-2:8080 weight=2;
-        server backend-3:8080 weight=1;
-    }
+     upstream backend {
+         server backend-1:8080 weight=3;
+         server backend-2:8080 weight=2;
+         server backend-3:8080 weight=1;
+     }
 ```
 
 ### 4.3. Dynamic Configuration Updates
@@ -575,29 +575,29 @@ kind: ConfigMap
 metadata:
   name: nginx-config
   annotations:
-    reloader.stakater.com/match: "true"  # Automatic reload trigger
+     reloader.stakater.com/match: "true"  # Automatic reload trigger
 data:
   nginx.conf: |
-    events {
-        worker_connections 1024;
-    }
+     events {
+         worker_connections 1024;
+     }
 
-    http {
-        include       /etc/nginx/mime.types;
-        default_type  application/octet-stream;
+     http {
+         include       /etc/nginx/mime.types;
+         default_type  application/octet-stream;
 
-        # Updated configuration
-        proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m;
+         # Updated configuration
+         proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m;
 
-        server {
-            listen 80;
-            location / {
-                proxy_pass http://backend;
-                proxy_cache my_cache;
-                proxy_cache_valid 200 302 10m;
-            }
-        }
-    }
+         server {
+             listen 80;
+             location / {
+                 proxy_pass http://backend;
+                 proxy_cache my_cache;
+                 proxy_cache_valid 200 302 10m;
+             }
+         }
+     }
 ```
 
 **Application with Configuration Reload:**
@@ -629,8 +629,8 @@ metadata:
   name: secure-credentials
   namespace: production
   annotations:
-    # Prevent accidental deletion
-    "kubernetes.io/managed-by": "external-system"
+     # Prevent accidental deletion
+     "kubernetes.io/managed-by": "external-system"
 type: Opaque
 data:
   api_key: <base64-encoded-value>
@@ -689,13 +689,13 @@ metadata:
   name: vault-backend
 spec:
   provider:
-    vault:
-      server: "https://vault.example.com"
-      path: "secret"
-      auth:
-        kubernetes:
-          mountPath: "kubernetes"
-          role: "my-role"
+     vault:
+       server: "https://vault.example.com"
+       path: "secret"
+       auth:
+         kubernetes:
+           mountPath: "kubernetes"
+           role: "my-role"
 
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -705,16 +705,16 @@ metadata:
 spec:
   refreshInterval: 15s
   secretStoreRef:
-    name: vault-backend
-    kind: SecretStore
+     name: vault-backend
+     kind: SecretStore
   target:
-    name: app-secrets
-    creationPolicy: Owner
+     name: app-secrets
+     creationPolicy: Owner
   data:
   - secretKey: password
-    remoteRef:
-      key: myapp
-      property: password
+     remoteRef:
+       key: myapp
+       property: password
 ```
 
 ### 5.3. Troubleshooting Configuration Issues

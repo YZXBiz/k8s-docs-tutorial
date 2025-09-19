@@ -7,22 +7,22 @@
 ## Table of Contents
 
 1. [Pod Fundamentals](#1-pod-fundamentals)
-   1.1. [Abstraction Layer](#11-abstraction-layer)
-   1.2. [Resource Sharing](#12-resource-sharing)
-   1.3. [Pod Scheduling](#13-pod-scheduling)
-   1.4. [Pod Lifecycle](#14-pod-lifecycle)
+     1.1. [Abstraction Layer](#11-abstraction-layer)
+     1.2. [Resource Sharing](#12-resource-sharing)
+     1.3. [Pod Scheduling](#13-pod-scheduling)
+     1.4. [Pod Lifecycle](#14-pod-lifecycle)
 
 2. [Pod Networking](#2-pod-networking)
 
 3. [Multi-Container Pods](#3-multi-container-pods)
-   3.1. [Init Containers](#31-init-containers)
-   3.2. [Sidecar Containers](#32-sidecar-containers)
+     3.1. [Init Containers](#31-init-containers)
+     3.2. [Sidecar Containers](#32-sidecar-containers)
 
 4. [Hands-on with Pods](#4-hands-on-with-pods)
-   4.1. [Pod Manifest Files](#41-pod-manifest-files)
-   4.2. [Deploying Pods](#42-deploying-pods)
-   4.3. [Pod Introspection](#43-pod-introspection)
-   4.4. [Multi-Container Examples](#44-multi-container-examples)
+     4.1. [Pod Manifest Files](#41-pod-manifest-files)
+     4.2. [Deploying Pods](#42-deploying-pods)
+     4.3. [Pod Introspection](#43-pod-introspection)
+     4.4. [Multi-Container Examples](#44-multi-container-examples)
 
 5. [Chapter Summary](#5-chapter-summary)
 
@@ -142,11 +142,11 @@ apiVersion: v1
 kind: Pod
 spec:
   nodeSelector:
-    disktype: ssd
-    zone: us-west-1a
+     disktype: ssd
+     zone: us-west-1a
   containers:
   - name: app
-    image: my-app:1.0
+     image: my-app:1.0
 ```
 
 **Advanced Affinity Rules:**
@@ -155,13 +155,13 @@ spec:
 # Node affinity: Advanced node selection
 spec:
   affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/arch
-            operator: In
-            values: ["amd64"]
+     nodeAffinity:
+       requiredDuringSchedulingIgnoredDuringExecution:
+         nodeSelectorTerms:
+         - matchExpressions:
+           - key: kubernetes.io/arch
+             operator: In
+             values: ["amd64"]
 ```
 
 **Resource Specifications:**
@@ -171,13 +171,13 @@ spec:
 spec:
   containers:
   - name: app
-    resources:
-      requests:          # Minimum guaranteed resources
-        cpu: 250m
-        memory: 256Mi
-      limits:            # Maximum allowed resources
-        cpu: 500m
-        memory: 512Mi
+     resources:
+       requests:          # Minimum guaranteed resources
+         cpu: 250m
+         memory: 256Mi
+       limits:            # Maximum allowed resources
+         cpu: 500m
+         memory: 512Mi
 ```
 
 **Scheduling Outcomes:**
@@ -363,34 +363,34 @@ metadata:
 spec:
   initContainers:
   - name: check-db
-    image: busybox:1.28.4
-    command:
-    - sh
-    - -c
-    - |
-      until nslookup database-service.default.svc.cluster.local; do
-        echo "Waiting for database service..."
-        sleep 2
-      done
-      echo "Database service found!"
+     image: busybox:1.28.4
+     command:
+     - sh
+     - -c
+     - |
+       until nslookup database-service.default.svc.cluster.local; do
+         echo "Waiting for database service..."
+         sleep 2
+       done
+       echo "Database service found!"
   - name: setup-config
-    image: busybox:1.28.4
-    command:
-    - sh
-    - -c
-    - echo "Generating configuration..." && echo "config: ready" > /shared/config.txt
-    volumeMounts:
-    - name: config-volume
-      mountPath: /shared
+     image: busybox:1.28.4
+     command:
+     - sh
+     - -c
+     - echo "Generating configuration..." && echo "config: ready" > /shared/config.txt
+     volumeMounts:
+     - name: config-volume
+       mountPath: /shared
   containers:
   - name: webapp
-    image: nginx:1.21
-    volumeMounts:
-    - name: config-volume
-      mountPath: /etc/config
+     image: nginx:1.21
+     volumeMounts:
+     - name: config-volume
+       mountPath: /etc/config
   volumes:
   - name: config-volume
-    emptyDir: {}
+     emptyDir: {}
 ```
 
 **Init Container Failure Handling:**
@@ -439,32 +439,32 @@ metadata:
 spec:
   initContainers:                           # Sidecar container
   - name: git-sync
-    restartPolicy: Always                    # Makes it a sidecar
-    image: k8s.gcr.io/git-sync:v3.1.6
-    env:
-    - name: GIT_SYNC_REPO
-      value: https://github.com/example/website-content
-    - name: GIT_SYNC_BRANCH
-      value: main
-    - name: GIT_SYNC_DEST
-      value: html
-    - name: GIT_SYNC_PERIOD
-      value: "10"                           # Sync every 10 seconds
-    volumeMounts:
-    - name: content-volume
-      mountPath: /tmp/git
+     restartPolicy: Always                    # Makes it a sidecar
+     image: k8s.gcr.io/git-sync:v3.1.6
+     env:
+     - name: GIT_SYNC_REPO
+       value: https://github.com/example/website-content
+     - name: GIT_SYNC_BRANCH
+       value: main
+     - name: GIT_SYNC_DEST
+       value: html
+     - name: GIT_SYNC_PERIOD
+       value: "10"                           # Sync every 10 seconds
+     volumeMounts:
+     - name: content-volume
+       mountPath: /tmp/git
   containers:                               # Main application
   - name: web-server
-    image: nginx:1.21
-    ports:
-    - containerPort: 80
-    volumeMounts:
-    - name: content-volume
-      mountPath: /usr/share/nginx/html
-      subPath: html
+     image: nginx:1.21
+     ports:
+     - containerPort: 80
+     volumeMounts:
+     - name: content-volume
+       mountPath: /usr/share/nginx/html
+       subPath: html
   volumes:
   - name: content-volume
-    emptyDir: {}
+     emptyDir: {}
 ```
 
 **Sidecar Benefits:**
@@ -502,22 +502,22 @@ kind: Pod                   # Resource type
 metadata:
   name: hello-pod           # Pod identifier
   labels:                   # Organizational labels
-    app: hello
-    version: v1
-    environment: production
+     app: hello
+     version: v1
+     environment: production
 spec:                       # Pod specification
   containers:
   - name: hello-container   # Container name
-    image: nigelpoulton/k8sbook:1.0  # Container image
-    ports:
-    - containerPort: 8080   # Application port
-    resources:              # Resource requirements
-      requests:             # Minimum guaranteed
-        memory: 64Mi
-        cpu: 250m
-      limits:               # Maximum allowed
-        memory: 128Mi
-        cpu: 500m
+     image: nigelpoulton/k8sbook:1.0  # Container image
+     ports:
+     - containerPort: 8080   # Application port
+     resources:              # Resource requirements
+       requests:             # Minimum guaranteed
+         memory: 64Mi
+         cpu: 250m
+       limits:               # Maximum allowed
+         memory: 128Mi
+         cpu: 500m
 ```
 
 **Manifest Structure Breakdown:**
@@ -534,11 +534,11 @@ spec:                       # Pod specification
 ```yaml
 resources:
   requests:                 # Scheduler uses for placement
-    cpu: 100m              # 0.1 CPU cores
-    memory: 128Mi           # 128 mebibytes
+     cpu: 100m              # 0.1 CPU cores
+     memory: 128Mi           # 128 mebibytes
   limits:                   # Runtime enforcement
-    cpu: 500m              # 0.5 CPU cores
-    memory: 256Mi           # 256 mebibytes
+     cpu: 500m              # 0.5 CPU cores
+     memory: 256Mi           # 256 mebibytes
 ```
 
 **Labels and Selectors:**
@@ -546,10 +546,10 @@ resources:
 ```yaml
 metadata:
   labels:
-    app: web-server         # Application identifier
-    tier: frontend          # Architecture tier
-    version: "1.2"          # Version tracking
-    environment: production # Environment designation
+     app: web-server         # Application identifier
+     tier: frontend          # Architecture tier
+     version: "1.2"          # Version tracking
+     environment: production # Environment designation
 ```
 
 **"Empathy as Code" Benefits:**
@@ -670,7 +670,7 @@ Priority:     0
 Node:         worker-1/192.168.1.10
 Start Time:   Mon, 15 Jan 2024 10:30:00 +0000
 Labels:       app=hello
-              version=v1
+               version=v1
 Annotations:  <none>
 Status:       Running
 IP:           10.1.0.103
@@ -678,24 +678,24 @@ IPs:
   IP:  10.1.0.103
 Containers:
   hello-container:
-    Container ID:   containerd://abc123...
-    Image:          nigelpoulton/k8sbook:1.0
-    Image ID:       docker.io/nigelpoulton/k8sbook@sha256:def456...
-    Port:           8080/TCP
-    Host Port:      0/TCP
-    State:          Running
-      Started:      Mon, 15 Jan 2024 10:30:15 +0000
-    Ready:          True
-    Restart Count:  0
-    Limits:
-      cpu:     500m
-      memory:  128Mi
-    Requests:
-      cpu:        250m
-      memory:     64Mi
-    Environment:  <none>
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xyz (ro)
+     Container ID:   containerd://abc123...
+     Image:          nigelpoulton/k8sbook:1.0
+     Image ID:       docker.io/nigelpoulton/k8sbook@sha256:def456...
+     Port:           8080/TCP
+     Host Port:      0/TCP
+     State:          Running
+       Started:      Mon, 15 Jan 2024 10:30:15 +0000
+     Ready:          True
+     Restart Count:  0
+     Limits:
+       cpu:     500m
+       memory:  128Mi
+     Requests:
+       cpu:        250m
+       memory:     64Mi
+     Environment:  <none>
+     Mounts:
+       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xyz (ro)
 Conditions:
   Type              Status
   Initialized       True
@@ -734,8 +734,8 @@ $ kubectl logs hello-pod -c specific-container
 # Execute single command
 $ kubectl exec hello-pod -- ps aux
 PID   USER     TIME  COMMAND
-    1 root      0:00 node ./app.js
-   17 root      0:00 ps aux
+     1 root      0:00 node ./app.js
+    17 root      0:00 ps aux
 
 # Interactive shell session
 $ kubectl exec -it hello-pod -- sh
@@ -787,28 +787,28 @@ kind: Pod
 metadata:
   name: webapp-with-dependency
   labels:
-    app: dependency-demo
+     app: dependency-demo
 spec:
   initContainers:
   - name: wait-for-db
-    image: busybox:1.28.4
-    command:
-    - sh
-    - -c
-    - |
-      until nslookup database-service.default.svc.cluster.local; do
-        echo "Waiting for database service to be available..."
-        sleep 2
-      done
-      echo "Database service is ready!"
+     image: busybox:1.28.4
+     command:
+     - sh
+     - -c
+     - |
+       until nslookup database-service.default.svc.cluster.local; do
+         echo "Waiting for database service to be available..."
+         sleep 2
+       done
+       echo "Database service is ready!"
   containers:
   - name: web-application
-    image: nigelpoulton/web-app:1.0
-    ports:
-    - containerPort: 8080
-    env:
-    - name: DATABASE_URL
-      value: "database-service.default.svc.cluster.local"
+     image: nigelpoulton/web-app:1.0
+     ports:
+     - containerPort: 8080
+     env:
+     - name: DATABASE_URL
+       value: "database-service.default.svc.cluster.local"
 ```
 
 **Deployment and Monitoring:**
@@ -847,32 +847,32 @@ metadata:
 spec:
   initContainers:                       # Sidecar definition
   - name: git-sync-sidecar
-    restartPolicy: Always               # Critical: makes it a sidecar
-    image: k8s.gcr.io/git-sync:v3.1.6
-    env:
-    - name: GIT_SYNC_REPO
-      value: https://github.com/nigelpoulton/ps-sidecar
-    - name: GIT_SYNC_BRANCH
-      value: master
-    - name: GIT_SYNC_DEST
-      value: html
-    - name: GIT_SYNC_PERIOD
-      value: "30"                      # Sync every 30 seconds
-    volumeMounts:
-    - name: content-volume
-      mountPath: /tmp/git
+     restartPolicy: Always               # Critical: makes it a sidecar
+     image: k8s.gcr.io/git-sync:v3.1.6
+     env:
+     - name: GIT_SYNC_REPO
+       value: https://github.com/nigelpoulton/ps-sidecar
+     - name: GIT_SYNC_BRANCH
+       value: master
+     - name: GIT_SYNC_DEST
+       value: html
+     - name: GIT_SYNC_PERIOD
+       value: "30"                      # Sync every 30 seconds
+     volumeMounts:
+     - name: content-volume
+       mountPath: /tmp/git
   containers:                           # Main application
   - name: nginx-server
-    image: nginx:1.21
-    ports:
-    - containerPort: 80
-    volumeMounts:
-    - name: content-volume
-      mountPath: /usr/share/nginx/html
-      subPath: html                     # Serve from html subdirectory
+     image: nginx:1.21
+     ports:
+     - containerPort: 80
+     volumeMounts:
+     - name: content-volume
+       mountPath: /usr/share/nginx/html
+       subPath: html                     # Serve from html subdirectory
   volumes:
   - name: content-volume
-    emptyDir: {}                        # Shared temporary storage
+     emptyDir: {}                        # Shared temporary storage
 ```
 
 **Verification and Testing:**

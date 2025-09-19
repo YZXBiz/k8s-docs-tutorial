@@ -3,29 +3,29 @@
 ## Table of Contents
 
 1. [Storage Fundamentals](#1-storage-fundamentals)
-   1.1. [Persistent Storage Requirements](#11-persistent-storage-requirements)
-   1.2. [Storage Architecture Overview](#12-storage-architecture-overview)
-   1.3. [Storage vs Compute Lifecycle](#13-storage-vs-compute-lifecycle)
+    1.1. [Persistent Storage Requirements](#11-persistent-storage-requirements)
+    1.2. [Storage Architecture Overview](#12-storage-architecture-overview)
+    1.3. [Storage vs Compute Lifecycle](#13-storage-vs-compute-lifecycle)
 
 2. [Storage Provisioning](#2-storage-provisioning)
-   2.1. [PersistentVolumes (PV)](#21-persistentvolumes-pv)
-   2.2. [PersistentVolumeClaims (PVC)](#22-persistentvolumeclaims-pvc)
-   2.3. [StorageClasses](#23-storageclasses)
+    2.1. [PersistentVolumes (PV)](#21-persistentvolumes-pv)
+    2.2. [PersistentVolumeClaims (PVC)](#22-persistentvolumeclaims-pvc)
+    2.3. [StorageClasses](#23-storageclasses)
 
 3. [Dynamic Storage Management](#3-dynamic-storage-management)
-   3.1. [Container Storage Interface (CSI)](#31-container-storage-interface-csi)
-   3.2. [Dynamic Provisioning](#32-dynamic-provisioning)
-   3.3. [Storage Lifecycle Management](#33-storage-lifecycle-management)
+    3.1. [Container Storage Interface (CSI)](#31-container-storage-interface-csi)
+    3.2. [Dynamic Provisioning](#32-dynamic-provisioning)
+    3.3. [Storage Lifecycle Management](#33-storage-lifecycle-management)
 
 4. [Storage Operations](#4-storage-operations)
-   4.1. [Creating Storage Resources](#41-creating-storage-resources)
-   4.2. [Mounting Volumes in Pods](#42-mounting-volumes-in-pods)
-   4.3. [Storage Configuration Examples](#43-storage-configuration-examples)
+    4.1. [Creating Storage Resources](#41-creating-storage-resources)
+    4.2. [Mounting Volumes in Pods](#42-mounting-volumes-in-pods)
+    4.3. [Storage Configuration Examples](#43-storage-configuration-examples)
 
 5. [Advanced Storage Features](#5-advanced-storage-features)
-   5.1. [Access Modes and Binding](#51-access-modes-and-binding)
-   5.2. [Volume Snapshots](#52-volume-snapshots)
-   5.3. [Storage Monitoring and Troubleshooting](#53-storage-monitoring-and-troubleshooting)
+    5.1. [Access Modes and Binding](#51-access-modes-and-binding)
+    5.2. [Volume Snapshots](#52-volume-snapshots)
+    5.3. [Storage Monitoring and Troubleshooting](#53-storage-monitoring-and-troubleshooting)
 
 ---
 
@@ -56,13 +56,13 @@ metadata:
 spec:
   containers:
   - name: database
-    image: postgres:13
-    volumeMounts:
-    - name: data-volume
-      mountPath: /var/lib/postgresql/data  # Critical data location
+     image: postgres:13
+     volumeMounts:
+     - name: data-volume
+       mountPath: /var/lib/postgresql/data  # Critical data location
   volumes:
   - name: data-volume
-    emptyDir: {}  # ⚠️ Data lost when Pod restarts!
+     emptyDir: {}  # ⚠️ Data lost when Pod restarts!
 ```
 
 ### 1.2. Storage Architecture Overview
@@ -75,17 +75,17 @@ Like a corporate filing system where the filing cabinets (storage hardware) are 
 
 ```
 External Storage Providers
-        │
-        ▼
+         │
+         ▼
 Container Storage Interface (CSI)
-        │
-        ▼
+         │
+         ▼
 Kubernetes Storage Subsystem
 ├── StorageClasses (SC)      ← Storage types and policies
 ├── PersistentVolumes (PV)   ← Actual storage instances
 └── PersistentVolumeClaims   ← Storage requests/reservations
-        │
-        ▼
+         │
+         ▼
 Pod Volume Mounts            ← Application data access
 ```
 
@@ -104,7 +104,7 @@ One of the key concepts in Kubernetes storage is that storage has a different li
 
 ```
 Pod Lifecycle:    Create → Run → Terminate → Recreate
-                     ↕        ↕        ↕        ↕
+                      ↕        ↕        ↕        ↕
 Storage Lifecycle: Create ──────────────────── Persist ──→ Delete
 ```
 
@@ -135,15 +135,15 @@ metadata:
   name: example-pv
 spec:
   capacity:
-    storage: 10Gi
+     storage: 10Gi
   accessModes:
-    - ReadWriteOnce
+     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: fast-ssd
   csi:
-    driver: ebs.csi.aws.com
-    volumeHandle: vol-1234567890abcdef0
-    fsType: ext4
+     driver: ebs.csi.aws.com
+     volumeHandle: vol-1234567890abcdef0
+     fsType: ext4
 ```
 
 **PV Characteristics:**
@@ -173,10 +173,10 @@ metadata:
   name: webapp-storage
 spec:
   accessModes:
-    - ReadWriteOnce
+     - ReadWriteOnce
   resources:
-    requests:
-      storage: 5Gi
+     requests:
+       storage: 5Gi
   storageClassName: fast-ssd
 ```
 
@@ -184,9 +184,9 @@ spec:
 
 ```
 1. PVC Created → 2. Scheduler Finds → 3. PV Bound → 4. Pod Mounts
-   │               Matching PV          │           │
-   │                    │               │           │
-   ▼                    ▼               ▼           ▼
+    │               Matching PV          │           │
+    │                    │               │           │
+    ▼                    ▼               ▼           ▼
  Storage            PV matches       PVC bound   Volume ready
  Request            requirements     to PV       for use
 ```
@@ -244,8 +244,8 @@ CSI is like having standardized filing cabinet specifications that allow any cab
 │  │            CSI API                               │   │
 │  └─────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────┘
-                              │
-                              ▼
+                               │
+                               ▼
 ┌─────────────────────────────────────────────────────────┐
 │               CSI Driver                                │
 │  ┌─────────────────┬─────────────────┬─────────────────┐│
@@ -253,8 +253,8 @@ CSI is like having standardized filing cabinet specifications that allow any cab
 │  │  Plugin        │   Plugin        │   Plugin        ││
 │  └─────────────────┴─────────────────┴─────────────────┘│
 └─────────────────────────────────────────────────────────┘
-                              │
-                              ▼
+                               │
+                               ▼
 ┌─────────────────────────────────────────────────────────┐
 │            External Storage Provider                    │
 │         (AWS EBS, Azure Disk, etc.)                    │
@@ -279,22 +279,22 @@ Dynamic provisioning automatically creates storage resources when applications r
 │ ─────────────────────────────────────────────────────── │
 │ PVC created with storage requirements                   │
 └──────────────────────────────────────────────────────────┘
-                              │
-                              ▼
+                               │
+                               ▼
 ┌──────────────────────────────────────────────────────────┐
 │ Step 2: StorageClass Triggered                          │
 │ ─────────────────────────────────────────────────────── │
 │ CSI provisioner detects unbound PVC                    │
 └──────────────────────────────────────────────────────────┘
-                              │
-                              ▼
+                               │
+                               ▼
 ┌──────────────────────────────────────────────────────────┐
 │ Step 3: External Storage Created                        │
 │ ─────────────────────────────────────────────────────── │
 │ CSI driver creates volume on storage backend           │
 └──────────────────────────────────────────────────────────┘
-                              │
-                              ▼
+                               │
+                               ▼
 ┌──────────────────────────────────────────────────────────┐
 │ Step 4: PV Created and Bound                            │
 │ ─────────────────────────────────────────────────────── │
@@ -349,10 +349,10 @@ metadata:
   name: database-storage
 spec:
   accessModes:
-    - ReadWriteOnce
+     - ReadWriteOnce
   resources:
-    requests:
-      storage: 50Gi
+     requests:
+       storage: 50Gi
   storageClassName: database-storage
 ```
 
@@ -369,32 +369,32 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: database
+     matchLabels:
+       app: database
   template:
-    metadata:
-      labels:
-        app: database
-    spec:
-      containers:
-      - name: postgres
-        image: postgres:13
-        env:
-        - name: POSTGRES_DB
-          value: "appdb"
-        - name: POSTGRES_USER
-          value: "appuser"
-        - name: POSTGRES_PASSWORD
-          value: "securepassword"
-        volumeMounts:
-        - name: database-storage
-          mountPath: /var/lib/postgresql/data
-        ports:
-        - containerPort: 5432
-      volumes:
-      - name: database-storage
-        persistentVolumeClaim:
-          claimName: database-storage
+     metadata:
+       labels:
+         app: database
+     spec:
+       containers:
+       - name: postgres
+         image: postgres:13
+         env:
+         - name: POSTGRES_DB
+           value: "appdb"
+         - name: POSTGRES_USER
+           value: "appuser"
+         - name: POSTGRES_PASSWORD
+           value: "securepassword"
+         volumeMounts:
+         - name: database-storage
+           mountPath: /var/lib/postgresql/data
+         ports:
+         - containerPort: 5432
+       volumes:
+       - name: database-storage
+         persistentVolumeClaim:
+           claimName: database-storage
 ```
 
 ### 4.3. Storage Configuration Examples
@@ -446,10 +446,10 @@ metadata:
   name: single-node-storage
 spec:
   accessModes:
-    - ReadWriteOnce  # Only one node can mount read-write
+     - ReadWriteOnce  # Only one node can mount read-write
   resources:
-    requests:
-      storage: 10Gi
+     requests:
+       storage: 10Gi
 
 ---
 # ReadWriteMany (RWX) - Multi-node access
@@ -459,10 +459,10 @@ metadata:
   name: shared-storage
 spec:
   accessModes:
-    - ReadWriteMany  # Multiple nodes can mount read-write
+     - ReadWriteMany  # Multiple nodes can mount read-write
   resources:
-    requests:
-      storage: 100Gi
+     requests:
+       storage: 100Gi
   storageClassName: nfs-storage
 ```
 
@@ -480,7 +480,7 @@ metadata:
 spec:
   volumeSnapshotClassName: csi-snapshotter
   source:
-    persistentVolumeClaimName: database-storage
+     persistentVolumeClaimName: database-storage
 ```
 
 **Restore from Snapshot:**
@@ -492,14 +492,14 @@ metadata:
   name: restored-database
 spec:
   accessModes:
-    - ReadWriteOnce
+     - ReadWriteOnce
   resources:
-    requests:
-      storage: 50Gi
+     requests:
+       storage: 50Gi
   dataSource:
-    name: database-snapshot
-    kind: VolumeSnapshot
-    apiGroup: snapshot.storage.k8s.io
+     name: database-snapshot
+     kind: VolumeSnapshot
+     apiGroup: snapshot.storage.k8s.io
 ```
 
 ### 5.3. Storage Monitoring and Troubleshooting

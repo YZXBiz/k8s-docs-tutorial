@@ -7,40 +7,40 @@
 ## Table of Contents
 
 1. [Threat Assessment Fundamentals](#1-threat-assessment-fundamentals)
-   1.1. [Security Assessment Methodology](#11-security-assessment-methodology)
-   1.2. [STRIDE Threat Framework](#12-stride-threat-framework)
-   1.3. [Kubernetes Threat Landscape](#13-kubernetes-threat-landscape)
+    1.1. [Security Assessment Methodology](#11-security-assessment-methodology)
+    1.2. [STRIDE Threat Framework](#12-stride-threat-framework)
+    1.3. [Kubernetes Threat Landscape](#13-kubernetes-threat-landscape)
 
 2. [Identity and Authentication Threats](#2-identity-and-authentication-threats)
-   2.1. [Spoofing Attack Vectors](#21-spoofing-attack-vectors)
-   2.2. [API Server Communication Security](#22-api-server-communication-security)
-   2.3. [Pod Identity Management](#23-pod-identity-management)
+    2.1. [Spoofing Attack Vectors](#21-spoofing-attack-vectors)
+    2.2. [API Server Communication Security](#22-api-server-communication-security)
+    2.3. [Pod Identity Management](#23-pod-identity-management)
 
 3. [Data Integrity and Tampering](#3-data-integrity-and-tampering)
-   3.1. [Tampering Threat Analysis](#31-tampering-threat-analysis)
-   3.2. [Infrastructure Component Protection](#32-infrastructure-component-protection)
-   3.3. [Application Layer Integrity](#33-application-layer-integrity)
+    3.1. [Tampering Threat Analysis](#31-tampering-threat-analysis)
+    3.2. [Infrastructure Component Protection](#32-infrastructure-component-protection)
+    3.3. [Application Layer Integrity](#33-application-layer-integrity)
 
 4. [Audit and Non-Repudiation](#4-audit-and-non-repudiation)
-   4.1. [Accountability Requirements](#41-accountability-requirements)
-   4.2. [Comprehensive Audit Strategy](#42-comprehensive-audit-strategy)
-   4.3. [Evidence Collection and Correlation](#43-evidence-collection-and-correlation)
+    4.1. [Accountability Requirements](#41-accountability-requirements)
+    4.2. [Comprehensive Audit Strategy](#42-comprehensive-audit-strategy)
+    4.3. [Evidence Collection and Correlation](#43-evidence-collection-and-correlation)
 
 5. [Information Disclosure Prevention](#5-information-disclosure-prevention)
-   5.1. [Data Protection Analysis](#51-data-protection-analysis)
-   5.2. [Cluster Data Security](#52-cluster-data-security)
-   5.3. [Application Data Protection](#53-application-data-protection)
+    5.1. [Data Protection Analysis](#51-data-protection-analysis)
+    5.2. [Cluster Data Security](#52-cluster-data-security)
+    5.3. [Application Data Protection](#53-application-data-protection)
 
 6. [Denial of Service Mitigation](#6-denial-of-service-mitigation)
-   6.1. [Availability Threat Assessment](#61-availability-threat-assessment)
-   6.2. [Cluster Resource Protection](#62-cluster-resource-protection)
-   6.3. [Application Resilience](#63-application-resilience)
+    6.1. [Availability Threat Assessment](#61-availability-threat-assessment)
+    6.2. [Cluster Resource Protection](#62-cluster-resource-protection)
+    6.3. [Application Resilience](#63-application-resilience)
 
 7. [Privilege Escalation Prevention](#7-privilege-escalation-prevention)
-   7.1. [Access Control Assessment](#71-access-control-assessment)
-   7.2. [API Server Authorization](#72-api-server-authorization)
-   7.3. [Container Security Controls](#73-container-security-controls)
-   7.4. [Pod Security Standardization](#74-pod-security-standardization)
+    7.1. [Access Control Assessment](#71-access-control-assessment)
+    7.2. [API Server Authorization](#72-api-server-authorization)
+    7.3. [Container Security Controls](#73-container-security-controls)
+    7.4. [Pod Security Standardization](#74-pod-security-standardization)
 
 ---
 
@@ -190,7 +190,7 @@ spec:
   automountServiceAccountToken: false  # Disable automatic token mounting
   containers:
   - name: app-container
-    image: nginx
+     image: nginx
 ```
 
 **Enhanced Token Configuration:**
@@ -204,19 +204,19 @@ metadata:
 spec:
   containers:
   - name: api-client
-    image: api-client:latest
-    volumeMounts:
-    - mountPath: /var/run/secrets/tokens
-      name: api-token
+     image: api-client:latest
+     volumeMounts:
+     - mountPath: /var/run/secrets/tokens
+       name: api-token
   serviceAccountName: api-service-account
   volumes:
   - name: api-token
-    projected:
-      sources:
-      - serviceAccountToken:
-          path: api-token
-          expirationSeconds: 3600    # 1-hour expiration
-          audience: vault             # Specific service audience
+     projected:
+       sources:
+       - serviceAccountToken:
+           path: api-token
+           expirationSeconds: 3600    # 1-hour expiration
+           audience: vault             # Specific service audience
 ```
 
 **Security Benefits:**
@@ -287,13 +287,13 @@ metadata:
   name: immutable-app
 spec:
   securityContext:
-    readOnlyRootFilesystem: true     # Immutable root filesystem
-    allowedHostPaths:
-      - pathPrefix: "/data"          # Specific mount restrictions
-        readOnly: true               # Read-only access
+     readOnlyRootFilesystem: true     # Immutable root filesystem
+     allowedHostPaths:
+       - pathPrefix: "/data"          # Specific mount restrictions
+         readOnly: true               # Read-only access
   containers:
   - name: app-container
-    image: secure-app:latest
+     image: secure-app:latest
 ```
 
 **Benefits of Immutable Infrastructure:**
@@ -333,14 +333,14 @@ Non-repudiation ensures accountability by providing indisputable evidence of act
   "requestURI": "/api/v1/namespaces/production/persistentvolumeclaims",
   "verb": "list",
   "user": {
-    "username": "admin@company.com",
-    "groups": ["system:authenticated"]
+     "username": "admin@company.com",
+     "groups": ["system:authenticated"]
   },
   "sourceIPs": ["192.168.1.100"],
   "objectRef": {
-    "resource": "persistentvolumeclaims",
-    "namespace": "production",
-    "apiVersion": "v1"
+     "resource": "persistentvolumeclaims",
+     "namespace": "production",
+     "apiVersion": "v1"
   }
 }
 ```
@@ -363,20 +363,20 @@ metadata:
   name: audit-collector
 spec:
   selector:
-    matchLabels:
-      app: audit-collector
+     matchLabels:
+       app: audit-collector
   template:
-    spec:
-      containers:
-      - name: log-agent
-        image: audit-agent:latest
-        volumeMounts:
-        - name: log-volume
-          mountPath: /var/log
-      volumes:
-      - name: log-volume
-        hostPath:
-          path: /var/log
+     spec:
+       containers:
+       - name: log-agent
+         image: audit-agent:latest
+         volumeMounts:
+         - name: log-volume
+           mountPath: /var/log
+       volumes:
+       - name: log-volume
+         hostPath:
+           path: /var/log
 ```
 
 **Security Requirements:**
@@ -414,10 +414,10 @@ resources:
   - configmaps
   providers:
   - kms:
-      name: vault-provider
-      endpoint: unix:///tmp/vault.socket
-      cachesize: 1000
-      timeout: 3s
+       name: vault-provider
+       endpoint: unix:///tmp/vault.socket
+       cachesize: 1000
+       timeout: 3s
   - identity: {}
 ```
 
@@ -469,10 +469,10 @@ metadata:
   namespace: production
 spec:
   hard:
-    requests.cpu: "100"
-    requests.memory: 200Gi
-    pods: "50"
-    persistentvolumeclaims: "10"
+     requests.cpu: "100"
+     requests.memory: 200Gi
+     pods: "50"
+     persistentvolumeclaims: "10"
 ```
 
 **Control Plane Protection:**
@@ -492,14 +492,14 @@ metadata:
 spec:
   containers:
   - name: app
-    image: app:latest
-    resources:
-      limits:
-        cpu: "500m"
-        memory: "512Mi"
-        ephemeral-storage: "1Gi"
-    securityContext:
-      readOnlyRootFilesystem: true
+     image: app:latest
+     resources:
+       limits:
+         cpu: "500m"
+         memory: "512Mi"
+         ephemeral-storage: "1Gi"
+     securityContext:
+       readOnlyRootFilesystem: true
 ```
 
 **Process Limit Controls:**
@@ -509,7 +509,7 @@ apiVersion: v1
 kind: Pod
 spec:
   securityContext:
-    podPidsLimit: 100
+     podPidsLimit: 100
 ```
 
 ---
@@ -551,17 +551,17 @@ metadata:
   name: secure-pod
 spec:
   securityContext:
-    runAsUser: 1000                    # Non-root user
-    runAsNonRoot: true                 # Enforce non-root
-    fsGroup: 2000                      # File system group
+     runAsUser: 1000                    # Non-root user
+     runAsNonRoot: true                 # Enforce non-root
+     fsGroup: 2000                      # File system group
   containers:
   - name: app
-    securityContext:
-      allowPrivilegeEscalation: false  # Prevent escalation
-      readOnlyRootFilesystem: true     # Immutable filesystem
-      capabilities:
-        drop: ["ALL"]                  # Drop all capabilities
-        add: ["NET_BIND_SERVICE"]      # Add specific required capabilities
+     securityContext:
+       allowPrivilegeEscalation: false  # Prevent escalation
+       readOnlyRootFilesystem: true     # Immutable filesystem
+       capabilities:
+         drop: ["ALL"]                  # Drop all capabilities
+         add: ["NET_BIND_SERVICE"]      # Add specific required capabilities
 ```
 
 **Advanced Security Features:**
@@ -580,9 +580,9 @@ spec:
 ```bash
 # Apply baseline enforcement to namespace
 $ kubectl label --overwrite ns production \
-    pod-security.kubernetes.io/enforce=baseline \
-    pod-security.kubernetes.io/warn=restricted \
-    pod-security.kubernetes.io/audit=restricted
+     pod-security.kubernetes.io/enforce=baseline \
+     pod-security.kubernetes.io/warn=restricted \
+     pod-security.kubernetes.io/audit=restricted
 ```
 
 **Hands-on Exercise: PSA Configuration**
@@ -606,9 +606,9 @@ metadata:
 spec:
   containers:
   - name: test
-    image: nginx
-    securityContext:
-      privileged: true
+     image: nginx
+     securityContext:
+       privileged: true
 EOF
 
 # Expected output: Error - violates baseline policy
@@ -623,11 +623,11 @@ metadata:
 spec:
   containers:
   - name: test
-    image: nginx
-    securityContext:
-      privileged: false
-      runAsNonRoot: true
-      runAsUser: 1000
+     image: nginx
+     securityContext:
+       privileged: false
+       runAsNonRoot: true
+       runAsUser: 1000
 EOF
 ```
 

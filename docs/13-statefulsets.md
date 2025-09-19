@@ -3,29 +3,29 @@
 ## Table of Contents
 
 1. [StatefulSet Fundamentals](#1-statefulset-fundamentals)
-   1.1. [Stateful vs Stateless Applications](#11-stateful-vs-stateless-applications)
-   1.2. [StatefulSet Architecture](#12-statefulset-architecture)
-   1.3. [StatefulSet vs Deployment](#13-statefulset-vs-deployment)
+    1.1. [Stateful vs Stateless Applications](#11-stateful-vs-stateless-applications)
+    1.2. [StatefulSet Architecture](#12-statefulset-architecture)
+    1.3. [StatefulSet vs Deployment](#13-statefulset-vs-deployment)
 
 2. [StatefulSet Components](#2-statefulset-components)
-   2.1. [Pod Identity and Naming](#21-pod-identity-and-naming)
-   2.2. [Persistent Storage](#22-persistent-storage)
-   2.3. [Ordered Operations](#23-ordered-operations)
+    2.1. [Pod Identity and Naming](#21-pod-identity-and-naming)
+    2.2. [Persistent Storage](#22-persistent-storage)
+    2.3. [Ordered Operations](#23-ordered-operations)
 
 3. [StatefulSet Configuration](#3-statefulset-configuration)
-   3.1. [Creating StatefulSets](#31-creating-statefulsets)
-   3.2. [Service Configuration](#32-service-configuration)
-   3.3. [Storage Templates](#33-storage-templates)
+    3.1. [Creating StatefulSets](#31-creating-statefulsets)
+    3.2. [Service Configuration](#32-service-configuration)
+    3.3. [Storage Templates](#33-storage-templates)
 
 4. [StatefulSet Operations](#4-statefulset-operations)
-   4.1. [Scaling StatefulSets](#41-scaling-statefulsets)
-   4.2. [Updates and Rollbacks](#42-updates-and-rollbacks)
-   4.3. [Pod Management Policies](#43-pod-management-policies)
+    4.1. [Scaling StatefulSets](#41-scaling-statefulsets)
+    4.2. [Updates and Rollbacks](#42-updates-and-rollbacks)
+    4.3. [Pod Management Policies](#43-pod-management-policies)
 
 5. [Advanced StatefulSet Features](#5-advanced-statefulset-features)
-   5.1. [Headless Services](#51-headless-services)
-   5.2. [StatefulSet Partitioning](#52-statefulset-partitioning)
-   5.3. [Troubleshooting StatefulSets](#53-troubleshooting-statefulsets)
+    5.1. [Headless Services](#51-headless-services)
+    5.2. [StatefulSet Partitioning](#52-statefulset-partitioning)
+    5.3. [Troubleshooting StatefulSets](#53-troubleshooting-statefulsets)
 
 ---
 
@@ -60,12 +60,12 @@ metadata:
 spec:
   replicas: 3
   template:
-    spec:
-      containers:
-      - name: web
-        image: nginx:latest
-        # No persistent storage needed
-        # Pods are identical and interchangeable
+     spec:
+       containers:
+       - name: web
+         image: nginx:latest
+         # No persistent storage needed
+         # Pods are identical and interchangeable
 
 ---
 # Stateful Application (StatefulSet)
@@ -76,12 +76,12 @@ metadata:
 spec:
   replicas: 3
   template:
-    spec:
-      containers:
-      - name: db
-        image: postgres:13
-        # Requires persistent storage
-        # Each Pod needs unique identity
+     spec:
+       containers:
+       - name: db
+         image: postgres:13
+         # Requires persistent storage
+         # Each Pod needs unique identity
 ```
 
 ### 1.2. StatefulSet Architecture
@@ -94,8 +94,8 @@ Like a theater where each seat has a permanent number, assigned storage compartm
 
 ```
 StatefulSet Controller
-        │
-        ▼
+         │
+         ▼
 ┌─────────────────────────────────────────────────────┐
 │               StatefulSet                           │
 │  ┌─────────────┬─────────────┬─────────────────┐   │
@@ -106,14 +106,14 @@ StatefulSet Controller
 │  │ DNS Name    │ DNS Name    │  DNS Name       │   │
 │  └─────────────┴─────────────┴─────────────────┘   │
 └─────────────────────────────────────────────────────┘
-        │
-        ▼
+         │
+         ▼
 ┌─────────────────────────────────────────────────────┐
 │            Headless Service                         │
 │         (Stable Network Identity)                   │
 └─────────────────────────────────────────────────────┘
-        │
-        ▼
+         │
+         ▼
 ┌─────────────────────────────────────────────────────┐
 │         PersistentVolumes                           │
 │      (Persistent Storage)                           │
@@ -212,12 +212,12 @@ spec:
   replicas: 3
   volumeClaimTemplates:
   - metadata:
-      name: data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 10Gi
+       name: data
+     spec:
+       accessModes: ["ReadWriteOnce"]
+       resources:
+         requests:
+           storage: 10Gi
 ```
 
 **Resulting PVC Creation:**
@@ -308,66 +308,66 @@ spec:
 
   # Pod selector
   selector:
-    matchLabels:
-      app: mongodb
+     matchLabels:
+       app: mongodb
 
   # Pod template
   template:
-    metadata:
-      labels:
-        app: mongodb
-    spec:
-      containers:
-      - name: mongodb
-        image: mongo:4.4
-        ports:
-        - containerPort: 27017
-          name: mongodb
+     metadata:
+       labels:
+         app: mongodb
+     spec:
+       containers:
+       - name: mongodb
+         image: mongo:4.4
+         ports:
+         - containerPort: 27017
+           name: mongodb
 
-        # Environment variables
-        env:
-        - name: MONGO_INITDB_ROOT_USERNAME
-          value: "admin"
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-secret
-              key: password
+         # Environment variables
+         env:
+         - name: MONGO_INITDB_ROOT_USERNAME
+           value: "admin"
+         - name: MONGO_INITDB_ROOT_PASSWORD
+           valueFrom:
+             secretKeyRef:
+               name: mongodb-secret
+               key: password
 
-        # Volume mounts
-        volumeMounts:
-        - name: data
-          mountPath: /data/db
+         # Volume mounts
+         volumeMounts:
+         - name: data
+           mountPath: /data/db
 
-        # Resource requirements
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
+         # Resource requirements
+         resources:
+           requests:
+             memory: "512Mi"
+             cpu: "250m"
+           limits:
+             memory: "1Gi"
+             cpu: "500m"
 
-        # Liveness probe
-        livenessProbe:
-          exec:
-            command:
-            - mongo
-            - --eval
-            - "db.adminCommand('ping')"
-          initialDelaySeconds: 30
-          periodSeconds: 10
+         # Liveness probe
+         livenessProbe:
+           exec:
+             command:
+             - mongo
+             - --eval
+             - "db.adminCommand('ping')"
+           initialDelaySeconds: 30
+           periodSeconds: 10
 
   # Storage template
   volumeClaimTemplates:
   - metadata:
-      name: data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: "fast-ssd"
-      resources:
-        requests:
-          storage: 20Gi
+       name: data
+     spec:
+       accessModes: ["ReadWriteOnce"]
+       storageClassName: "fast-ssd"
+       resources:
+         requests:
+           storage: 20Gi
 ```
 
 ### 3.2. Service Configuration
@@ -386,11 +386,11 @@ metadata:
 spec:
   clusterIP: None  # Headless service
   selector:
-    app: mongodb
+     app: mongodb
   ports:
   - port: 27017
-    targetPort: 27017
-    name: mongodb
+     targetPort: 27017
+     name: mongodb
 
 ---
 # Optional: Regular service for load balancing
@@ -401,11 +401,11 @@ metadata:
   namespace: production
 spec:
   selector:
-    app: mongodb
+     app: mongodb
   ports:
   - port: 27017
-    targetPort: 27017
-    name: mongodb
+     targetPort: 27017
+     name: mongodb
   type: ClusterIP
 ```
 
@@ -419,27 +419,27 @@ VolumeClaimTemplates automatically create PersistentVolumeClaims for each Statef
 # Advanced storage template
 volumeClaimTemplates:
 - metadata:
-    name: data
-    annotations:
-      # Storage-specific annotations
-      volume.beta.kubernetes.io/storage-class: "fast-ssd"
+     name: data
+     annotations:
+       # Storage-specific annotations
+       volume.beta.kubernetes.io/storage-class: "fast-ssd"
   spec:
-    accessModes:
-    - ReadWriteOnce
-    storageClassName: fast-ssd
-    resources:
-      requests:
-        storage: 50Gi
+     accessModes:
+     - ReadWriteOnce
+     storageClassName: fast-ssd
+     resources:
+       requests:
+         storage: 50Gi
 
 - metadata:
-    name: logs
+     name: logs
   spec:
-    accessModes:
-    - ReadWriteOnce
-    storageClassName: standard-hdd
-    resources:
-      requests:
-        storage: 10Gi
+     accessModes:
+     - ReadWriteOnce
+     storageClassName: standard-hdd
+     resources:
+       requests:
+         storage: 10Gi
 ```
 
 ## 4. StatefulSet Operations
@@ -496,19 +496,19 @@ metadata:
   name: mongodb
 spec:
   updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      # Maximum number of Pods unavailable during update
-      maxUnavailable: 1
+     type: RollingUpdate
+     rollingUpdate:
+       # Maximum number of Pods unavailable during update
+       maxUnavailable: 1
 
-      # Update partition (advanced feature)
-      partition: 0
+       # Update partition (advanced feature)
+       partition: 0
 
   template:
-    spec:
-      containers:
-      - name: mongodb
-        image: mongo:5.0  # Updated version
+     spec:
+       containers:
+       - name: mongodb
+         image: mongo:5.0  # Updated version
 ```
 
 **Update Operations:**
@@ -571,12 +571,12 @@ metadata:
 spec:
   clusterIP: None  # This makes it headless
   selector:
-    app: cassandra
+     app: cassandra
   ports:
   - port: 9042
-    name: cql
+     name: cql
   - port: 9160
-    name: thrift
+     name: thrift
 ```
 
 **DNS Resolution Behavior:**
@@ -609,15 +609,15 @@ metadata:
 spec:
   replicas: 6
   updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      partition: 3  # Only update Pods with ordinal >= 3
+     type: RollingUpdate
+     rollingUpdate:
+       partition: 3  # Only update Pods with ordinal >= 3
 
   template:
-    spec:
-      containers:
-      - name: mongodb
-        image: mongo:5.0  # New version
+     spec:
+       containers:
+       - name: mongodb
+         image: mongo:5.0  # New version
 ```
 
 **Partition Behavior:**
@@ -625,8 +625,8 @@ spec:
 ```
 Pods:      0   1   2   3   4   5
 Version:  4.4 4.4 4.4 5.0 5.0 5.0
-          └─────────┘ └─────────┘
-           Old Ver    New Ver
+           └─────────┘ └─────────┘
+            Old Ver    New Ver
 
 # Only Pods 3, 4, 5 get updated
 # Pods 0, 1, 2 remain on old version

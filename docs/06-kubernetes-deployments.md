@@ -3,30 +3,30 @@
 ## Table of Contents
 
 1. [Deployment Fundamentals](#1-deployment-fundamentals)
-   1.1. [What are Deployments](#11-what-are-deployments)
-   1.2. [Deployment Architecture](#12-deployment-architecture)
-   1.3. [Self-Healing and Scaling](#13-self-healing-and-scaling)
+     1.1. [What are Deployments](#11-what-are-deployments)
+     1.2. [Deployment Architecture](#12-deployment-architecture)
+     1.3. [Self-Healing and Scaling](#13-self-healing-and-scaling)
 
 2. [Desired State Management](#2-desired-state-management)
-   2.1. [Declarative Configuration](#21-declarative-configuration)
-   2.2. [Controller Reconciliation](#22-controller-reconciliation)
-   2.3. [Monitoring and Maintenance](#23-monitoring-and-maintenance)
+     2.1. [Declarative Configuration](#21-declarative-configuration)
+     2.2. [Controller Reconciliation](#22-controller-reconciliation)
+     2.3. [Monitoring and Maintenance](#23-monitoring-and-maintenance)
 
 3. [Rolling Updates and Rollbacks](#3-rolling-updates-and-rollbacks)
-   3.1. [Rolling Update Strategy](#31-rolling-update-strategy)
-   3.2. [Update Configuration](#32-update-configuration)
-   3.3. [Rollback Operations](#33-rollback-operations)
+     3.1. [Rolling Update Strategy](#31-rolling-update-strategy)
+     3.2. [Update Configuration](#32-update-configuration)
+     3.3. [Rollback Operations](#33-rollback-operations)
 
 4. [Deployment Operations](#4-deployment-operations)
-   4.1. [Creating Your First Deployment](#41-creating-your-first-deployment)
-   4.2. [Scaling Deployments](#42-scaling-deployments)
-   4.3. [Updating Applications](#43-updating-applications)
-   4.4. [Managing Rollbacks](#44-managing-rollbacks)
+     4.1. [Creating Your First Deployment](#41-creating-your-first-deployment)
+     4.2. [Scaling Deployments](#42-scaling-deployments)
+     4.3. [Updating Applications](#43-updating-applications)
+    4.4. [Managing Rollbacks](#44-managing-rollbacks)
 
 5. [Deployment Troubleshooting](#5-deployment-troubleshooting)
-   5.1. [Common Issues](#51-common-issues)
-   5.2. [Debugging Deployments](#52-debugging-deployments)
-   5.3. [Best Practices](#53-best-practices)
+    5.1. [Common Issues](#51-common-issues)
+    5.2. [Debugging Deployments](#52-debugging-deployments)
+    5.3. [Best Practices](#53-best-practices)
 
 ---
 
@@ -50,10 +50,10 @@ Deployments work through a hierarchical management structure:
 
 ```
 Deployment
-    └── ReplicaSet
-            └── Pod 1
-            └── Pod 2
-            └── Pod 3
+     └── ReplicaSet
+             └── Pod 1
+             └── Pod 2
+             └── Pod 3
 ```
 
 This is similar to restaurant management hierarchy:
@@ -102,18 +102,18 @@ metadata:
 spec:
   replicas: 3                    # Desired state: 3 Pod instances
   selector:
-    matchLabels:
-      app: webapp
+     matchLabels:
+       app: webapp
   template:
-    metadata:
-      labels:
-        app: webapp
-    spec:
-      containers:
-      - name: web
-        image: nginx:1.21
-        ports:
-        - containerPort: 80
+     metadata:
+       labels:
+         app: webapp
+     spec:
+       containers:
+       - name: web
+         image: nginx:1.21
+         ports:
+         - containerPort: 80
 ```
 
 ### 2.2. Controller Reconciliation
@@ -176,10 +176,10 @@ You can configure how rolling updates behave using deployment strategy settings:
 ```yaml
 spec:
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 25%     # Max 25% of desired Pods can be unavailable
-      maxSurge: 25%          # Max 25% extra Pods can be created temporarily
+     type: RollingUpdate
+     rollingUpdate:
+       maxUnavailable: 25%     # Max 25% of desired Pods can be unavailable
+       maxSurge: 25%          # Max 25% extra Pods can be created temporarily
 ```
 
 **Update Strategy Options:**
@@ -220,29 +220,29 @@ kind: Deployment
 metadata:
   name: web-app
   labels:
-    app: web-app
+     app: web-app
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: web-app
+     matchLabels:
+       app: web-app
   template:
-    metadata:
-      labels:
-        app: web-app
-    spec:
-      containers:
-      - name: web
-        image: nginx:1.21
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: 64Mi
-            cpu: 250m
-          limits:
-            memory: 128Mi
-            cpu: 500m
+     metadata:
+       labels:
+         app: web-app
+     spec:
+       containers:
+       - name: web
+         image: nginx:1.21
+         ports:
+         - containerPort: 80
+         resources:
+           requests:
+             memory: 64Mi
+             cpu: 250m
+           limits:
+             memory: 128Mi
+             cpu: 500m
 ```
 
 **Deploy and verify:**
@@ -408,34 +408,34 @@ metadata:
 spec:
   replicas: 3
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+     type: RollingUpdate
+     rollingUpdate:
+       maxUnavailable: 1
+       maxSurge: 1
   template:
-    spec:
-      containers:
-      - name: web
-        image: nginx:1.21
-        resources:
-          requests:
-            memory: 64Mi
-            cpu: 250m
-          limits:
-            memory: 128Mi
-            cpu: 500m
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 80
-          initialDelaySeconds: 15
-          periodSeconds: 20
+     spec:
+       containers:
+       - name: web
+         image: nginx:1.21
+         resources:
+           requests:
+             memory: 64Mi
+             cpu: 250m
+           limits:
+             memory: 128Mi
+             cpu: 500m
+         readinessProbe:
+           httpGet:
+             path: /health
+             port: 80
+           initialDelaySeconds: 5
+           periodSeconds: 10
+         livenessProbe:
+           httpGet:
+             path: /health
+             port: 80
+           initialDelaySeconds: 15
+           periodSeconds: 20
 ```
 
 `★ Insight ─────────────────────────────────────`

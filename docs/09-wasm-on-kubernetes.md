@@ -4,26 +4,26 @@
 ## Table of Contents
 
 1. [WebAssembly Fundamentals](#1-webassembly-fundamentals)
-   1.1. [Cross-Platform Compatibility](#11-cross-platform-compatibility)
-   1.2. [WebAssembly Benefits](#12-webassembly-benefits)
-   1.3. [Performance Characteristics](#13-performance-characteristics)
+     1.1. [Cross-Platform Compatibility](#11-cross-platform-compatibility)
+     1.2. [WebAssembly Benefits](#12-webassembly-benefits)
+     1.3. [Performance Characteristics](#13-performance-characteristics)
 
 2. [WebAssembly Architecture](#2-webassembly-architecture)
-   2.1. [Runtime Architecture](#21-runtime-architecture)
-   2.2. [Kubernetes Integration](#22-kubernetes-integration)
-   2.3. [Container Runtime Interface](#23-container-runtime-interface)
+     2.1. [Runtime Architecture](#21-runtime-architecture)
+     2.2. [Kubernetes Integration](#22-kubernetes-integration)
+     2.3. [Container Runtime Interface](#23-container-runtime-interface)
 
 3. [Deploying WebAssembly Workloads](#3-deploying-webassembly-workloads)
-   3.1. [Development Tools Setup](#31-development-tools-setup)
-   3.2. [Creating WebAssembly Applications](#32-creating-webassembly-applications)
-   3.3. [Container Packaging](#33-container-packaging)
-   3.4. [Kubernetes Deployment](#34-kubernetes-deployment)
-   3.5. [Testing and Verification](#35-testing-and-verification)
+     3.1. [Development Tools Setup](#31-development-tools-setup)
+     3.2. [Creating WebAssembly Applications](#32-creating-webassembly-applications)
+     3.3. [Container Packaging](#33-container-packaging)
+     3.4. [Kubernetes Deployment](#34-kubernetes-deployment)
+     3.5. [Testing and Verification](#35-testing-and-verification)
 
 4. [Advanced WebAssembly Operations](#4-advanced-webassembly-operations)
-   4.1. [Multi-Runtime Environments](#41-multi-runtime-environments)
-   4.2. [Resource Management](#42-resource-management)
-   4.3. [Troubleshooting WebAssembly Workloads](#43-troubleshooting-webassembly-workloads)
+     4.1. [Multi-Runtime Environments](#41-multi-runtime-environments)
+     4.2. [Resource Management](#42-resource-management)
+     4.3. [Troubleshooting WebAssembly Workloads](#43-troubleshooting-webassembly-workloads)
 
 ---
 
@@ -218,13 +218,13 @@ metadata:
 handler: spin                    # Which translator to use
 scheduling:
   nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: wasm              # Only nodes with translators
-          operator: In
-          values:
-          - "yes"
+     requiredDuringSchedulingIgnoredDuringExecution:
+       nodeSelectorTerms:
+       - matchExpressions:
+         - key: wasm              # Only nodes with translators
+           operator: In
+           values:
+           - "yes"
 ```
 
 **Application Translation Request:**
@@ -235,7 +235,7 @@ spec:
   runtimeClassName: universal-translator  # Request universal translator
   containers:
   - name: polyglot-app
-    image: myapp:wasm                     # Universal format
+     image: myapp:wasm                     # Universal format
 ```
 
 ## 3. Building Your Translation System
@@ -292,7 +292,7 @@ tkb-wasm/
 ├── Cargo.toml      # Build configuration
 ├── spin.toml       # Translation runtime configuration
 └── src/
-    └── lib.rs      # Source code (any language → Rust example)
+     └── lib.rs      # Source code (any language → Rust example)
 ```
 
 **Writing the Universal Message:**
@@ -302,12 +302,12 @@ use spin_sdk::http::{IntoResponse, Request, Response};
 
 #[spin_sdk::http_component]
 fn handle_tkb_wasm(req: Request) -> anyhow::Result<impl IntoResponse> {
-    println!("Handling request to {:?}", req.header("spin-full-url"));
-    Ok(Response::builder()
-        .status(200)
-        .header("content-type", "text/plain")
-        .body("The Kubernetes Book loves Universal Translation!")
-        .build())
+     println!("Handling request to {:?}", req.header("spin-full-url"));
+     Ok(Response::builder()
+         .status(200)
+         .header("content-type", "text/plain")
+         .body("The Kubernetes Book loves Universal Translation!")
+         .build())
 }
 ```
 
@@ -371,8 +371,8 @@ Now let's build a conference center (Kubernetes cluster) equipped with universal
 
 # Build cluster with pre-installed translation equipment
 k3d cluster create wasm \
-    --image ghcr.io/deislabs/containerd-wasm-shims/examples/k3d:v0.11.1 \
-    -p "5005:80@loadbalancer" --agents 2
+     --image ghcr.io/deislabs/containerd-wasm-shims/examples/k3d:v0.11.1 \
+     -p "5005:80@loadbalancer" --agents 2
 ```
 
 This creates a 3-node cluster:
@@ -433,13 +433,13 @@ metadata:
 handler: spin                    # Use Spin translator
 scheduling:
   nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: wasm
-          operator: In
-          values:
-          - "yes"               # Only nodes with translation equipment
+     requiredDuringSchedulingIgnoredDuringExecution:
+       nodeSelectorTerms:
+       - matchExpressions:
+         - key: wasm
+           operator: In
+           values:
+           - "yes"               # Only nodes with translation equipment
 ```
 
 ### 3.5. Testing Global Communication
@@ -456,18 +456,18 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: wasm
+     matchLabels:
+       app: wasm
   template:
-    metadata:
-      labels:
-        app: wasm
-    spec:
-      runtimeClassName: rc-spin              # Request universal translator
-      containers:
-        - name: translator-app
-          image: nigelpoulton/k8sbook:wasm-0.1  # Universal package
-          command: ["/"]
+     metadata:
+       labels:
+         app: wasm
+     spec:
+       runtimeClassName: rc-spin              # Request universal translator
+       containers:
+         - name: translator-app
+           image: nigelpoulton/k8sbook:wasm-0.1  # Universal package
+           command: ["/"]
 ---
 apiVersion: v1
 kind: Service
@@ -475,10 +475,10 @@ metadata:
   name: svc-wasm
 spec:
   selector:
-    app: wasm
+     app: wasm
   ports:
   - port: 80
-    targetPort: 80
+     targetPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -487,14 +487,14 @@ metadata:
 spec:
   rules:
   - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: svc-wasm
-            port:
-              number: 80
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+           service:
+             name: svc-wasm
+             port:
+               number: 80
 ```
 
 **Deploying the Universal Communication System:**
@@ -556,13 +556,13 @@ metadata:
 handler: wasmedge
 scheduling:
   nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: performance
-          operator: In
-          values:
-          - "gaming"
+     requiredDuringSchedulingIgnoredDuringExecution:
+       nodeSelectorTerms:
+       - matchExpressions:
+         - key: performance
+           operator: In
+           values:
+           - "gaming"
 ```
 
 ### 4.2. Specialized Translation Teams

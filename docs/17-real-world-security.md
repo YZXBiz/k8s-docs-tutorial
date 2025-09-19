@@ -7,31 +7,31 @@
 ## Table of Contents
 
 1. [Production Security Architecture](#1-production-security-architecture)
-   1.1. [Security Architecture Principles](#11-security-architecture-principles)
-   1.2. [Defense in Depth Strategy](#12-defense-in-depth-strategy)
-   1.3. [Security Governance Framework](#13-security-governance-framework)
+    1.1. [Security Architecture Principles](#11-security-architecture-principles)
+    1.2. [Defense in Depth Strategy](#12-defense-in-depth-strategy)
+    1.3. [Security Governance Framework](#13-security-governance-framework)
 
 2. [Supply Chain Security](#2-supply-chain-security)
-   2.1. [Container Image Security](#21-container-image-security)
-   2.2. [Image Repository Management](#22-image-repository-management)
-   2.3. [Build Pipeline Security](#23-build-pipeline-security)
-   2.4. [Image Promotion Workflow](#24-image-promotion-workflow)
+    2.1. [Container Image Security](#21-container-image-security)
+    2.2. [Image Repository Management](#22-image-repository-management)
+    2.3. [Build Pipeline Security](#23-build-pipeline-security)
+    2.4. [Image Promotion Workflow](#24-image-promotion-workflow)
 
 3. [Workload Isolation Strategies](#3-workload-isolation-strategies)
-   3.1. [Multi-Tenancy Security Models](#31-multi-tenancy-security-models)
-   3.2. [Runtime Isolation Technologies](#32-runtime-isolation-technologies)
-   3.3. [Network Security Architecture](#33-network-security-architecture)
+    3.1. [Multi-Tenancy Security Models](#31-multi-tenancy-security-models)
+    3.2. [Runtime Isolation Technologies](#32-runtime-isolation-technologies)
+    3.3. [Network Security Architecture](#33-network-security-architecture)
 
 4. [Identity and Access Management](#4-identity-and-access-management)
-   4.1. [Enterprise IAM Integration](#41-enterprise-iam-integration)
-   4.2. [Access Control Implementation](#42-access-control-implementation)
-   4.3. [Privileged Access Management](#43-privileged-access-management)
+    4.1. [Enterprise IAM Integration](#41-enterprise-iam-integration)
+    4.2. [Access Control Implementation](#42-access-control-implementation)
+    4.3. [Privileged Access Management](#43-privileged-access-management)
 
 5. [Security Operations](#5-security-operations)
-   5.1. [Monitoring and Alerting](#51-monitoring-and-alerting)
-   5.2. [Audit Trail Management](#52-audit-trail-management)
-   5.3. [Incident Response](#53-incident-response)
-   5.4. [Security Assessment and Compliance](#54-security-assessment-and-compliance)
+    5.1. [Monitoring and Alerting](#51-monitoring-and-alerting)
+    5.2. [Audit Trail Management](#52-audit-trail-management)
+    5.3. [Incident Response](#53-incident-response)
+    5.4. [Security Assessment and Compliance](#54-security-assessment-and-compliance)
 
 ---
 
@@ -163,22 +163,22 @@ metadata:
   name: registry-access-policy
 spec:
   podSelector:
-    matchLabels:
-      app: container-registry
+     matchLabels:
+       app: container-registry
   policyTypes:
   - Ingress
   - Egress
   ingress:
   - from:
-    - namespaceSelector:
-        matchLabels:
-          name: development
-    - namespaceSelector:
-        matchLabels:
-          name: production
-    ports:
-    - protocol: TCP
-      port: 5000
+     - namespaceSelector:
+         matchLabels:
+           name: development
+     - namespaceSelector:
+         matchLabels:
+           name: production
+     ports:
+     - protocol: TCP
+       port: 5000
 ```
 
 ### 2.3. Build Pipeline Security
@@ -199,25 +199,25 @@ Build pipelines require security controls comparable to financial transaction pr
 # Example build pipeline with security gates
 stages:
   - source-verification:
-      - verify-signed-commits
-      - dependency-check
-      - license-compliance
+       - verify-signed-commits
+       - dependency-check
+       - license-compliance
   - security-scanning:
-      - static-code-analysis
-      - secret-detection
-      - vulnerability-assessment
+       - static-code-analysis
+       - secret-detection
+       - vulnerability-assessment
   - image-security:
-      - base-image-verification
-      - multi-layer-scanning
-      - configuration-analysis
+       - base-image-verification
+       - multi-layer-scanning
+       - configuration-analysis
   - cryptographic-signing:
-      - image-signing
-      - attestation-generation
-      - signature-verification
+       - image-signing
+       - attestation-generation
+       - signature-verification
   - promotion:
-      - automated-testing
-      - security-policy-check
-      - deployment-authorization
+       - automated-testing
+       - security-policy-check
+       - deployment-authorization
 ```
 
 ### 2.4. Image Promotion Workflow
@@ -293,11 +293,11 @@ metadata:
 handler: kata-containers
 scheduling:
   nodeClassification:
-    tolerations:
-    - key: "runtime"
-      operator: "Equal"
-      value: "kata"
-      effect: "NoSchedule"
+     tolerations:
+     - key: "runtime"
+       operator: "Equal"
+       value: "kata"
+       effect: "NoSchedule"
 ```
 
 **Workload Targeting:**
@@ -310,10 +310,10 @@ spec:
   runtimeClassName: secure-runtime
   containers:
   - name: secure-app
-    image: sensitive-app:latest
-    securityContext:
-      runAsNonRoot: true
-      readOnlyRootFilesystem: true
+     image: sensitive-app:latest
+     securityContext:
+       runAsNonRoot: true
+       readOnlyRootFilesystem: true
 ```
 
 ### 3.3. Network Security Architecture
@@ -341,33 +341,33 @@ metadata:
   namespace: production
 spec:
   podSelector:
-    matchLabels:
-      app: secure-app
+     matchLabels:
+       app: secure-app
   policyTypes:
   - Ingress
   - Egress
   ingress:
   - from:
-    - namespaceSelector:
-        matchLabels:
-          environment: production
-    - podSelector:
-        matchLabels:
-          role: frontend
-    ports:
-    - protocol: TCP
-      port: 8080
+     - namespaceSelector:
+         matchLabels:
+           environment: production
+     - podSelector:
+         matchLabels:
+           role: frontend
+     ports:
+     - protocol: TCP
+       port: 8080
   egress:
   - to:
-    - namespaceSelector:
-        matchLabels:
-          environment: production
-    - podSelector:
-        matchLabels:
-          role: database
-    ports:
-    - protocol: TCP
-      port: 5432
+     - namespaceSelector:
+         matchLabels:
+           environment: production
+     - podSelector:
+         matchLabels:
+           role: database
+     ports:
+     - protocol: TCP
+       port: 5432
 ```
 
 ---
@@ -386,14 +386,14 @@ kind: Config
 users:
 - name: enterprise-user
   user:
-    auth-provider:
-      name: oidc
-      config:
-        idp-issuer-url: https://auth.company.com
-        client-id: kubernetes-cluster
-        client-secret: secure-secret
-        refresh-token: refresh-token-value
-        id-token: id-token-value
+     auth-provider:
+       name: oidc
+       config:
+         idp-issuer-url: https://auth.company.com
+         client-id: kubernetes-cluster
+         client-secret: secure-secret
+         refresh-token: refresh-token-value
+         id-token: id-token-value
 ```
 
 **Benefits of Centralized IAM:**
@@ -439,8 +439,8 @@ kind: ClusterRole
 metadata:
   name: emergency-access
   annotations:
-    audit.kubernetes.io/level: "RequestResponse"
-    break-glass.company.com/approval-required: "true"
+     audit.kubernetes.io/level: "RequestResponse"
+     break-glass.company.com/approval-required: "true"
 rules:
 - apiGroups: ["*"]
   resources: ["*"]
@@ -500,16 +500,16 @@ rules:
 - level: RequestResponse
   resources:
   - group: ""
-    resources: ["secrets", "configmaps"]
+     resources: ["secrets", "configmaps"]
 - level: Metadata
   resources:
   - group: ""
-    resources: ["pods", "services"]
+     resources: ["pods", "services"]
 - level: Request
   users: ["system:serviceaccount:kube-system:*"]
   resources:
   - group: ""
-    resources: ["*"]
+     resources: ["*"]
 ```
 
 **Log Retention and Storage:**

@@ -7,31 +7,31 @@
 ## Table of Contents
 
 1. [API Architecture Overview](#1-api-architecture-overview)
-   1.1. [API-Centric Design](#11-api-centric-design)
-   1.2. [Request Processing Flow](#12-request-processing-flow)
-   1.3. [Serialization and Data Exchange](#13-serialization-and-data-exchange)
+    1.1. [API-Centric Design](#11-api-centric-design)
+    1.2. [Request Processing Flow](#12-request-processing-flow)
+    1.3. [Serialization and Data Exchange](#13-serialization-and-data-exchange)
 
 2. [API Server Fundamentals](#2-api-server-fundamentals)
-   2.1. [Server Architecture](#21-server-architecture)
-   2.2. [RESTful Interface](#22-restful-interface)
-   2.3. [CRUD Operations](#23-crud-operations)
-   2.4. [Practical API Interaction](#24-practical-api-interaction)
+    2.1. [Server Architecture](#21-server-architecture)
+    2.2. [RESTful Interface](#22-restful-interface)
+    2.3. [CRUD Operations](#23-crud-operations)
+    2.4. [Practical API Interaction](#24-practical-api-interaction)
 
 3. [API Structure and Organization](#3-api-structure-and-organization)
-   3.1. [API Group Architecture](#31-api-group-architecture)
-   3.2. [Core API Group](#32-core-api-group)
-   3.3. [Named API Groups](#33-named-api-groups)
-   3.4. [API Discovery and Exploration](#34-api-discovery-and-exploration)
+    3.1. [API Group Architecture](#31-api-group-architecture)
+    3.2. [Core API Group](#32-core-api-group)
+    3.3. [Named API Groups](#33-named-api-groups)
+    3.4. [API Discovery and Exploration](#34-api-discovery-and-exploration)
 
 4. [API Versioning and Lifecycle](#4-api-versioning-and-lifecycle)
-   4.1. [Version Progression](#41-version-progression)
-   4.2. [Resource Deprecation](#42-resource-deprecation)
-   4.3. [Migration Strategies](#43-migration-strategies)
+    4.1. [Version Progression](#41-version-progression)
+    4.2. [Resource Deprecation](#42-resource-deprecation)
+    4.3. [Migration Strategies](#43-migration-strategies)
 
 5. [API Extensibility](#5-api-extensibility)
-   5.1. [Custom Resource Definitions](#51-custom-resource-definitions)
-   5.2. [Hands-on: Creating Custom Resources](#52-hands-on-creating-custom-resources)
-   5.3. [Extension Patterns](#53-extension-patterns)
+    5.1. [Custom Resource Definitions](#51-custom-resource-definitions)
+    5.2. [Hands-on: Creating Custom Resources](#52-hands-on-creating-custom-resources)
+    5.3. [Extension Patterns](#53-extension-patterns)
 
 ---
 
@@ -258,7 +258,7 @@ $ curl -X GET http://localhost:9000/api/v1/namespaces/shield/pods
   "kind": "PodList",
   "apiVersion": "v1",
   "metadata": {
-    "resourceVersion": "9524"
+     "resourceVersion": "9524"
   },
   "items": []
 }
@@ -273,20 +273,20 @@ $ curl -X GET http://localhost:9000/api/v1/namespaces
   "kind": "NamespaceList",
   "apiVersion": "v1",
   "metadata": {
-    "resourceVersion": "9541"
+     "resourceVersion": "9541"
   },
   "items": [
-    {
-      "metadata": {
-        "name": "kube-system",
-        "uid": "f5d39dd2-ccfe-4523-b634-f48ba3135663",
-        "resourceVersion": "10",
-        "creationTimestamp": "2025-01-15T10:30:00Z",
-        "labels": {
-          "kubernetes.io/metadata.name": "kube-system"
-        }
-      }
-    }
+     {
+       "metadata": {
+         "name": "kube-system",
+         "uid": "f5d39dd2-ccfe-4523-b634-f48ba3135663",
+         "resourceVersion": "10",
+         "creationTimestamp": "2025-01-15T10:30:00Z",
+         "labels": {
+           "kubernetes.io/metadata.name": "kube-system"
+         }
+       }
+     }
   ]
 }
 ```
@@ -310,7 +310,7 @@ $ curl -v -X GET http://localhost:9000/api/v1/namespaces/shield/pods
   "kind": "PodList",
   "apiVersion": "v1",
   "metadata": {
-    "resourceVersion": "34217"
+     "resourceVersion": "34217"
   },
   "items": []
 }
@@ -334,10 +334,10 @@ $ cat ns.json
   "kind": "Namespace",
   "apiVersion": "v1",
   "metadata": {
-    "name": "shield",
-    "labels": {
-      "chapter": "api"
-    }
+     "name": "shield",
+     "labels": {
+       "chapter": "api"
+     }
   }
 }
 ```
@@ -352,21 +352,21 @@ $ curl -X POST -H "Content-Type: application/json" \
   "kind": "Namespace",
   "apiVersion": "v1",
   "metadata": {
-    "name": "shield",
-    "uid": "12345678-1234-5678-9abc-123456789012",
-    "resourceVersion": "98765",
-    "creationTimestamp": "2025-01-15T10:35:00Z",
-    "labels": {
-      "chapter": "api"
-    }
+     "name": "shield",
+     "uid": "12345678-1234-5678-9abc-123456789012",
+     "resourceVersion": "98765",
+     "creationTimestamp": "2025-01-15T10:35:00Z",
+     "labels": {
+       "chapter": "api"
+     }
   },
   "spec": {
-    "finalizers": [
-      "kubernetes"
-    ]
+     "finalizers": [
+       "kubernetes"
+     ]
   },
   "status": {
-    "phase": "Active"
+     "phase": "Active"
   }
 }
 ```
@@ -399,16 +399,16 @@ $ curl -X DELETE \
   "kind": "Namespace",
   "apiVersion": "v1",
   "metadata": {
-    "name": "shield",
-    "deletionTimestamp": "2025-01-15T10:40:00Z"
+     "name": "shield",
+     "deletionTimestamp": "2025-01-15T10:40:00Z"
   },
   "spec": {
-    "finalizers": [
-      "kubernetes"
-    ]
+     "finalizers": [
+       "kubernetes"
+     ]
   },
   "status": {
-    "phase": "Terminating"
+     "phase": "Terminating"
   }
 }
 ```
@@ -449,7 +449,7 @@ Kubernetes API
 │   ├── storage.k8s.io/v1 (StorageClass, VolumeAttachment)
 │   └── rbac.authorization.k8s.io/v1 (Role, ClusterRole)
 └── Custom Groups
-    └── {domain}/v1 (Third-party resources)
+     └── {domain}/v1 (Third-party resources)
 ```
 
 This modular structure provides several advantages:
@@ -507,7 +507,7 @@ Group/Version/Resource (GVR) provides a mnemonic for understanding REST paths:
 ```
 /apis/{group}/{version}/{resource}
 /apis/storage.k8s.io/v1/storageclasses
-       ^group     ^version ^resource
+        ^group     ^version ^resource
 ```
 
 Note: The core group uses `/api/v1` instead of `/apis/core/v1` for historical reasons.
@@ -629,11 +629,11 @@ KIND:       Deployment
 VERSION:    apps/v1
 
 DESCRIPTION:
-    Deployment enables declarative updates for Pods and ReplicaSets.
+     Deployment enables declarative updates for Pods and ReplicaSets.
 
 FIELDS:
-    apiVersion   <string>
-        APIVersion defines the versioned schema...
+     apiVersion   <string>
+         APIVersion defines the versioned schema...
 ```
 
 **Direct API Exploration:**
@@ -645,13 +645,13 @@ $ curl http://localhost:9000/api
 {
   "kind": "APIVersions",
   "versions": [
-    "v1"
+     "v1"
   ],
   "serverAddressByClientCIDRs": [
-    {
-      "clientCIDR": "0.0.0.0/0",
-      "serverAddress": "172.21.0.4:6443"
-    }
+     {
+       "clientCIDR": "0.0.0.0/0",
+       "serverAddress": "172.21.0.4:6443"
+     }
   ]
 }
 ```
@@ -663,19 +663,19 @@ $ curl http://localhost:9000/apis
   "kind": "APIGroupList",
   "apiVersion": "v1",
   "groups": [
-    {
-      "name": "apps",
-      "versions": [
-        {
-          "groupVersion": "apps/v1",
-          "version": "v1"
-        }
-      ],
-      "preferredVersion": {
-        "groupVersion": "apps/v1",
-        "version": "v1"
-      }
-    }
+     {
+       "name": "apps",
+       "versions": [
+         {
+           "groupVersion": "apps/v1",
+           "version": "v1"
+         }
+       ],
+       "preferredVersion": {
+         "groupVersion": "apps/v1",
+         "version": "v1"
+       }
+     }
   ]
 }
 ```
@@ -687,20 +687,20 @@ $ curl http://localhost:9000/api/v1/namespaces
   "kind": "NamespaceList",
   "apiVersion": "v1",
   "metadata": {
-    "resourceVersion": "35234"
+     "resourceVersion": "35234"
   },
   "items": [
-    {
-      "metadata": {
-        "name": "kube-system",
-        "uid": "05fefa13-cbec-458b-aece-d65eb1972dfb",
-        "resourceVersion": "4",
-        "creationTimestamp": "2025-01-15T10:30:00Z",
-        "labels": {
-          "kubernetes.io/metadata.name": "kube-system"
-        }
-      }
-    }
+     {
+       "metadata": {
+         "name": "kube-system",
+         "uid": "05fefa13-cbec-458b-aece-d65eb1972dfb",
+         "resourceVersion": "4",
+         "creationTimestamp": "2025-01-15T10:30:00Z",
+         "labels": {
+           "kubernetes.io/metadata.name": "kube-system"
+         }
+       }
+     }
   ]
 }
 ```
@@ -809,10 +809,10 @@ Kubernetes maintains strict deprecation policies to balance innovation with stab
 **Deprecation Indicators:**
 
 1. **CLI Warning Messages**:
-   ```bash
-   $ kubectl apply -f old-deployment.yaml
-   Warning: apps/v1beta1 Deployment is deprecated in v1.16+
-   ```
+    ```bash
+    $ kubectl apply -f old-deployment.yaml
+    Warning: apps/v1beta1 Deployment is deprecated in v1.16+
+    ```
 
 2. **Audit Annotations**: `k8s.io/deprecated:true` added to request records
 
@@ -875,32 +875,32 @@ spec:
   group: nigelpoulton.com          # Custom API group
   scope: Cluster                   # Cluster-wide or Namespaced
   names:
-    plural: books                  # Plural name for API paths
-    singular: book                 # Singular name for CLI
-    kind: Book                     # YAML kind field
-    shortNames:
-    - bk                          # Abbreviated form
+     plural: books                  # Plural name for API paths
+     singular: book                 # Singular name for CLI
+     kind: Book                     # YAML kind field
+     shortNames:
+     - bk                          # Abbreviated form
   versions:
-    - name: v1
-      served: true                 # Enable this version
-      storage: true                # Use as storage version
-      schema:
-        openAPIV3Schema:
-          type: object
-          properties:
-            spec:
-              type: object
-              properties:
-                bookTitle:
-                  type: string
-                subTitle:
-                  type: string
-                topic:
-                  type: string
-                edition:
-                  type: integer
-                salesUrl:
-                  type: string
+     - name: v1
+       served: true                 # Enable this version
+       storage: true                # Use as storage version
+       schema:
+         openAPIV3Schema:
+           type: object
+           properties:
+             spec:
+               type: object
+               properties:
+                 bookTitle:
+                   type: string
+                 subTitle:
+                   type: string
+                 topic:
+                   type: string
+                 edition:
+                   type: integer
+                 salesUrl:
+                   type: string
 ```
 
 **Step-by-Step Implementation:**
@@ -957,12 +957,12 @@ $ curl http://localhost:9000/apis/nigelpoulton.com/v1/
   "kind": "APIResourceList",
   "groupVersion": "nigelpoulton.com/v1",
   "resources": [
-    {
-      "name": "books",
-      "kind": "Book",
-      "verbs": ["create", "delete", "get", "list", "patch", "update", "watch"],
-      "shortNames": ["bk"]
-    }
+     {
+       "name": "books",
+       "kind": "Book",
+       "verbs": ["create", "delete", "get", "list", "patch", "update", "watch"],
+       "shortNames": ["bk"]
+     }
   ]
 }
 ```

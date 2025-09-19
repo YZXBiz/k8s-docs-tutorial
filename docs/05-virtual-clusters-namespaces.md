@@ -6,17 +6,17 @@
 
 1. [Introduction](#1-introduction)
 2. [Namespace Fundamentals](#2-namespace-fundamentals)
-   2.1. [What are Namespaces](#21-what-are-namespaces)
-   2.2. [Isolation and Multi-tenancy](#22-isolation-and-multi-tenancy)
-   2.3. [Resource Scope](#23-resource-scope)
+     2.1. [What are Namespaces](#21-what-are-namespaces)
+     2.2. [Isolation and Multi-tenancy](#22-isolation-and-multi-tenancy)
+     2.3. [Resource Scope](#23-resource-scope)
 3. [Use Cases and Multi-tenancy](#3-use-cases-and-multi-tenancy)
-   3.1. [Isolation Levels](#31-isolation-levels)
-   3.2. [Organizational Patterns](#32-organizational-patterns)
+     3.1. [Isolation Levels](#31-isolation-levels)
+     3.2. [Organizational Patterns](#32-organizational-patterns)
 4. [Default Namespaces](#4-default-namespaces)
 5. [Creating and Managing Namespaces](#5-creating-and-managing-namespaces)
-   5.1. [Creating Namespaces](#51-creating-namespaces)
-   5.2. [Context Configuration](#52-context-configuration)
-   5.3. [Deploying to Namespaces](#53-deploying-to-namespaces)
+     5.1. [Creating Namespaces](#51-creating-namespaces)
+     5.2. [Context Configuration](#52-context-configuration)
+     5.3. [Deploying to Namespaces](#53-deploying-to-namespaces)
 6. [Summary](#6-summary)
 
 ## 1. Introduction
@@ -239,36 +239,36 @@ kube-node-lease   Active   2d
 **Default namespace purposes:**
 
 1. **default** - User workloads
-   ```
-   Purpose: Where objects go without specification
-   Contents: User applications and services
-   Access: Standard user permissions
-   Usage: Development and testing workloads
-   ```
+    ```
+    Purpose: Where objects go without specification
+    Contents: User applications and services
+    Access: Standard user permissions
+    Usage: Development and testing workloads
+    ```
 
 2. **kube-system** - System components
-   ```
-   Purpose: Control plane and system services
-   Contents: DNS, metrics server, controllers
-   Access: System administrators only
-   Usage: Core Kubernetes infrastructure
-   ```
+    ```
+    Purpose: Control plane and system services
+    Contents: DNS, metrics server, controllers
+    Access: System administrators only
+    Usage: Core Kubernetes infrastructure
+    ```
 
 3. **kube-public** - Public resources
-   ```
-   Purpose: Resources readable by everyone
-   Contents: Cluster information, public ConfigMaps
-   Access: Cluster-wide read access
-   Usage: Shared configuration and documentation
-   ```
+    ```
+    Purpose: Resources readable by everyone
+    Contents: Cluster information, public ConfigMaps
+    Access: Cluster-wide read access
+    Usage: Shared configuration and documentation
+    ```
 
 4. **kube-node-lease** - Node management
-   ```
-   Purpose: Node heartbeat and lease management
-   Contents: Node lease objects
-   Access: Kubelet and system components
-   Usage: Node health monitoring
-   ```
+    ```
+    Purpose: Node heartbeat and lease management
+    Contents: Node lease objects
+    Access: Kubelet and system components
+    Usage: Node health monitoring
+    ```
 
 **Inspecting default namespaces:**
 ```bash
@@ -315,12 +315,12 @@ kind: Namespace
 metadata:
   name: production
   labels:
-    environment: prod
-    team: platform
-    cost-center: engineering
+     environment: prod
+     team: platform
+     cost-center: engineering
   annotations:
-    description: "Production environment for customer applications"
-    contact: "platform-team@company.com"
+     description: "Production environment for customer applications"
+     contact: "platform-team@company.com"
 ```
 
 ```bash
@@ -396,14 +396,14 @@ metadata:
   name: web-server
   namespace: production     # ← Target namespace
   labels:
-    app: website
-    env: prod
+     app: website
+     env: prod
 spec:
   containers:
   - name: nginx
-    image: nginx:latest
-    ports:
-    - containerPort: 80
+     image: nginx:latest
+     ports:
+     - containerPort: 80
 
 ---
 apiVersion: v1
@@ -413,10 +413,10 @@ metadata:
   namespace: production     # ← Same namespace for the service
 spec:
   selector:
-    app: website
+     app: website
   ports:
   - port: 80
-    targetPort: 80
+     targetPort: 80
   type: LoadBalancer
 ```
 
@@ -459,7 +459,7 @@ $ curl localhost:80
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to nginx!</title>
+     <title>Welcome to nginx!</title>
 ...
 ```
 

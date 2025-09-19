@@ -7,27 +7,27 @@
 ## Table of Contents
 
 1. [Kubernetes Architecture Overview](#1-kubernetes-architecture-overview)
-   1.1. [Cluster Components](#11-cluster-components)
-   1.2. [Control Plane Nodes](#12-control-plane-nodes)
-   1.3. [Worker Nodes](#13-worker-nodes)
+     1.1. [Cluster Components](#11-cluster-components)
+     1.2. [Control Plane Nodes](#12-control-plane-nodes)
+     1.3. [Worker Nodes](#13-worker-nodes)
 
 2. [Control Plane Services](#2-control-plane-services)
-   2.1. [API Server](#21-api-server)
-   2.2. [Cluster Store (etcd)](#22-cluster-store-etcd)
-   2.3. [Controllers and Controller Manager](#23-controllers-and-controller-manager)
-   2.4. [Scheduler](#24-scheduler)
-   2.5. [Cloud Controller Manager](#25-cloud-controller-manager)
+     2.1. [API Server](#21-api-server)
+     2.2. [Cluster Store (etcd)](#22-cluster-store-etcd)
+     2.3. [Controllers and Controller Manager](#23-controllers-and-controller-manager)
+     2.4. [Scheduler](#24-scheduler)
+     2.5. [Cloud Controller Manager](#25-cloud-controller-manager)
 
 3. [Worker Node Components](#3-worker-node-components)
-   3.1. [Kubelet](#31-kubelet)
-   3.2. [Container Runtime](#32-container-runtime)
-   3.3. [Kube-proxy](#33-kube-proxy)
+     3.1. [Kubelet](#31-kubelet)
+     3.2. [Container Runtime](#32-container-runtime)
+     3.3. [Kube-proxy](#33-kube-proxy)
 
 4. [Application Packaging and Deployment](#4-application-packaging-and-deployment)
-   4.1. [Declarative Model and Desired State](#41-declarative-model-and-desired-state)
-   4.2. [Pods](#42-pods)
-   4.3. [Deployments](#43-deployments)
-   4.4. [Services](#44-services)
+     4.1. [Declarative Model and Desired State](#41-declarative-model-and-desired-state)
+     4.2. [Pods](#42-pods)
+     4.3. [Deployments](#43-deployments)
+     4.4. [Services](#44-services)
 
 5. [Chapter Summary](#5-chapter-summary)
 
@@ -143,13 +143,13 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: web
+     matchLabels:
+       app: web
   template:
-    spec:
-      containers:
-      - name: web-server
-        image: nginx:1.21
+     spec:
+       containers:
+       - name: web-server
+         image: nginx:1.21
 ```
 
 **Processing Steps:**
@@ -376,26 +376,26 @@ kind: Deployment
 metadata:
   name: web-application
   labels:
-    app: web
+     app: web
 spec:
   replicas: 3                    # Desired number of instances
   selector:
-    matchLabels:
-      app: web
+     matchLabels:
+       app: web
   template:
-    metadata:
-      labels:
-        app: web
-    spec:
-      containers:
-      - name: web-server
-        image: nginx:1.21         # Desired container image
-        ports:
-        - containerPort: 80       # Desired network configuration
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
+     metadata:
+       labels:
+         app: web
+     spec:
+       containers:
+       - name: web-server
+         image: nginx:1.21         # Desired container image
+         ports:
+         - containerPort: 80       # Desired network configuration
+         resources:
+           requests:
+             cpu: 100m
+             memory: 128Mi
 ```
 
 **Declarative vs Imperative Comparison:**
@@ -499,7 +499,7 @@ Deployment
 │  ├─ Pod 2
 │  └─ Pod 3
 └─ ReplicaSet (previous, kept for rollback)
-   └─ (pods terminated)
+    └─ (pods terminated)
 ```
 
 **Deployment Configuration Example:**
@@ -510,34 +510,34 @@ kind: Deployment
 metadata:
   name: web-app-deployment
   labels:
-    app: web-app
+     app: web-app
 spec:
   replicas: 3
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+     type: RollingUpdate
+     rollingUpdate:
+       maxUnavailable: 1
+       maxSurge: 1
   selector:
-    matchLabels:
-      app: web-app
+     matchLabels:
+       app: web-app
   template:
-    metadata:
-      labels:
-        app: web-app
-    spec:
-      containers:
-      - name: web-server
-        image: nginx:1.21
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
+     metadata:
+       labels:
+         app: web-app
+     spec:
+       containers:
+       - name: web-server
+         image: nginx:1.21
+         ports:
+         - containerPort: 80
+         resources:
+           requests:
+             cpu: 100m
+             memory: 128Mi
+           limits:
+             cpu: 500m
+             memory: 512Mi
 ```
 
 **Rolling Update Process:**
@@ -588,16 +588,16 @@ kind: Service
 metadata:
   name: web-service
   labels:
-    app: web-app
+     app: web-app
 spec:
   type: LoadBalancer
   selector:
-    app: web-app              # Select pods with this label
+     app: web-app              # Select pods with this label
   ports:
   - name: http
-    port: 80                  # Service port (client connects here)
-    targetPort: 8080          # Pod port (where app listens)
-    protocol: TCP
+     port: 80                  # Service port (client connects here)
+     targetPort: 8080          # Pod port (where app listens)
+     protocol: TCP
   sessionAffinity: None       # Load balancing strategy
 ```
 
@@ -606,9 +606,9 @@ spec:
 ```
 Client Request Flow:
 Client → Service (stable IP) → kube-proxy → Pod (dynamic IP)
-       ↓
-    Load Balancing Logic
-       ↓
+        ↓
+     Load Balancing Logic
+        ↓
 ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
 │    Pod 1    │  │    Pod 2    │  │    Pod 3    │
 │ 10.244.1.5  │  │ 10.244.2.8  │  │ 10.244.3.2  │

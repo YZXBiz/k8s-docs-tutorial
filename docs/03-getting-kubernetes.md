@@ -7,24 +7,24 @@
 ## Table of Contents
 
 1. [Installation Requirements](#1-installation-requirements)
-   1.1. [Essential Tools Overview](#11-essential-tools-overview)
-   1.2. [Development Strategy](#12-development-strategy)
+     1.1. [Essential Tools Overview](#11-essential-tools-overview)
+     1.2. [Development Strategy](#12-development-strategy)
 
 2. [Docker Desktop Installation](#2-docker-desktop-installation)
-   2.1. [Docker Account Setup](#21-docker-account-setup)
-   2.2. [Software Installation](#22-software-installation)
-   2.3. [Multi-Node Cluster Deployment](#23-multi-node-cluster-deployment)
-   2.4. [Local Cluster Verification](#24-local-cluster-verification)
+     2.1. [Docker Account Setup](#21-docker-account-setup)
+     2.2. [Software Installation](#22-software-installation)
+     2.3. [Multi-Node Cluster Deployment](#23-multi-node-cluster-deployment)
+     2.4. [Local Cluster Verification](#24-local-cluster-verification)
 
 3. [Cloud Cluster Setup](#3-cloud-cluster-setup)
-   3.1. [Cloud Requirements](#31-cloud-requirements)
-   3.2. [Linode Account Configuration](#32-linode-account-configuration)
-   3.3. [LKE Cluster Creation](#33-lke-cluster-creation)
-   3.4. [kubectl Configuration](#34-kubectl-configuration)
+     3.1. [Cloud Requirements](#31-cloud-requirements)
+     3.2. [Linode Account Configuration](#32-linode-account-configuration)
+     3.3. [LKE Cluster Creation](#33-lke-cluster-creation)
+    3.4. [kubectl Configuration](#34-kubectl-configuration)
 
 4. [kubectl and kubeconfig Management](#4-kubectl-and-kubeconfig-management)
-   4.1. [kubectl Command-Line Tool](#41-kubectl-command-line-tool)
-   4.2. [kubeconfig File Structure](#42-kubeconfig-file-structure)
+    4.1. [kubectl Command-Line Tool](#41-kubectl-command-line-tool)
+    4.2. [kubeconfig File Structure](#42-kubeconfig-file-structure)
 
 5. [Chapter Summary](#5-chapter-summary)
 
@@ -155,25 +155,25 @@ Docker Desktop can create a multi-node Kubernetes cluster that simulates product
 **Configuration Steps:**
 
 1. **Docker Desktop Authentication**
-   - Click the Docker whale icon in menu bar/system tray
-   - Sign in with your Docker account credentials
+    - Click the Docker whale icon in menu bar/system tray
+    - Sign in with your Docker account credentials
 
 2. **Enable Container Runtime Features**
-   - Open Docker Desktop Settings → General tab
-   - Ensure "Use containerd for pulling and storing images" is enabled
-   - Apply changes and restart if prompted
+    - Open Docker Desktop Settings → General tab
+    - Ensure "Use containerd for pulling and storing images" is enabled
+    - Apply changes and restart if prompted
 
 3. **Kubernetes Cluster Configuration**
-   - Navigate to Settings → Kubernetes tab
-   - Check "Enable Kubernetes" option
-   - **Critical**: Select "kind (sign-in required)" option for multi-node support
-   - Adjust Node(s) slider to 3 nodes
-   - Enable "Show system containers (advanced)" for visibility
+    - Navigate to Settings → Kubernetes tab
+    - Check "Enable Kubernetes" option
+    - **Critical**: Select "kind (sign-in required)" option for multi-node support
+    - Adjust Node(s) slider to 3 nodes
+    - Enable "Show system containers (advanced)" for visibility
 
 4. **Alternative Activation** (if kind option not visible):
-   - From Kubernetes settings page, enter: ↑↑↓↓←→←→ba (konami code)
-   - This enables experimental features including MultiNodeKubernetes
-   - Return to Kubernetes settings and retry kind configuration
+    - From Kubernetes settings page, enter: ↑↑↓↓←→←→ba (konami code)
+    - This enables experimental features including MultiNodeKubernetes
+    - Return to Kubernetes settings and retry kind configuration
 
 **Resulting Cluster Architecture:**
 
@@ -183,9 +183,9 @@ Multi-Node Configuration:
 │   Control Plane Node    │ ← Cluster management
 │ (desktop-control-plane) │
 └─────────────────────────┘
-            │
-     ┌──────┴──────┐
-     │             │
+             │
+      ┌──────┴──────┐
+      │             │
 ┌────▼───┐    ┌────▼────┐
 │Worker  │    │Worker   │ ← Application execution
 │Node 1  │    │Node 2   │
@@ -276,20 +276,20 @@ Linode provides managed Kubernetes service (LKE) with new user credits sufficien
 **Account Setup Process:**
 
 1. **Free Credit Registration**
-   - Primary link: `https://bit.ly/4b7YZix`
-   - Alternative: `https://www.linode.com/lp/refer/?r=6107b344722dbd6017ea12da672510a85f8b5e84`
-   - Provides $100 free credit valid for 60 days
+    - Primary link: `https://bit.ly/4b7YZix`
+    - Alternative: `https://www.linode.com/lp/refer/?r=6107b344722dbd6017ea12da672510a85f8b5e84`
+    - Provides $100 free credit valid for 60 days
 
 2. **Account Requirements**
-   - Valid email address for verification
-   - Payment method (required even with free credits)
-   - Account verification through email confirmation
+    - Valid email address for verification
+    - Payment method (required even with free credits)
+    - Account verification through email confirmation
 
 3. **Cost Management**
-   - Free credit covers all book examples with surplus
-   - Monitor usage through Linode dashboard
-   - Delete resources when experiments complete
-   - Set up billing alerts for cost awareness
+    - Free credit covers all book examples with surplus
+    - Monitor usage through Linode dashboard
+    - Delete resources when experiments complete
+    - Set up billing alerts for cost awareness
 
 **Account Benefits:**
 - **Managed Infrastructure**: Linode handles control plane management
@@ -304,27 +304,27 @@ Linode Kubernetes Engine (LKE) provides managed Kubernetes clusters where Linode
 **Cluster Configuration Steps:**
 
 1. **Navigate to Cluster Creation**
-   - Access `cloud.linode.com`
-   - Select "Kubernetes" from left navigation panel
-   - Click "Create Cluster" button
+    - Access `cloud.linode.com`
+    - Select "Kubernetes" from left navigation panel
+    - Click "Create Cluster" button
 
 2. **Basic Cluster Settings**
-   - **Cluster Label**: `tkb` (The Kubernetes Book)
-   - **Region**: Select region closest to your location
-   - **Kubernetes Version**: Choose latest stable release
-   - **HA Control Plane**: Disabled (cost optimization for learning)
-   - **Control Plane ACL**: Disabled (allows access from any IP)
+    - **Cluster Label**: `tkb` (The Kubernetes Book)
+    - **Region**: Select region closest to your location
+    - **Kubernetes Version**: Choose latest stable release
+    - **HA Control Plane**: Disabled (cost optimization for learning)
+    - **Control Plane ACL**: Disabled (allows access from any IP)
 
 3. **Worker Node Configuration**
-   - Navigate to "Add Node Pools" section
-   - Select "Shared CPU" tab for cost-effective resources
-   - Configure: 3 × Linode 2GB nodes
-   - Review estimated monthly costs
+    - Navigate to "Add Node Pools" section
+    - Select "Shared CPU" tab for cost-effective resources
+    - Configure: 3 × Linode 2GB nodes
+    - Review estimated monthly costs
 
 4. **Cluster Provisioning**
-   - Click "Create Cluster" to begin provisioning
-   - Monitor progress in Linode dashboard
-   - Provisioning typically takes 2-3 minutes
+    - Click "Create Cluster" to begin provisioning
+    - Monitor progress in Linode dashboard
+    - Provisioning typically takes 2-3 minutes
 
 **LKE Architecture Model:**
 
@@ -334,9 +334,9 @@ Managed Kubernetes Architecture:
 │     Control Plane       │ ← Managed by Linode
 │   (Hidden/Abstracted)   │   (Not visible to users)
 └─────────────────────────┘
-            │
-     ┌──────┼──────┐
-     │      │      │
+             │
+      ┌──────┼──────┐
+      │      │      │
 ┌────▼──┐ ┌─▼───┐ ┌─▼───┐
 │Worker │ │Work │ │Work │ ← User-managed nodes
 │Node 1 │ │er 2 │ │er 3 │   (Run applications)
@@ -358,7 +358,7 @@ Configure kubectl to connect to your LKE cluster using authentication credential
 ```
 kubectl Command Flow:
 Your Command → kubectl → HTTP API Request → Kubernetes Cluster
-      ↑                                              ↓
+       ↑                                              ↓
 Authentication credentials                    Response/Results
 ```
 
@@ -441,15 +441,15 @@ kubectl functions as a universal interface that works with any Kubernetes cluste
 ```
 kubectl Operation Sequence:
 User Command: kubectl get pods
-      ↓
+       ↓
 kubectl: Converts to HTTP GET request
-      ↓
+       ↓
 HTTP API: Transmits to cluster API server
-      ↓
+       ↓
 Kubernetes Cluster: Returns JSON response
-      ↓
+       ↓
 kubectl: Formats response for human consumption
-      ↓
+       ↓
 Terminal Output: Displays readable results
 ```
 
@@ -487,21 +487,21 @@ kind: Config
 clusters:                           # Cluster connection details
 - name: local-cluster               # Friendly cluster name
   cluster:
-    server: https://127.0.0.1:6443  # API server endpoint
-    certificate-authority-data: ... # Cluster CA certificate
+     server: https://127.0.0.1:6443  # API server endpoint
+     certificate-authority-data: ... # Cluster CA certificate
 
 users:                              # Authentication credentials
 - name: cluster-admin               # User identifier
   user:
-    client-certificate-data: ...    # Client certificate
-    client-key-data: ...            # Client private key
+     client-certificate-data: ...    # Client certificate
+     client-key-data: ...            # Client private key
 
 contexts:                           # Cluster + user combinations
 - name: local-admin-context         # Context identifier
   context:
-    cluster: local-cluster          # Target cluster
-    user: cluster-admin             # Authentication user
-    namespace: default              # Default namespace
+     cluster: local-cluster          # Target cluster
+     user: cluster-admin             # Authentication user
+     namespace: default              # Default namespace
 
 current-context: local-admin-context # Active context
 ```
@@ -534,7 +534,7 @@ kubectl config view
 $ kubectl config get-contexts
 CURRENT   NAME             CLUSTER          AUTHINFO          NAMESPACE
 *         docker-desktop   docker-desktop   docker-desktop    default
-          lke349416-ctx    lke349416        lke349416-admin   default
+           lke349416-ctx    lke349416        lke349416-admin   default
 
 # Switch to cloud cluster
 $ kubectl config use-context lke349416-ctx
@@ -573,14 +573,14 @@ You now have a complete Kubernetes development environment that can grow with yo
 Progression Path              Capabilities Gained
 ───────────────              ──────────────────
 Local Docker Desktop    →    • Kubernetes fundamentals
-                            • Pod and Deployment management
-                            • Basic networking and services
-                            • Development workflows
+                             • Pod and Deployment management
+                             • Basic networking and services
+                             • Development workflows
 
 Cloud LKE Cluster      →    • Load balancer integration
-                            • Persistent storage
-                            • Production-like networking
-                            • Auto-scaling features
+                             • Persistent storage
+                             • Production-like networking
+                             • Auto-scaling features
 ```
 
 **Tool Mastery:**
