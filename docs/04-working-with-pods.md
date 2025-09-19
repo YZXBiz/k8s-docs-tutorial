@@ -4,27 +4,27 @@
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Pod Fundamentals](#1-pod-fundamentals)
-     1.1. [Abstraction Layer](#11-abstraction-layer)
-     1.2. [Resource Sharing](#12-resource-sharing)
-     1.3. [Pod Scheduling](#13-pod-scheduling)
-     1.4. [Pod Lifecycle](#14-pod-lifecycle)
+- [Pod Fundamentals](#1-pod-fundamentals)
+  - [Abstraction Layer](#11-abstraction-layer)
+  - [Resource Sharing](#12-resource-sharing)
+  - [Pod Scheduling](#13-pod-scheduling)
+  - [Pod Lifecycle](#14-pod-lifecycle)
 
-2. [Pod Networking](#2-pod-networking)
+- [Pod Networking](#2-pod-networking)
 
-3. [Multi-Container Pods](#3-multi-container-pods)
-     3.1. [Init Containers](#31-init-containers)
-     3.2. [Sidecar Containers](#32-sidecar-containers)
+- [Multi-Container Pods](#3-multi-container-pods)
+  - [Init Containers](#31-init-containers)
+  - [Sidecar Containers](#32-sidecar-containers)
 
-4. [Hands-on with Pods](#4-hands-on-with-pods)
-     4.1. [Pod Manifest Files](#41-pod-manifest-files)
-     4.2. [Deploying Pods](#42-deploying-pods)
-     4.3. [Pod Introspection](#43-pod-introspection)
-     4.4. [Multi-Container Examples](#44-multi-container-examples)
+- [Hands-on with Pods](#4-hands-on-with-pods)
+  - [Pod Manifest Files](#41-pod-manifest-files)
+  - [Deploying Pods](#42-deploying-pods)
+  - [Pod Introspection](#43-pod-introspection)
+  - [Multi-Container Examples](#44-multi-container-examples)
 
-5. [Chapter Summary](#5-chapter-summary)
+- [Chapter Summary](#5-chapter-summary)
 
 ---
 

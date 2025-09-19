@@ -1,29 +1,29 @@
 # 9. Wasm on Kubernetes
 *The Universal Translator: Breaking Down Language Barriers in the Cloud*
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [WebAssembly Fundamentals](#1-webassembly-fundamentals)
-     1.1. [Cross-Platform Compatibility](#11-cross-platform-compatibility)
-     1.2. [WebAssembly Benefits](#12-webassembly-benefits)
-     1.3. [Performance Characteristics](#13-performance-characteristics)
+- [WebAssembly Fundamentals](#1-webassembly-fundamentals)
+  - [Cross-Platform Compatibility](#11-cross-platform-compatibility)
+  - [WebAssembly Benefits](#12-webassembly-benefits)
+  - [Performance Characteristics](#13-performance-characteristics)
 
-2. [WebAssembly Architecture](#2-webassembly-architecture)
-     2.1. [Runtime Architecture](#21-runtime-architecture)
-     2.2. [Kubernetes Integration](#22-kubernetes-integration)
-     2.3. [Container Runtime Interface](#23-container-runtime-interface)
+- [WebAssembly Architecture](#2-webassembly-architecture)
+  - [Runtime Architecture](#21-runtime-architecture)
+  - [Kubernetes Integration](#22-kubernetes-integration)
+  - [Container Runtime Interface](#23-container-runtime-interface)
 
-3. [Deploying WebAssembly Workloads](#3-deploying-webassembly-workloads)
-     3.1. [Development Tools Setup](#31-development-tools-setup)
-     3.2. [Creating WebAssembly Applications](#32-creating-webassembly-applications)
-     3.3. [Container Packaging](#33-container-packaging)
-     3.4. [Kubernetes Deployment](#34-kubernetes-deployment)
-     3.5. [Testing and Verification](#35-testing-and-verification)
+- [Deploying WebAssembly Workloads](#3-deploying-webassembly-workloads)
+  - [Development Tools Setup](#31-development-tools-setup)
+  - [Creating WebAssembly Applications](#32-creating-webassembly-applications)
+  - [Container Packaging](#33-container-packaging)
+  - [Kubernetes Deployment](#34-kubernetes-deployment)
+  - [Testing and Verification](#35-testing-and-verification)
 
-4. [Advanced WebAssembly Operations](#4-advanced-webassembly-operations)
-     4.1. [Multi-Runtime Environments](#41-multi-runtime-environments)
-     4.2. [Resource Management](#42-resource-management)
-     4.3. [Troubleshooting WebAssembly Workloads](#43-troubleshooting-webassembly-workloads)
+- [Advanced WebAssembly Operations](#4-advanced-webassembly-operations)
+  - [Multi-Runtime Environments](#41-multi-runtime-environments)
+  - [Resource Management](#42-resource-management)
+  - [Troubleshooting WebAssembly Workloads](#43-troubleshooting-webassembly-workloads)
 
 ---
 

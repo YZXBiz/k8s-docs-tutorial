@@ -4,43 +4,43 @@
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Threat Assessment Fundamentals](#1-threat-assessment-fundamentals)
-    1.1. [Security Assessment Methodology](#11-security-assessment-methodology)
-    1.2. [STRIDE Threat Framework](#12-stride-threat-framework)
-    1.3. [Kubernetes Threat Landscape](#13-kubernetes-threat-landscape)
+- [Threat Assessment Fundamentals](#1-threat-assessment-fundamentals)
+  - [Security Assessment Methodology](#11-security-assessment-methodology)
+  - [STRIDE Threat Framework](#12-stride-threat-framework)
+  - [Kubernetes Threat Landscape](#13-kubernetes-threat-landscape)
 
-2. [Identity and Authentication Threats](#2-identity-and-authentication-threats)
-    2.1. [Spoofing Attack Vectors](#21-spoofing-attack-vectors)
-    2.2. [API Server Communication Security](#22-api-server-communication-security)
-    2.3. [Pod Identity Management](#23-pod-identity-management)
+- [Identity and Authentication Threats](#2-identity-and-authentication-threats)
+  - [Spoofing Attack Vectors](#21-spoofing-attack-vectors)
+  - [API Server Communication Security](#22-api-server-communication-security)
+  - [Pod Identity Management](#23-pod-identity-management)
 
-3. [Data Integrity and Tampering](#3-data-integrity-and-tampering)
-    3.1. [Tampering Threat Analysis](#31-tampering-threat-analysis)
-    3.2. [Infrastructure Component Protection](#32-infrastructure-component-protection)
-    3.3. [Application Layer Integrity](#33-application-layer-integrity)
+- [Data Integrity and Tampering](#3-data-integrity-and-tampering)
+  - [Tampering Threat Analysis](#31-tampering-threat-analysis)
+  - [Infrastructure Component Protection](#32-infrastructure-component-protection)
+  - [Application Layer Integrity](#33-application-layer-integrity)
 
-4. [Audit and Non-Repudiation](#4-audit-and-non-repudiation)
-    4.1. [Accountability Requirements](#41-accountability-requirements)
-    4.2. [Comprehensive Audit Strategy](#42-comprehensive-audit-strategy)
-    4.3. [Evidence Collection and Correlation](#43-evidence-collection-and-correlation)
+- [Audit and Non-Repudiation](#4-audit-and-non-repudiation)
+  - [Accountability Requirements](#41-accountability-requirements)
+  - [Comprehensive Audit Strategy](#42-comprehensive-audit-strategy)
+  - [Evidence Collection and Correlation](#43-evidence-collection-and-correlation)
 
-5. [Information Disclosure Prevention](#5-information-disclosure-prevention)
-    5.1. [Data Protection Analysis](#51-data-protection-analysis)
-    5.2. [Cluster Data Security](#52-cluster-data-security)
-    5.3. [Application Data Protection](#53-application-data-protection)
+- [Information Disclosure Prevention](#5-information-disclosure-prevention)
+  - [Data Protection Analysis](#51-data-protection-analysis)
+  - [Cluster Data Security](#52-cluster-data-security)
+  - [Application Data Protection](#53-application-data-protection)
 
-6. [Denial of Service Mitigation](#6-denial-of-service-mitigation)
-    6.1. [Availability Threat Assessment](#61-availability-threat-assessment)
-    6.2. [Cluster Resource Protection](#62-cluster-resource-protection)
-    6.3. [Application Resilience](#63-application-resilience)
+- [Denial of Service Mitigation](#6-denial-of-service-mitigation)
+  - [Availability Threat Assessment](#61-availability-threat-assessment)
+  - [Cluster Resource Protection](#62-cluster-resource-protection)
+  - [Application Resilience](#63-application-resilience)
 
-7. [Privilege Escalation Prevention](#7-privilege-escalation-prevention)
-    7.1. [Access Control Assessment](#71-access-control-assessment)
-    7.2. [API Server Authorization](#72-api-server-authorization)
-    7.3. [Container Security Controls](#73-container-security-controls)
-    7.4. [Pod Security Standardization](#74-pod-security-standardization)
+- [Privilege Escalation Prevention](#7-privilege-escalation-prevention)
+  - [Access Control Assessment](#71-access-control-assessment)
+  - [API Server Authorization](#72-api-server-authorization)
+  - [Container Security Controls](#73-container-security-controls)
+  - [Pod Security Standardization](#74-pod-security-standardization)
 
 ---
 

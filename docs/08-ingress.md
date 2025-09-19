@@ -1,31 +1,31 @@
 # 8. Ingress
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Ingress Fundamentals](#1-ingress-fundamentals)
-    1.1. [What is Ingress](#11-what-is-ingress)
-    1.2. [Ingress Architecture](#12-ingress-architecture)
-    1.3. [Controllers vs Resources](#13-controllers-vs-resources)
+- [Ingress Fundamentals](#1-ingress-fundamentals)
+  - [What is Ingress](#11-what-is-ingress)
+  - [Ingress Architecture](#12-ingress-architecture)
+  - [Controllers vs Resources](#13-controllers-vs-resources)
 
-2. [Ingress Configuration](#2-ingress-configuration)
-    2.1. [Installing Ingress Controllers](#21-installing-ingress-controllers)
-    2.2. [Ingress Classes](#22-ingress-classes)
-    2.3. [Basic Routing Rules](#23-basic-routing-rules)
+- [Ingress Configuration](#2-ingress-configuration)
+  - [Installing Ingress Controllers](#21-installing-ingress-controllers)
+  - [Ingress Classes](#22-ingress-classes)
+  - [Basic Routing Rules](#23-basic-routing-rules)
 
-3. [Ingress Routing](#3-ingress-routing)
-    3.1. [Host-based Routing](#31-host-based-routing)
-    3.2. [Path-based Routing](#32-path-based-routing)
-    3.3. [Advanced Routing Features](#33-advanced-routing-features)
+- [Ingress Routing](#3-ingress-routing)
+  - [Host-based Routing](#31-host-based-routing)
+  - [Path-based Routing](#32-path-based-routing)
+  - [Advanced Routing Features](#33-advanced-routing-features)
 
-4. [Ingress Operations](#4-ingress-operations)
-    4.1. [Creating and Managing Resources](#41-creating-and-managing-resources)
-    4.2. [SSL/TLS Configuration](#42-ssltls-configuration)
-    4.3. [Testing and Troubleshooting](#43-testing-and-troubleshooting)
+- [Ingress Operations](#4-ingress-operations)
+  - [Creating and Managing Resources](#41-creating-and-managing-resources)
+  - [SSL/TLS Configuration](#42-ssltls-configuration)
+  - [Testing and Troubleshooting](#43-testing-and-troubleshooting)
 
-5. [Ingress Best Practices](#5-ingress-best-practices)
-    5.1. [Performance Optimization](#51-performance-optimization)
-    5.2. [Security Guidelines](#52-security-guidelines)
-    5.3. [Production Deployment](#53-production-deployment)
+- [Ingress Best Practices](#5-ingress-best-practices)
+  - [Performance Optimization](#51-performance-optimization)
+  - [Security Guidelines](#52-security-guidelines)
+  - [Production Deployment](#53-production-deployment)
 
 ---
 

@@ -4,34 +4,34 @@
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [API Architecture Overview](#1-api-architecture-overview)
-    1.1. [API-Centric Design](#11-api-centric-design)
-    1.2. [Request Processing Flow](#12-request-processing-flow)
-    1.3. [Serialization and Data Exchange](#13-serialization-and-data-exchange)
+- [API Architecture Overview](#1-api-architecture-overview)
+  - [API-Centric Design](#11-api-centric-design)
+  - [Request Processing Flow](#12-request-processing-flow)
+  - [Serialization and Data Exchange](#13-serialization-and-data-exchange)
 
-2. [API Server Fundamentals](#2-api-server-fundamentals)
-    2.1. [Server Architecture](#21-server-architecture)
-    2.2. [RESTful Interface](#22-restful-interface)
-    2.3. [CRUD Operations](#23-crud-operations)
-    2.4. [Practical API Interaction](#24-practical-api-interaction)
+- [API Server Fundamentals](#2-api-server-fundamentals)
+  - [Server Architecture](#21-server-architecture)
+  - [RESTful Interface](#22-restful-interface)
+  - [CRUD Operations](#23-crud-operations)
+  - [Practical API Interaction](#24-practical-api-interaction)
 
-3. [API Structure and Organization](#3-api-structure-and-organization)
-    3.1. [API Group Architecture](#31-api-group-architecture)
-    3.2. [Core API Group](#32-core-api-group)
-    3.3. [Named API Groups](#33-named-api-groups)
-    3.4. [API Discovery and Exploration](#34-api-discovery-and-exploration)
+- [API Structure and Organization](#3-api-structure-and-organization)
+  - [API Group Architecture](#31-api-group-architecture)
+  - [Core API Group](#32-core-api-group)
+  - [Named API Groups](#33-named-api-groups)
+  - [API Discovery and Exploration](#34-api-discovery-and-exploration)
 
-4. [API Versioning and Lifecycle](#4-api-versioning-and-lifecycle)
-    4.1. [Version Progression](#41-version-progression)
-    4.2. [Resource Deprecation](#42-resource-deprecation)
-    4.3. [Migration Strategies](#43-migration-strategies)
+- [API Versioning and Lifecycle](#4-api-versioning-and-lifecycle)
+  - [Version Progression](#41-version-progression)
+  - [Resource Deprecation](#42-resource-deprecation)
+  - [Migration Strategies](#43-migration-strategies)
 
-5. [API Extensibility](#5-api-extensibility)
-    5.1. [Custom Resource Definitions](#51-custom-resource-definitions)
-    5.2. [Hands-on: Creating Custom Resources](#52-hands-on-creating-custom-resources)
-    5.3. [Extension Patterns](#53-extension-patterns)
+- [API Extensibility](#5-api-extensibility)
+  - [Custom Resource Definitions](#51-custom-resource-definitions)
+  - [Hands-on: Creating Custom Resources](#52-hands-on-creating-custom-resources)
+  - [Extension Patterns](#53-extension-patterns)
 
 ---
 

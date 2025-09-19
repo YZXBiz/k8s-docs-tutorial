@@ -1,31 +1,31 @@
 # 12. ConfigMaps and Secrets
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Configuration Management Fundamentals](#1-configuration-management-fundamentals)
-    1.1. [Application vs Configuration Separation](#11-application-vs-configuration-separation)
-    1.2. [Configuration Management Benefits](#12-configuration-management-benefits)
-    1.3. [Kubernetes Configuration Objects](#13-kubernetes-configuration-objects)
+- [Configuration Management Fundamentals](#1-configuration-management-fundamentals)
+  - [Application vs Configuration Separation](#11-application-vs-configuration-separation)
+  - [Configuration Management Benefits](#12-configuration-management-benefits)
+  - [Kubernetes Configuration Objects](#13-kubernetes-configuration-objects)
 
-2. [ConfigMaps](#2-configmaps)
-    2.1. [ConfigMap Fundamentals](#21-configmap-fundamentals)
-    2.2. [Creating ConfigMaps](#22-creating-configmaps)
-    2.3. [Using ConfigMaps in Pods](#23-using-configmaps-in-pods)
+- [ConfigMaps](#2-configmaps)
+  - [ConfigMap Fundamentals](#21-configmap-fundamentals)
+  - [Creating ConfigMaps](#22-creating-configmaps)
+  - [Using ConfigMaps in Pods](#23-using-configmaps-in-pods)
 
-3. [Secrets](#3-secrets)
-    3.1. [Secret Fundamentals](#31-secret-fundamentals)
-    3.2. [Secret Types and Creation](#32-secret-types-and-creation)
-    3.3. [Using Secrets in Applications](#33-using-secrets-in-applications)
+- [Secrets](#3-secrets)
+  - [Secret Fundamentals](#31-secret-fundamentals)
+  - [Secret Types and Creation](#32-secret-types-and-creation)
+  - [Using Secrets in Applications](#33-using-secrets-in-applications)
 
-4. [Configuration Patterns](#4-configuration-patterns)
-    4.1. [Environment-Specific Configuration](#41-environment-specific-configuration)
-    4.2. [Configuration File Management](#42-configuration-file-management)
-    4.3. [Dynamic Configuration Updates](#43-dynamic-configuration-updates)
+- [Configuration Patterns](#4-configuration-patterns)
+  - [Environment-Specific Configuration](#41-environment-specific-configuration)
+  - [Configuration File Management](#42-configuration-file-management)
+  - [Dynamic Configuration Updates](#43-dynamic-configuration-updates)
 
-5. [Security and Best Practices](#5-security-and-best-practices)
-    5.1. [Configuration Security](#51-configuration-security)
-    5.2. [Secret Management Best Practices](#52-secret-management-best-practices)
-    5.3. [Troubleshooting Configuration Issues](#53-troubleshooting-configuration-issues)
+- [Security and Best Practices](#5-security-and-best-practices)
+  - [Configuration Security](#51-configuration-security)
+  - [Secret Management Best Practices](#52-secret-management-best-practices)
+  - [Troubleshooting Configuration Issues](#53-troubleshooting-configuration-issues)
 
 ---
 

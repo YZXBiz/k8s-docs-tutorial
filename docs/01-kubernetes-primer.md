@@ -4,28 +4,28 @@
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-1. [Container Orchestration Fundamentals](#1-container-orchestration-fundamentals)
-     1.1. [What is Orchestration](#11-what-is-orchestration)
-     1.2. [Containerization Technology](#12-containerization-technology)
-     1.3. [Cloud-Native Principles](#13-cloud-native-principles)
-     1.4. [Microservices Architecture](#14-microservices-architecture)
+- [Container Orchestration Fundamentals](#1-container-orchestration-fundamentals)
+  - [What is Orchestration](#11-what-is-orchestration)
+  - [Containerization Technology](#12-containerization-technology)
+  - [Cloud-Native Principles](#13-cloud-native-principles)
+  - [Microservices Architecture](#14-microservices-architecture)
 
-2. [Kubernetes Origins and Evolution](#2-kubernetes-origins-and-evolution)
-     2.1. [Google's Container Experience](#21-googles-container-experience)
-     2.2. [Docker's Market Impact](#22-dockers-market-impact)
-     2.3. [From Borg to Open Source](#23-from-borg-to-open-source)
-     2.4. [Container Runtime Evolution](#24-container-runtime-evolution)
+- [Kubernetes Origins and Evolution](#2-kubernetes-origins-and-evolution)
+  - [Google's Container Experience](#21-googles-container-experience)
+  - [Docker's Market Impact](#22-dockers-market-impact)
+  - [From Borg to Open Source](#23-from-borg-to-open-source)
+  - [Container Runtime Evolution](#24-container-runtime-evolution)
 
-3. [Kubernetes as Cloud Operating System](#3-kubernetes-as-cloud-operating-system)
-     3.1. [Infrastructure Abstraction](#31-infrastructure-abstraction)
-     3.2. [Application Scheduling](#32-application-scheduling)
-     3.3. [Platform Portability](#33-platform-portability)
+- [Kubernetes as Cloud Operating System](#3-kubernetes-as-cloud-operating-system)
+  - [Infrastructure Abstraction](#31-infrastructure-abstraction)
+  - [Application Scheduling](#32-application-scheduling)
+  - [Platform Portability](#33-platform-portability)
 
-4. [Kubernetes Name and Identity](#4-kubernetes-name-and-identity)
+- [Kubernetes Name and Identity](#4-kubernetes-name-and-identity)
 
-5. [Chapter Summary](#5-chapter-summary)
+- [Chapter Summary](#5-chapter-summary)
 
 ---
 
