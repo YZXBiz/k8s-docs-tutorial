@@ -2,31 +2,27 @@
 
 ## 📋 Table of Contents
 
-- [Deployment Fundamentals](#1-deployment-fundamentals)
-  - [What are Deployments](#11-what-are-deployments)
-  - [Deployment Architecture](#12-deployment-architecture)
-  - [Self-Healing and Scaling](#13-self-healing-and-scaling)
-
-- [Desired State Management](#2-desired-state-management)
-  - [Declarative Configuration](#21-declarative-configuration)
-  - [Controller Reconciliation](#22-controller-reconciliation)
-  - [Monitoring and Maintenance](#23-monitoring-and-maintenance)
-
-- [Rolling Updates and Rollbacks](#3-rolling-updates-and-rollbacks)
-  - [Rolling Update Strategy](#31-rolling-update-strategy)
-  - [Update Configuration](#32-update-configuration)
-  - [Rollback Operations](#33-rollback-operations)
-
-- [Deployment Operations](#4-deployment-operations)
-  - [Creating Your First Deployment](#41-creating-your-first-deployment)
-  - [Scaling Deployments](#42-scaling-deployments)
-  - [Updating Applications](#43-updating-applications)
-  - [Managing Rollbacks](#44-managing-rollbacks)
-
-- [Deployment Troubleshooting](#5-deployment-troubleshooting)
-  - [Common Issues](#51-common-issues)
-  - [Debugging Deployments](#52-debugging-deployments)
-  - [Best Practices](#53-best-practices)
+1. [Deployment Fundamentals](#1-deployment-fundamentals)
+   - 1.1. [What are Deployments](#11-what-are-deployments)
+   - 1.2. [Deployment Architecture](#12-deployment-architecture)
+   - 1.3. [Self-Healing and Scaling](#13-self-healing-and-scaling)
+2. [Desired State Management](#2-desired-state-management)
+   - 2.1. [Declarative Configuration](#21-declarative-configuration)
+   - 2.2. [Controller Reconciliation](#22-controller-reconciliation)
+   - 2.3. [Monitoring and Maintenance](#23-monitoring-and-maintenance)
+3. [Rolling Updates and Rollbacks](#3-rolling-updates-and-rollbacks)
+   - 3.1. [Rolling Update Strategy](#31-rolling-update-strategy)
+   - 3.2. [Update Configuration](#32-update-configuration)
+   - 3.3. [Rollback Operations](#33-rollback-operations)
+4. [Deployment Operations](#4-deployment-operations)
+   - 4.1. [Creating Your First Deployment](#41-creating-your-first-deployment)
+   - 4.2. [Scaling Deployments](#42-scaling-deployments)
+   - 4.3. [Updating Applications](#43-updating-applications)
+   - 4.4. [Managing Rollbacks](#44-managing-rollbacks)
+5. [Deployment Troubleshooting](#5-deployment-troubleshooting)
+   - 5.1. [Common Issues](#51-common-issues)
+   - 5.2. [Debugging Deployments](#52-debugging-deployments)
+   - 5.3. [Best Practices](#53-best-practices)
 
 ---
 

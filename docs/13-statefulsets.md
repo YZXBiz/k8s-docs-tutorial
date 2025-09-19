@@ -2,30 +2,26 @@
 
 ## 📋 Table of Contents
 
-- [StatefulSet Fundamentals](#1-statefulset-fundamentals)
-  - [Stateful vs Stateless Applications](#11-stateful-vs-stateless-applications)
-  - [StatefulSet Architecture](#12-statefulset-architecture)
-  - [StatefulSet vs Deployment](#13-statefulset-vs-deployment)
-
-- [StatefulSet Components](#2-statefulset-components)
-  - [Pod Identity and Naming](#21-pod-identity-and-naming)
-  - [Persistent Storage](#22-persistent-storage)
-  - [Ordered Operations](#23-ordered-operations)
-
-- [StatefulSet Configuration](#3-statefulset-configuration)
-  - [Creating StatefulSets](#31-creating-statefulsets)
-  - [Service Configuration](#32-service-configuration)
-  - [Storage Templates](#33-storage-templates)
-
-- [StatefulSet Operations](#4-statefulset-operations)
-  - [Scaling StatefulSets](#41-scaling-statefulsets)
-  - [Updates and Rollbacks](#42-updates-and-rollbacks)
-  - [Pod Management Policies](#43-pod-management-policies)
-
-- [Advanced StatefulSet Features](#5-advanced-statefulset-features)
-  - [Headless Services](#51-headless-services)
-  - [StatefulSet Partitioning](#52-statefulset-partitioning)
-  - [Troubleshooting StatefulSets](#53-troubleshooting-statefulsets)
+1. [StatefulSet Fundamentals](#1-statefulset-fundamentals)
+   - 1.1. [Stateful vs Stateless Applications](#11-stateful-vs-stateless-applications)
+   - 1.2. [StatefulSet Architecture](#12-statefulset-architecture)
+   - 1.3. [StatefulSet vs Deployment](#13-statefulset-vs-deployment)
+2. [StatefulSet Components](#2-statefulset-components)
+   - 2.1. [Pod Identity and Naming](#21-pod-identity-and-naming)
+   - 2.2. [Persistent Storage](#22-persistent-storage)
+   - 2.3. [Ordered Operations](#23-ordered-operations)
+3. [StatefulSet Configuration](#3-statefulset-configuration)
+   - 3.1. [Creating StatefulSets](#31-creating-statefulsets)
+   - 3.2. [Service Configuration](#32-service-configuration)
+   - 3.3. [Storage Templates](#33-storage-templates)
+4. [StatefulSet Operations](#4-statefulset-operations)
+   - 4.1. [Scaling StatefulSets](#41-scaling-statefulsets)
+   - 4.2. [Updates and Rollbacks](#42-updates-and-rollbacks)
+   - 4.3. [Pod Management Policies](#43-pod-management-policies)
+5. [Advanced StatefulSet Features](#5-advanced-statefulset-features)
+   - 5.1. [Headless Services](#51-headless-services)
+   - 5.2. [StatefulSet Partitioning](#52-statefulset-partitioning)
+   - 5.3. [Troubleshooting StatefulSets](#53-troubleshooting-statefulsets)
 
 ---
 

@@ -6,32 +6,28 @@
 
 ## 📋 Table of Contents
 
-- [Production Security Architecture](#1-production-security-architecture)
-  - [Security Architecture Principles](#11-security-architecture-principles)
-  - [Defense in Depth Strategy](#12-defense-in-depth-strategy)
-  - [Security Governance Framework](#13-security-governance-framework)
-
-- [Supply Chain Security](#2-supply-chain-security)
-  - [Container Image Security](#21-container-image-security)
-  - [Image Repository Management](#22-image-repository-management)
-  - [Build Pipeline Security](#23-build-pipeline-security)
-  - [Image Promotion Workflow](#24-image-promotion-workflow)
-
-- [Workload Isolation Strategies](#3-workload-isolation-strategies)
-  - [Multi-Tenancy Security Models](#31-multi-tenancy-security-models)
-  - [Runtime Isolation Technologies](#32-runtime-isolation-technologies)
-  - [Network Security Architecture](#33-network-security-architecture)
-
-- [Identity and Access Management](#4-identity-and-access-management)
-  - [Enterprise IAM Integration](#41-enterprise-iam-integration)
-  - [Access Control Implementation](#42-access-control-implementation)
-  - [Privileged Access Management](#43-privileged-access-management)
-
-- [Security Operations](#5-security-operations)
-  - [Monitoring and Alerting](#51-monitoring-and-alerting)
-  - [Audit Trail Management](#52-audit-trail-management)
-  - [Incident Response](#53-incident-response)
-  - [Security Assessment and Compliance](#54-security-assessment-and-compliance)
+1. [Production Security Architecture](#1-production-security-architecture)
+   - 1.1. [Security Architecture Principles](#11-security-architecture-principles)
+   - 1.2. [Defense in Depth Strategy](#12-defense-in-depth-strategy)
+   - 1.3. [Security Governance Framework](#13-security-governance-framework)
+2. [Supply Chain Security](#2-supply-chain-security)
+   - 2.1. [Container Image Security](#21-container-image-security)
+   - 2.2. [Image Repository Management](#22-image-repository-management)
+   - 2.3. [Build Pipeline Security](#23-build-pipeline-security)
+   - 2.4. [Image Promotion Workflow](#24-image-promotion-workflow)
+3. [Workload Isolation Strategies](#3-workload-isolation-strategies)
+   - 3.1. [Multi-Tenancy Security Models](#31-multi-tenancy-security-models)
+   - 3.2. [Runtime Isolation Technologies](#32-runtime-isolation-technologies)
+   - 3.3. [Network Security Architecture](#33-network-security-architecture)
+4. [Identity and Access Management](#4-identity-and-access-management)
+   - 4.1. [Enterprise IAM Integration](#41-enterprise-iam-integration)
+   - 4.2. [Access Control Implementation](#42-access-control-implementation)
+   - 4.3. [Privileged Access Management](#43-privileged-access-management)
+5. [Security Operations](#5-security-operations)
+   - 5.1. [Monitoring and Alerting](#51-monitoring-and-alerting)
+   - 5.2. [Audit Trail Management](#52-audit-trail-management)
+   - 5.3. [Incident Response](#53-incident-response)
+   - 5.4. [Security Assessment and Compliance](#54-security-assessment-and-compliance)
 
 ---
 

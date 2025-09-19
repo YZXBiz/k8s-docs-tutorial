@@ -4,20 +4,20 @@
 
 ## 📋 Table of Contents
 
-- [Introduction](#1-introduction)
-- [Namespace Fundamentals](#2-namespace-fundamentals)
-  - [What are Namespaces](#21-what-are-namespaces)
-  - [Isolation and Multi-tenancy](#22-isolation-and-multi-tenancy)
-  - [Resource Scope](#23-resource-scope)
-- [Use Cases and Multi-tenancy](#3-use-cases-and-multi-tenancy)
-  - [Isolation Levels](#31-isolation-levels)
-  - [Organizational Patterns](#32-organizational-patterns)
-- [Default Namespaces](#4-default-namespaces)
-- [Creating and Managing Namespaces](#5-creating-and-managing-namespaces)
-  - [Creating Namespaces](#51-creating-namespaces)
-  - [Context Configuration](#52-context-configuration)
-  - [Deploying to Namespaces](#53-deploying-to-namespaces)
-- [Summary](#6-summary)
+1. [Introduction](#1-introduction)
+2. [Namespace Fundamentals](#2-namespace-fundamentals)
+   - 2.1. [What are Namespaces](#21-what-are-namespaces)
+   - 2.2. [Isolation and Multi-tenancy](#22-isolation-and-multi-tenancy)
+   - 2.3. [Resource Scope](#23-resource-scope)
+3. [Use Cases and Multi-tenancy](#3-use-cases-and-multi-tenancy)
+   - 3.1. [Isolation Levels](#31-isolation-levels)
+   - 3.2. [Organizational Patterns](#32-organizational-patterns)
+4. [Default Namespaces](#4-default-namespaces)
+5. [Creating and Managing Namespaces](#5-creating-and-managing-namespaces)
+   - 5.1. [Creating Namespaces](#51-creating-namespaces)
+   - 5.2. [Context Configuration](#52-context-configuration)
+   - 5.3. [Deploying to Namespaces](#53-deploying-to-namespaces)
+6. [Summary](#6-summary)
 
 ## 1. Introduction
 

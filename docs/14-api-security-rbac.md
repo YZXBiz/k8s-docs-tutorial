@@ -6,28 +6,25 @@
 
 ## 📋 Table of Contents
 
-- [API Security Fundamentals](#1-api-security-fundamentals)
-  - [Request Security Flow](#11-request-security-flow)
-  - [Security Layer Architecture](#12-security-layer-architecture)
-  - [API Request Lifecycle](#13-api-request-lifecycle)
-
-- [Authentication Layer](#2-authentication-layer)
-  - [Authentication Fundamentals](#21-authentication-fundamentals)
-  - [Authentication Methods](#22-authentication-methods)
-  - [Kubeconfig Structure](#23-kubeconfig-structure)
-  - [External Identity Integration](#24-external-identity-integration)
-
-- [Authorization with RBAC](#3-authorization-with-rbac)
-  - [RBAC Fundamentals](#31-rbac-fundamentals)
-  - [RBAC Components](#32-rbac-components)
-  - [Role Configuration](#33-role-configuration)
-  - [Cluster-Level Authorization](#34-cluster-level-authorization)
-  - [Real-World RBAC Examples](#35-real-world-rbac-examples)
-
-- [Admission Control](#4-admission-control)
-  - [Admission Control Fundamentals](#41-admission-control-fundamentals)
-  - [Controller Types](#42-controller-types)
-  - [Policy Enforcement](#43-policy-enforcement)
+1. [API Security Fundamentals](#1-api-security-fundamentals)
+   - 1.1. [Request Security Flow](#11-request-security-flow)
+   - 1.2. [Security Layer Architecture](#12-security-layer-architecture)
+   - 1.3. [API Request Lifecycle](#13-api-request-lifecycle)
+2. [Authentication Layer](#2-authentication-layer)
+   - 2.1. [Authentication Fundamentals](#21-authentication-fundamentals)
+   - 2.2. [Authentication Methods](#22-authentication-methods)
+   - 2.3. [Kubeconfig Structure](#23-kubeconfig-structure)
+   - 2.4. [External Identity Integration](#24-external-identity-integration)
+3. [Authorization with RBAC](#3-authorization-with-rbac)
+   - 3.1. [RBAC Fundamentals](#31-rbac-fundamentals)
+   - 3.2. [RBAC Components](#32-rbac-components)
+   - 3.3. [Role Configuration](#33-role-configuration)
+   - 3.4. [Cluster-Level Authorization](#34-cluster-level-authorization)
+   - 3.5. [Real-World RBAC Examples](#35-real-world-rbac-examples)
+4. [Admission Control](#4-admission-control)
+   - 4.1. [Admission Control Fundamentals](#41-admission-control-fundamentals)
+   - 4.2. [Controller Types](#42-controller-types)
+   - 4.3. [Policy Enforcement](#43-policy-enforcement)
 
 ---
 

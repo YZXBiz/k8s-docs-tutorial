@@ -2,30 +2,26 @@
 
 ## 📋 Table of Contents
 
-- [Storage Fundamentals](#1-storage-fundamentals)
-  - [Persistent Storage Requirements](#11-persistent-storage-requirements)
-  - [Storage Architecture Overview](#12-storage-architecture-overview)
-  - [Storage vs Compute Lifecycle](#13-storage-vs-compute-lifecycle)
-
-- [Storage Provisioning](#2-storage-provisioning)
-  - [PersistentVolumes (PV)](#21-persistentvolumes-pv)
-  - [PersistentVolumeClaims (PVC)](#22-persistentvolumeclaims-pvc)
-  - [StorageClasses](#23-storageclasses)
-
-- [Dynamic Storage Management](#3-dynamic-storage-management)
-  - [Container Storage Interface (CSI)](#31-container-storage-interface-csi)
-  - [Dynamic Provisioning](#32-dynamic-provisioning)
-  - [Storage Lifecycle Management](#33-storage-lifecycle-management)
-
-- [Storage Operations](#4-storage-operations)
-  - [Creating Storage Resources](#41-creating-storage-resources)
-  - [Mounting Volumes in Pods](#42-mounting-volumes-in-pods)
-  - [Storage Configuration Examples](#43-storage-configuration-examples)
-
-- [Advanced Storage Features](#5-advanced-storage-features)
-  - [Access Modes and Binding](#51-access-modes-and-binding)
-  - [Volume Snapshots](#52-volume-snapshots)
-  - [Storage Monitoring and Troubleshooting](#53-storage-monitoring-and-troubleshooting)
+1. [Storage Fundamentals](#1-storage-fundamentals)
+   - 1.1. [Persistent Storage Requirements](#11-persistent-storage-requirements)
+   - 1.2. [Storage Architecture Overview](#12-storage-architecture-overview)
+   - 1.3. [Storage vs Compute Lifecycle](#13-storage-vs-compute-lifecycle)
+2. [Storage Provisioning](#2-storage-provisioning)
+   - 2.1. [PersistentVolumes (PV)](#21-persistentvolumes-pv)
+   - 2.2. [PersistentVolumeClaims (PVC)](#22-persistentvolumeclaims-pvc)
+   - 2.3. [StorageClasses](#23-storageclasses)
+3. [Dynamic Storage Management](#3-dynamic-storage-management)
+   - 3.1. [Container Storage Interface (CSI)](#31-container-storage-interface-csi)
+   - 3.2. [Dynamic Provisioning](#32-dynamic-provisioning)
+   - 3.3. [Storage Lifecycle Management](#33-storage-lifecycle-management)
+4. [Storage Operations](#4-storage-operations)
+   - 4.1. [Creating Storage Resources](#41-creating-storage-resources)
+   - 4.2. [Mounting Volumes in Pods](#42-mounting-volumes-in-pods)
+   - 4.3. [Storage Configuration Examples](#43-storage-configuration-examples)
+5. [Advanced Storage Features](#5-advanced-storage-features)
+   - 5.1. [Access Modes and Binding](#51-access-modes-and-binding)
+   - 5.2. [Volume Snapshots](#52-volume-snapshots)
+   - 5.3. [Storage Monitoring and Troubleshooting](#53-storage-monitoring-and-troubleshooting)
 
 ---
 

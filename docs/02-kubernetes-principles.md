@@ -6,30 +6,26 @@
 
 ## 📋 Table of Contents
 
-- [Kubernetes Architecture Overview](#1-kubernetes-architecture-overview)
-  - [Cluster Components](#11-cluster-components)
-  - [Control Plane Nodes](#12-control-plane-nodes)
-  - [Worker Nodes](#13-worker-nodes)
-
-- [Control Plane Services](#2-control-plane-services)
-  - [API Server](#21-api-server)
-  - [Cluster Store (etcd)](#22-cluster-store-etcd)
-  - [Controllers and Controller Manager](#23-controllers-and-controller-manager)
-  - [Scheduler](#24-scheduler)
-  - [Cloud Controller Manager](#25-cloud-controller-manager)
-
-- [Worker Node Components](#3-worker-node-components)
-  - [Kubelet](#31-kubelet)
-  - [Container Runtime](#32-container-runtime)
-  - [Kube-proxy](#33-kube-proxy)
-
-- [Application Packaging and Deployment](#4-application-packaging-and-deployment)
-  - [Declarative Model and Desired State](#41-declarative-model-and-desired-state)
-  - [Pods](#42-pods)
-  - [Deployments](#43-deployments)
-  - [Services](#44-services)
-
-- [Chapter Summary](#5-chapter-summary)
+1. [Kubernetes Architecture Overview](#1-kubernetes-architecture-overview)
+   - 1.1. [Cluster Components](#11-cluster-components)
+   - 1.2. [Control Plane Nodes](#12-control-plane-nodes)
+   - 1.3. [Worker Nodes](#13-worker-nodes)
+2. [Control Plane Services](#2-control-plane-services)
+   - 2.1. [API Server](#21-api-server)
+   - 2.2. [Cluster Store (etcd)](#22-cluster-store-etcd)
+   - 2.3. [Controllers and Controller Manager](#23-controllers-and-controller-manager)
+   - 2.4. [Scheduler](#24-scheduler)
+   - 2.5. [Cloud Controller Manager](#25-cloud-controller-manager)
+3. [Worker Node Components](#3-worker-node-components)
+   - 3.1. [Kubelet](#31-kubelet)
+   - 3.2. [Container Runtime](#32-container-runtime)
+   - 3.3. [Kube-proxy](#33-kube-proxy)
+4. [Application Packaging and Deployment](#4-application-packaging-and-deployment)
+   - 4.1. [Declarative Model and Desired State](#41-declarative-model-and-desired-state)
+   - 4.2. [Pods](#42-pods)
+   - 4.3. [Deployments](#43-deployments)
+   - 4.4. [Services](#44-services)
+5. [Chapter Summary](#5-chapter-summary)
 
 ---
 

@@ -2,34 +2,29 @@
 
 ## 📋 Table of Contents
 
-- [Service Discovery Fundamentals](#1-service-discovery-fundamentals)
-  - [What is Service Discovery](#11-what-is-service-discovery)
-  - [Service Discovery Challenges](#12-service-discovery-challenges)
-
-- [DNS and Service Discovery Architecture](#2-dns-and-service-discovery-architecture)
-  - [Cluster DNS Overview](#21-cluster-dns-overview)
-  - [DNS Architecture Components](#22-dns-architecture-components)
-  - [kube-proxy Integration](#23-kube-proxy-integration)
-
-- [Service Registration Process](#3-service-registration-process)
-  - [Automatic Service Registration](#31-automatic-service-registration)
-  - [Endpoint Management](#32-endpoint-management)
-  - [DNS Record Creation](#33-dns-record-creation)
-
-- [Service Discovery Methods](#4-service-discovery-methods)
-  - [DNS-based Discovery](#41-dns-based-discovery)
-  - [Environment Variables](#42-environment-variables)
-  - [API-based Discovery](#43-api-based-discovery)
-
-- [Namespace-based Discovery](#5-namespace-based-discovery)
-  - [DNS Namespace Hierarchy](#51-dns-namespace-hierarchy)
-  - [Cross-namespace Communication](#52-cross-namespace-communication)
-  - [Service Discovery Patterns](#53-service-discovery-patterns)
-
-- [Troubleshooting Service Discovery](#6-troubleshooting-service-discovery)
-  - [Common Issues](#61-common-issues)
-  - [Diagnostic Tools](#62-diagnostic-tools)
-  - [Resolution Strategies](#63-resolution-strategies)
+1. [Service Discovery Fundamentals](#1-service-discovery-fundamentals)
+   - 1.1. [What is Service Discovery](#11-what-is-service-discovery)
+   - 1.2. [Service Discovery Challenges](#12-service-discovery-challenges)
+2. [DNS and Service Discovery Architecture](#2-dns-and-service-discovery-architecture)
+   - 2.1. [Cluster DNS Overview](#21-cluster-dns-overview)
+   - 2.2. [DNS Architecture Components](#22-dns-architecture-components)
+   - 2.3. [kube-proxy Integration](#23-kube-proxy-integration)
+3. [Service Registration Process](#3-service-registration-process)
+   - 3.1. [Automatic Service Registration](#31-automatic-service-registration)
+   - 3.2. [Endpoint Management](#32-endpoint-management)
+   - 3.3. [DNS Record Creation](#33-dns-record-creation)
+4. [Service Discovery Methods](#4-service-discovery-methods)
+   - 4.1. [DNS-based Discovery](#41-dns-based-discovery)
+   - 4.2. [Environment Variables](#42-environment-variables)
+   - 4.3. [API-based Discovery](#43-api-based-discovery)
+5. [Namespace-based Discovery](#5-namespace-based-discovery)
+   - 5.1. [DNS Namespace Hierarchy](#51-dns-namespace-hierarchy)
+   - 5.2. [Cross-namespace Communication](#52-cross-namespace-communication)
+   - 5.3. [Service Discovery Patterns](#53-service-discovery-patterns)
+6. [Troubleshooting Service Discovery](#6-troubleshooting-service-discovery)
+   - 6.1. [Common Issues](#61-common-issues)
+   - 6.2. [Diagnostic Tools](#62-diagnostic-tools)
+   - 6.3. [Resolution Strategies](#63-resolution-strategies)
 
 ---
 

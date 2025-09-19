@@ -2,32 +2,28 @@
 
 ## 📋 Table of Contents
 
-- [Service Fundamentals](#1-service-fundamentals)
-  - [What are Services](#11-what-are-services)
-  - [Service Architecture](#12-service-architecture)
-  - [Labels and Selectors](#13-labels-and-selectors)
-
-- [Service Types](#2-service-types)
-  - [ClusterIP Services](#21-clusterip-services)
-  - [NodePort Services](#22-nodeport-services)
-  - [LoadBalancer Services](#23-loadbalancer-services)
-  - [ExternalName Services](#24-externalname-services)
-
-- [Service Configuration](#3-service-configuration)
-  - [Service Definition](#31-service-definition)
-  - [Endpoint Management](#32-endpoint-management)
-  - [Service Discovery](#33-service-discovery)
-
-- [Service Operations](#4-service-operations)
-  - [Creating Services](#41-creating-services)
-  - [Managing Services](#42-managing-services)
-  - [Testing Connectivity](#43-testing-connectivity)
-  - [Troubleshooting Services](#44-troubleshooting-services)
-
-- [Service Best Practices](#5-service-best-practices)
-  - [Design Patterns](#51-design-patterns)
-  - [Performance Considerations](#52-performance-considerations)
-  - [Security Guidelines](#53-security-guidelines)
+1. [Service Fundamentals](#1-service-fundamentals)
+   - 1.1. [What are Services](#11-what-are-services)
+   - 1.2. [Service Architecture](#12-service-architecture)
+   - 1.3. [Labels and Selectors](#13-labels-and-selectors)
+2. [Service Types](#2-service-types)
+   - 2.1. [ClusterIP Services](#21-clusterip-services)
+   - 2.2. [NodePort Services](#22-nodeport-services)
+   - 2.3. [LoadBalancer Services](#23-loadbalancer-services)
+   - 2.4. [ExternalName Services](#24-externalname-services)
+3. [Service Configuration](#3-service-configuration)
+   - 3.1. [Service Definition](#31-service-definition)
+   - 3.2. [Endpoint Management](#32-endpoint-management)
+   - 3.3. [Service Discovery](#33-service-discovery)
+4. [Service Operations](#4-service-operations)
+   - 4.1. [Creating Services](#41-creating-services)
+   - 4.2. [Managing Services](#42-managing-services)
+   - 4.3. [Testing Connectivity](#43-testing-connectivity)
+   - 4.4. [Troubleshooting Services](#44-troubleshooting-services)
+5. [Service Best Practices](#5-service-best-practices)
+   - 5.1. [Design Patterns](#51-design-patterns)
+   - 5.2. [Performance Considerations](#52-performance-considerations)
+   - 5.3. [Security Guidelines](#53-security-guidelines)
 
 ---
 

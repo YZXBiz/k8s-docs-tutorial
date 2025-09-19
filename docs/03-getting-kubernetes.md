@@ -6,27 +6,23 @@
 
 ## 📋 Table of Contents
 
-- [Installation Requirements](#1-installation-requirements)
-  - [Essential Tools Overview](#11-essential-tools-overview)
-  - [Development Strategy](#12-development-strategy)
-
-- [Docker Desktop Installation](#2-docker-desktop-installation)
-  - [Docker Account Setup](#21-docker-account-setup)
-  - [Software Installation](#22-software-installation)
-  - [Multi-Node Cluster Deployment](#23-multi-node-cluster-deployment)
-  - [Local Cluster Verification](#24-local-cluster-verification)
-
-- [Cloud Cluster Setup](#3-cloud-cluster-setup)
-  - [Cloud Requirements](#31-cloud-requirements)
-  - [Linode Account Configuration](#32-linode-account-configuration)
-  - [LKE Cluster Creation](#33-lke-cluster-creation)
-  - [kubectl Configuration](#34-kubectl-configuration)
-
-- [kubectl and kubeconfig Management](#4-kubectl-and-kubeconfig-management)
-  - [kubectl Command-Line Tool](#41-kubectl-command-line-tool)
-  - [kubeconfig File Structure](#42-kubeconfig-file-structure)
-
-- [Chapter Summary](#5-chapter-summary)
+1. [Installation Requirements](#1-installation-requirements)
+   - 1.1. [Essential Tools Overview](#11-essential-tools-overview)
+   - 1.2. [Development Strategy](#12-development-strategy)
+2. [Docker Desktop Installation](#2-docker-desktop-installation)
+   - 2.1. [Docker Account Setup](#21-docker-account-setup)
+   - 2.2. [Software Installation](#22-software-installation)
+   - 2.3. [Multi-Node Cluster Deployment](#23-multi-node-cluster-deployment)
+   - 2.4. [Local Cluster Verification](#24-local-cluster-verification)
+3. [Cloud Cluster Setup](#3-cloud-cluster-setup)
+   - 3.1. [Cloud Requirements](#31-cloud-requirements)
+   - 3.2. [Linode Account Configuration](#32-linode-account-configuration)
+   - 3.3. [LKE Cluster Creation](#33-lke-cluster-creation)
+   - 3.4. [kubectl Configuration](#34-kubectl-configuration)
+4. [kubectl and kubeconfig Management](#4-kubectl-and-kubeconfig-management)
+   - 4.1. [kubectl Command-Line Tool](#41-kubectl-command-line-tool)
+   - 4.2. [kubeconfig File Structure](#42-kubeconfig-file-structure)
+5. [Chapter Summary](#5-chapter-summary)
 
 ---
 
