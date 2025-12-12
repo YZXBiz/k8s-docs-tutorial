@@ -1,8 +1,14 @@
+---
+sidebar_position: 1
+slug: /
+title: Introduction
+---
+
 # Kubernetes Tutorial
 
 A comprehensive guide to mastering Kubernetes, from basic concepts to advanced security practices. This tutorial uses practical analogies to explain complex concepts while maintaining technical accuracy and depth.
 
-## 📋 Table of Contents
+## Table of Contents
 
 ### Part I: Fundamentals
 Learn the essential concepts and get Kubernetes up and running.

@@ -775,4 +775,4 @@ The hotel lobby analogy illustrates how Ingress works: just as a professional ho
 **Navigation:**
 - **Previous:** [7. Kubernetes Services](07-kubernetes-services.md)
 - **Next:** [9. Wasm on Kubernetes](09-wasm-on-kubernetes.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

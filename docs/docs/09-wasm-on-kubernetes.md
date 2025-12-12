@@ -656,4 +656,4 @@ The platform barrier has been broken. Welcome to the polyglot cloud!
 **Navigation:**
 - **Previous:** [8. Ingress](08-ingress.md)
 - **Next:** [10. Service Discovery Deep Dive](10-service-discovery.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

@@ -692,4 +692,4 @@ The phone book analogy illustrates why service discovery works seamlessly in Kub
 **Navigation:**
 - **Previous:** [9. Wasm on Kubernetes](09-wasm-on-kubernetes.md)
 - **Next:** [11. Kubernetes Storage](11-kubernetes-storage.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

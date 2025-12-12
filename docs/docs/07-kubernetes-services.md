@@ -466,4 +466,4 @@ Services are fundamental to cloud-native architecture - they enable the loose co
 **Navigation:**
 - **Previous:** [6. Kubernetes Deployments](06-kubernetes-deployments.md)
 - **Next:** [8. Ingress](08-ingress.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

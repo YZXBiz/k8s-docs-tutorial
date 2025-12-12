@@ -1,6 +1,6 @@
 # Chapter 17: Real-world Security
 
-**Previous:** [Chapter 16: Threat Modeling](16-threat-modeling.md) | **Next:** [Index](index.md)
+**Previous:** [Chapter 16: Threat Modeling](16-threat-modeling.md) | **Next:** [Index](intro.md)
 
 ---
 
@@ -622,4 +622,4 @@ This comprehensive security framework provides the foundation for secure, compli
 
 ---
 
-**Previous:** [Chapter 16: Threat Modeling](16-threat-modeling.md) | **Next:** [Index](index.md)
+**Previous:** [Chapter 16: Threat Modeling](16-threat-modeling.md) | **Next:** [Index](intro.md)

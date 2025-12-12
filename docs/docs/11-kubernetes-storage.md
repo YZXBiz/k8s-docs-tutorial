@@ -599,4 +599,4 @@ Kubernetes storage enables true stateful application deployment in containerized
 **Navigation:**
 - **Previous:** [10. Service Discovery Deep Dive](10-service-discovery.md)
 - **Next:** [12. ConfigMaps and Secrets](12-configmaps-secrets.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

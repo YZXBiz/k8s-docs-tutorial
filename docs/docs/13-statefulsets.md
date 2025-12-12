@@ -761,4 +761,4 @@ StatefulSets bridge the gap between traditional infrastructure and cloud-native 
 **Navigation:**
 - **Previous:** [12. ConfigMaps and Secrets](12-configmaps-secrets.md)
 - **Next:** [14. API Security and RBAC](14-api-security-rbac.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

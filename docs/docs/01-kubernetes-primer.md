@@ -1,6 +1,6 @@
 # Chapter 1: Kubernetes Primer
 
-**Previous:** [Index](index.md) | **Next:** [Chapter 2: Kubernetes Principles](02-kubernetes-principles.md)
+**Previous:** [Index](intro.md) | **Next:** [Chapter 2: Kubernetes Principles](02-kubernetes-principles.md)
 
 ---
 
@@ -316,4 +316,4 @@ Kubernetes represents more than technology advancement - it enables new organiza
 
 ---
 
-**Previous:** [Index](index.md) | **Next:** [Chapter 2: Kubernetes Principles](02-kubernetes-principles.md)
+**Previous:** [Index](intro.md) | **Next:** [Chapter 2: Kubernetes Principles](02-kubernetes-principles.md)

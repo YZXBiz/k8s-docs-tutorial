@@ -814,4 +814,4 @@ ConfigMaps and Secrets enable true cloud-native configuration management, provid
 **Navigation:**
 - **Previous:** [11. Kubernetes Storage](11-kubernetes-storage.md)
 - **Next:** [13. StatefulSets](13-statefulsets.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)

@@ -469,4 +469,4 @@ The restaurant manager analogy helps illustrate how Deployments orchestrate appl
 **Navigation:**
 - **Previous:** [5. Virtual Clusters with Namespaces](05-virtual-clusters-namespaces.md)
 - **Next:** [7. Kubernetes Services](07-kubernetes-services.md)
-- **Up:** [Table of Contents](index.md)
+- **Up:** [Table of Contents](intro.md)
