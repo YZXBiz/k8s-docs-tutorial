@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // CONFIGURE YOUR PROJECT HERE
 // =============================================================================
 const PROJECT_NAME = 'Kubernetes Tutorial';  // Display name
-const GITHUB_USERNAME = 'YZXBiz';             // Your GitHub username
+const GITHUB_USERNAME = 'yzxbiz';             // Your GitHub username (lowercase for URLs)
 const REPO_NAME = 'k8s-docs-tutorial';        // Repository name
 // =============================================================================
 
