@@ -1,4 +1,8 @@
-# 6. Kubernetes Deployments
+# Chapter 6: Kubernetes Deployments
+
+**Previous:** [Chapter 5: Virtual Clusters with Namespaces](05-virtual-clusters-namespaces.md) | **Next:** [Chapter 7: Kubernetes Services](07-kubernetes-services.md)
+
+---
 
 ## 📋 Table of Contents
 

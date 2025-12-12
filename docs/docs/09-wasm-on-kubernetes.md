@@ -1,4 +1,9 @@
-# 9. Wasm on Kubernetes
+# Chapter 9: Wasm on Kubernetes
+
+**Previous:** [Chapter 8: Ingress](08-ingress.md) | **Next:** [Chapter 10: Service Discovery Deep Dive](10-service-discovery.md)
+
+---
+
 *The Universal Translator: Breaking Down Language Barriers in the Cloud*
 
 ## 📋 Table of Contents

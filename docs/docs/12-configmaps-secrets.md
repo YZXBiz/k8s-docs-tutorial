@@ -1,4 +1,8 @@
-# 12. ConfigMaps and Secrets
+# Chapter 12: ConfigMaps and Secrets
+
+**Previous:** [Chapter 11: Kubernetes Storage](11-kubernetes-storage.md) | **Next:** [Chapter 13: StatefulSets](13-statefulsets.md)
+
+---
 
 ## 📋 Table of Contents
 

@@ -1,4 +1,8 @@
-# 7. Kubernetes Services
+# Chapter 7: Kubernetes Services
+
+**Previous:** [Chapter 6: Kubernetes Deployments](06-kubernetes-deployments.md) | **Next:** [Chapter 8: Ingress](08-ingress.md)
+
+---
 
 ## 📋 Table of Contents
 

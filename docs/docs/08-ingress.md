@@ -1,4 +1,8 @@
-# 8. Ingress
+# Chapter 8: Ingress
+
+**Previous:** [Chapter 7: Kubernetes Services](07-kubernetes-services.md) | **Next:** [Chapter 9: Wasm on Kubernetes](09-wasm-on-kubernetes.md)
+
+---
 
 ## 📋 Table of Contents
 

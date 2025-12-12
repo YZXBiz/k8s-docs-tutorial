@@ -1,4 +1,8 @@
-# 11. Kubernetes Storage
+# Chapter 11: Kubernetes Storage
+
+**Previous:** [Chapter 10: Service Discovery Deep Dive](10-service-discovery.md) | **Next:** [Chapter 12: ConfigMaps and Secrets](12-configmaps-secrets.md)
+
+---
 
 ## 📋 Table of Contents
 

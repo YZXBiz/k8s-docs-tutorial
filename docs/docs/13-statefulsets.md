@@ -1,4 +1,8 @@
-# 13. StatefulSets
+# Chapter 13: StatefulSets
+
+**Previous:** [Chapter 12: ConfigMaps and Secrets](12-configmaps-secrets.md) | **Next:** [Chapter 14: API Security and RBAC](14-api-security-rbac.md)
+
+---
 
 ## 📋 Table of Contents
 

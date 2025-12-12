@@ -1,4 +1,8 @@
-# 10. Service Discovery Deep Dive
+# Chapter 10: Service Discovery Deep Dive
+
+**Previous:** [Chapter 9: Wasm on Kubernetes](09-wasm-on-kubernetes.md) | **Next:** [Chapter 11: Kubernetes Storage](11-kubernetes-storage.md)
+
+---
 
 ## 📋 Table of Contents
 
