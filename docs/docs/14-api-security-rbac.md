@@ -45,9 +45,9 @@ Every API request in Kubernetes follows a standardized security pipeline designe
 
 All these clients make CRUD-style requests (create, read, update, delete) that must traverse the complete security pipeline.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The API-centric design means that securing the API server effectively secures the entire cluster. Unlike traditional applications where security might be scattered across multiple entry points, Kubernetes centralizes all access control through this single, well-defined pipeline.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.2. Security Layer Architecture
 
@@ -96,9 +96,9 @@ Authentication operates on credential verification principles. Every API request
 
 The authentication layer in Kubernetes is intentionally pluggable, allowing integration with various identity systems rather than creating another identity silo. This design choice reflects enterprise security best practices where centralized identity management is preferred.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Kubernetes deliberately avoids maintaining its own user database. This prevents the common security anti-pattern of having multiple, disconnected identity stores that become difficult to manage and audit in enterprise environments.
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.2. Authentication Methods
 
@@ -194,9 +194,9 @@ Think of RBAC like a sophisticated access control system in a corporate building
 
 RBAC implements a **least-privilege, deny-by-default** security model where all access is blocked unless explicitly granted through allow rules.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Kubernetes RBAC only supports allow rules, not deny rules. This design choice significantly simplifies permission management and troubleshooting compared to systems that support both allow and deny rules, where rule interactions can create complex and unpredictable access patterns.
-`─────────────────────────────────────────────────`
+:::
 
 ### 3.2. RBAC Components
 
@@ -442,9 +442,9 @@ $ kubectl describe pod kube-apiserver-desktop-control-plane \
 **LimitRanger**: Applies default resource limits and validates resource requests
 **SecurityContextDeny**: Prevents privileged containers and host access
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Admission controllers provide the final opportunity to enforce organizational policies before resources are created. This makes them crucial for implementing security, compliance, and operational requirements that can't be expressed through simple RBAC permissions.
-`─────────────────────────────────────────────────`
+:::
 
 **Production Cluster Considerations:**
 

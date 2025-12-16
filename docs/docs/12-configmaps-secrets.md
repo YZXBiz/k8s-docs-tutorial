@@ -93,9 +93,9 @@ Like a well-organized kitchen where recipes (ConfigMaps) are kept in a public co
 - **Environment Variables**: Simple key-value pairs injected into containers
 - **Volume Mounts**: Configuration files mounted into container file systems
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Configuration separation enables the "build once, deploy anywhere" principle** - the same container image can be deployed across development, staging, and production environments with different configurations, reducing inconsistencies and deployment complexity.
-`─────────────────────────────────────────────────`
+:::
 
 ## 2. ConfigMaps
 
@@ -760,9 +760,9 @@ kubectl exec <pod-name> -- ls -la /path/to/config
 kubectl describe pod <pod-name>
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Configuration management is about more than just storing data** - it's about implementing secure, maintainable, and scalable patterns that enable teams to deploy the same application across different environments while maintaining security boundaries and operational simplicity.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

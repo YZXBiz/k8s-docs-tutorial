@@ -1,5 +1,7 @@
 # Chapter 10: Service Discovery Deep Dive
 
+import { ProcessFlow, StackDiagram, CardGrid, colors } from '@site/src/components/diagrams';
+
 **Previous:** [Chapter 9: Wasm on Kubernetes](09-wasm-on-kubernetes.md) | **Next:** [Chapter 11: Kubernetes Storage](11-kubernetes-storage.md)
 
 ---
@@ -40,9 +42,9 @@ Service discovery is the process by which applications automatically locate and 
 
 Think of service discovery like a sophisticated phone book system - applications need to know how to find each other by name, just like you need a phone book to find someone's number. However, unlike static printed directories, Kubernetes maintains a dynamic, real-time digital directory that automatically updates as services come and go.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Service discovery in Kubernetes is like a sophisticated phone book system** - applications need to know how to find each other by name, just like you need a phone book to find someone's number. However, unlike static printed directories, Kubernetes maintains a dynamic, real-time digital directory that automatically updates as services come and go.
-`─────────────────────────────────────────────────`
+:::
 
 **The Communication Challenge:**
 
@@ -51,21 +53,26 @@ In our digital city (Kubernetes cluster), applications face two fundamental chal
 1. **Knowing the name**: Like needing to know someone's name to look them up
 2. **Converting names to addresses**: Like converting a name to a phone number
 
-```
-Application World               Phone Book World
-┌────────────────────┐         ┌────────────────────┐
-│ "I need to call    │   =     │ "I need to call    │
-│  the payment       │         │  John Smith"       │
-│  service"          │         │                    │
-└────────────────────┘         └────────────────────┘
-          │                              │
-          ▼                              ▼
-┌────────────────────┐         ┌────────────────────┐
-│ Look up: payment   │   =     │ Look up: John      │
-│ Returns:           │         │ Returns:           │
-│ 192.168.1.100:8080│         │ (555) 123-4567     │
-└────────────────────┘         └────────────────────┘
-```
+<CardGrid cards={[
+  {
+    title: 'Application World',
+    description: 'Service discovery in Kubernetes',
+    items: [
+      '"I need to call the payment service"',
+      'Look up: payment',
+      'Returns: 192.168.1.100:8080'
+    ]
+  },
+  {
+    title: 'Phone Book World',
+    description: 'Traditional directory assistance',
+    items: [
+      '"I need to call John Smith"',
+      'Look up: John',
+      'Returns: (555) 123-4567'
+    ]
+  }
+]} />
 
 ### 1.2. Service Discovery Challenges
 
@@ -81,38 +88,29 @@ Just like you can't just say "connect me to John" without knowing his phone numb
 4. **Health Monitoring**: Ensuring requests only go to healthy service instances
 
 **Service Discovery Workflow:**
-```
-┌──────────────────────────────────────────────────────────┐
-│ Step 1: Developer Configuration                          │
-│ ─────────────────────────────────────────────────────── │
-│ Developer tells payment-app: "Call the inventory app"   │
-│ (Manual step - like telling someone to call John)       │
-└──────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌──────────────────────────────────────────────────────────┐
-│ Step 2: Directory Lookup Request                        │
-│ ─────────────────────────────────────────────────────── │
-│ payment-app asks directory: "What's inventory's number?"│
-│ (Automatic - like calling directory assistance)          │
-└──────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌──────────────────────────────────────────────────────────┐
-│ Step 3: Directory Response                               │
-│ ─────────────────────────────────────────────────────── │
-│ Directory responds: "inventory is at 192.168.1.200"     │
-│ (Automatic - like getting the phone number)              │
-└──────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌──────────────────────────────────────────────────────────┐
-│ Step 4: Connection Establishment                         │
-│ ─────────────────────────────────────────────────────── │
-│ payment-app connects to 192.168.1.200:8080             │
-│ (Automatic - like the phone system routing your call)   │
-└──────────────────────────────────────────────────────────┘
-```
+
+<ProcessFlow steps={[
+  {
+    title: 'Developer Configuration',
+    description: 'Developer tells payment-app: "Call the inventory app" (Manual step - like telling someone to call John)',
+    color: colors.blue
+  },
+  {
+    title: 'Directory Lookup Request',
+    description: 'payment-app asks directory: "What\'s inventory\'s number?" (Automatic - like calling directory assistance)',
+    color: colors.purple
+  },
+  {
+    title: 'Directory Response',
+    description: 'Directory responds: "inventory is at 192.168.1.200" (Automatic - like getting the phone number)',
+    color: colors.green
+  },
+  {
+    title: 'Connection Establishment',
+    description: 'payment-app connects to 192.168.1.200:8080 (Automatic - like the phone system routing your call)',
+    color: colors.orange
+  }
+]} />
 
 **Developer vs Kubernetes Responsibilities:**
 - **Developer responsibility**: Telling applications which services they need to call (like giving someone a name to look up)
@@ -127,29 +125,28 @@ Every Kubernetes cluster includes a sophisticated DNS system that provides servi
 Think of this like a digital phone book that automatically updates whenever someone moves - applications can always find services by name without worrying about changing IP addresses.
 
 **DNS Service Discovery Architecture:**
-```
-┌─────────────────────────────────────────────────────────┐
-│               Kubernetes Cluster                       │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │            Control Plane                         │   │
-│  │  ┌─────────────────────────────────────────┐    │   │
-│  │  │        Cluster DNS                       │    │   │
-│  │  │    (The Digital Phone Book)             │    │   │
-│  │  │                                         │    │   │
-│  │  │  📞 Directory Assistance Operators      │    │   │
-│  │  │  📋 Current Service Listings           │    │   │
-│  │  │  🔄 Real-time Updates                  │    │   │
-│  │  └─────────────────────────────────────────┘    │   │
-│  └─────────────────────────────────────────────────┐   │
-│                                                     │   │
-│   ┌───────────────┐    ┌───────────────┐           │   │
-│   │ Worker Node 1 │    │ Worker Node 2 │    ...    │   │
-│   │               │    │               │           │   │
-│   │ 📱 Apps call │    │ 📱 Apps call │           │   │
-│   │   directory   │    │   directory   │           │   │
-│   └───────────────┘    └───────────────┘           │   │
-└─────────────────────────────────────────────────────────┘
-```
+
+<StackDiagram layers={[
+  {
+    label: 'Cluster DNS (Control Plane)',
+    color: colors.blue,
+    items: [
+      'The Digital Phone Book',
+      'Directory Assistance Operators',
+      'Current Service Listings',
+      'Real-time Updates'
+    ]
+  },
+  {
+    label: 'Worker Nodes',
+    color: colors.purple,
+    items: [
+      'Worker Node 1: Apps call directory',
+      'Worker Node 2: Apps call directory',
+      'Additional nodes...'
+    ]
+  }
+]} />
 
 ### 2.2. DNS Architecture Components
 
@@ -176,9 +173,9 @@ NAME       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                  AGE
 kube-dns   ClusterIP   10.96.0.10     <none>        53/UDP,53/TCP,9153/TCP   13d
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **The cluster DNS runs as a regular Kubernetes application** - it's not some magical external system. The DNS service itself runs as Pods managed by a Deployment and fronted by a Service. This means the DNS system is self-hosting within your cluster!
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.3. kube-proxy Integration
 
@@ -235,59 +232,48 @@ spec:
 2. **Phone Number Assignment**: Kubernetes assigns a ClusterIP (like 192.168.1.100)
 3. **Directory Registration**: Cluster DNS automatically adds the listing
 
-```
-Directory Entry Created:
-┌─────────────────────────────────────────┐
-│ Service Name: payment-service           │
-│ Phone Number: 192.168.1.100:8080      │
-│ Full Address: payment-service.default. │
-│               svc.cluster.local        │
-│ Status: Active                         │
-│ Last Updated: <current timestamp>      │
-└─────────────────────────────────────────┘
-```
+<CardGrid cards={[
+  {
+    title: 'Directory Entry Created',
+    description: 'Automatic service registration details',
+    items: [
+      'Service Name: payment-service',
+      'Phone Number: 192.168.1.100:8080',
+      'Full Address: payment-service.default.svc.cluster.local',
+      'Status: Active',
+      'Last Updated: <current timestamp>'
+    ]
+  }
+]} />
 
 ### 3.2. Endpoint Management
 
 Kubernetes automatically manages service endpoints through a sophisticated monitoring and registration system that tracks healthy pod instances.
 
 **Service Registration Workflow:**
-```
-┌─────────────────────────────────────────────────────────┐
-│ Step 1: Service Deployment                              │
-│ ─────────────────────────────────────────────────────── │
-│ kubectl apply -f payment-service.yaml                  │
-│ ↓                                                       │
-│ API Server receives and validates the Service          │
-└─────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 2: IP Assignment and Storage                       │
-│ ─────────────────────────────────────────────────────── │
-│ • Kubernetes assigns ClusterIP: 192.168.1.100         │
-│ • Service configuration stored in etcd                  │
-│ • EndpointSlice created with Pod IPs                   │
-└─────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 3: Cluster DNS Detection                           │
-│ ─────────────────────────────────────────────────────── │
-│ • CoreDNS watches API server for new Services          │
-│ • Detects new payment-service                          │
-│ • Triggers automatic registration process               │
-└─────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 4: Directory Update                                │
-│ ─────────────────────────────────────────────────────── │
-│ • DNS A record created: payment-service → 192.168.1.100│
-│ • DNS SRV record created for port information          │
-│ • Directory immediately available for lookups          │
-└─────────────────────────────────────────────────────────┘
-```
+
+<ProcessFlow steps={[
+  {
+    title: 'Service Deployment',
+    description: 'kubectl apply -f payment-service.yaml → API Server receives and validates the Service',
+    color: colors.blue
+  },
+  {
+    title: 'IP Assignment and Storage',
+    description: 'Kubernetes assigns ClusterIP: 192.168.1.100 • Service configuration stored in etcd • EndpointSlice created with Pod IPs',
+    color: colors.purple
+  },
+  {
+    title: 'Cluster DNS Detection',
+    description: 'CoreDNS watches API server for new Services • Detects new payment-service • Triggers automatic registration process',
+    color: colors.green
+  },
+  {
+    title: 'Directory Update',
+    description: 'DNS A record created: payment-service → 192.168.1.100 • DNS SRV record created for port information • Directory immediately available for lookups',
+    color: colors.orange
+  }
+]} />
 
 ### 3.3. DNS Record Creation
 
@@ -326,41 +312,28 @@ This process is similar to looking up a phone number - applications provide a se
 
 **DNS-based Discovery Flow:**
 
-```
-Enterprise App wants to call Cerritos Service:
-
-┌─────────────────────────────────────────────────────────┐
-│ Step 1: Name-Based Request                              │
-│ ─────────────────────────────────────────────────────── │
-│ Enterprise App: "I need to call 'cerritos'"           │
-│ (Just like saying "I need to call John Smith")         │
-└─────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 2: Directory Assistance Call                       │
-│ ─────────────────────────────────────────────────────── │
-│ Container's network stack: "Cluster DNS, what's the    │
-│ number for 'cerritos'?"                                │
-│ (Automatic - like speed-dialing directory assistance)  │
-└─────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 3: Directory Lookup Response                       │
-│ ─────────────────────────────────────────────────────── │
-│ Cluster DNS: "cerritos is at 192.168.200.217"         │
-│ (Like directory assistance giving you the number)       │
-└─────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────┐
-│ Step 4: Call Routing                                    │
-│ ─────────────────────────────────────────────────────── │
-│ Network routing system connects to actual Pod          │
-│ (Like the phone system routing to the right phone)     │
-└─────────────────────────────────────────────────────────┘
-```
+<ProcessFlow steps={[
+  {
+    title: 'Name-Based Request',
+    description: 'Enterprise App: "I need to call \'cerritos\'" (Just like saying "I need to call John Smith")',
+    color: colors.blue
+  },
+  {
+    title: 'Directory Assistance Call',
+    description: 'Container\'s network stack: "Cluster DNS, what\'s the number for \'cerritos\'?" (Automatic - like speed-dialing directory assistance)',
+    color: colors.purple
+  },
+  {
+    title: 'Directory Lookup Response',
+    description: 'Cluster DNS: "cerritos is at 192.168.200.217" (Like directory assistance giving you the number)',
+    color: colors.green
+  },
+  {
+    title: 'Call Routing',
+    description: 'Network routing system connects to actual Pod (Like the phone system routing to the right phone)',
+    color: colors.orange
+  }
+]} />
 
 ### 4.2. Environment Variables
 
@@ -389,9 +362,9 @@ This configuration provides multiple discovery methods:
 - **Search domains**: Automatic domain completion for service names
 - **Environment variables**: Direct service host and port information
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **The search domains work like area code assumptions** - when you dial "123-4567" from your local area, the phone system automatically tries your local area code first. Similarly, when an app queries "payment-service", Kubernetes automatically tries "payment-service.default.svc.cluster.local" first based on the search domains.
-`─────────────────────────────────────────────────`
+:::
 
 ### 4.3. API-based Discovery
 
@@ -405,22 +378,38 @@ ClusterIPs are like virtual phone numbers that don't exist on any physical devic
 
 **ClusterIP Traffic Routing:**
 
-```
-Call Routing Process:
-┌─────────────────────────────────────────────────────────┐
-│ Enterprise App dials cerritos (192.168.200.217)        │
-│ ↓                                                       │
-│ Container sends to default gateway (doesn't know route) │
-│ ↓                                                       │
-│ Node receives traffic for "unknown" network            │
-│ ↓                                                       │
-│ Node kernel: "Wait, I have special rules for this!"    │
-│ ↓                                                       │
-│ kube-proxy IPVS rules: "Route to Pod 10.244.1.42"     │
-│ ↓                                                       │
-│ Traffic reaches actual Cerritos Pod                     │
-└─────────────────────────────────────────────────────────┘
-```
+<ProcessFlow steps={[
+  {
+    title: 'Enterprise App Dials',
+    description: 'Enterprise App dials cerritos (192.168.200.217)',
+    color: colors.blue
+  },
+  {
+    title: 'Gateway Forward',
+    description: 'Container sends to default gateway (doesn\'t know route)',
+    color: colors.purple
+  },
+  {
+    title: 'Node Receives',
+    description: 'Node receives traffic for "unknown" network',
+    color: colors.green
+  },
+  {
+    title: 'Kernel Processing',
+    description: 'Node kernel: "Wait, I have special rules for this!"',
+    color: colors.orange
+  },
+  {
+    title: 'kube-proxy Routing',
+    description: 'kube-proxy IPVS rules: "Route to Pod 10.244.1.42"',
+    color: colors.cyan
+  },
+  {
+    title: 'Pod Reached',
+    description: 'Traffic reaches actual Cerritos Pod',
+    color: colors.pink
+  }
+]} />
 
 **Example Call Routing:**
 ```bash

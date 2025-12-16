@@ -1,5 +1,7 @@
 # Chapter 4: Working with Pods
 
+import { ProcessFlow, StackDiagram, CardGrid, colors } from '@site/src/components/diagrams';
+
 **Previous:** [Chapter 3: Getting Kubernetes](03-getting-kubernetes.md) | **Next:** [Chapter 5: Virtual Clusters and Namespaces](05-virtual-clusters-namespaces.md)
 
 ---
@@ -74,20 +76,21 @@ Pods enable resource sharing by providing a shared execution environment for one
 
 **Multi-Container Pod Architecture:**
 
-```
-Pod: web-application (IP: 10.244.1.5)
-┌─────────────────────────────────────────┐
-│                                         │
-│  ┌─────────────┐    ┌─────────────────┐ │
-│  │ Web Server  │    │ Log Collector   │ │
-│  │ Port: 8080  │    │ Port: 5005      │ │
-│  │             │    │                 │ │
-│  └─────────────┘    └─────────────────┘ │
-│           │                    │        │
-│           └── Shared Volume ───┘        │
-│                                         │
-└─────────────────────────────────────────┘
-```
+<StackDiagram
+  title="Pod: web-application (IP: 10.244.1.5)"
+  layers={[
+    {
+      label: 'Containers',
+      color: colors.blue,
+      items: ['Web Server (Port: 8080)', 'Log Collector (Port: 5005)']
+    },
+    {
+      label: 'Shared Resources',
+      color: colors.slate,
+      items: ['Shared Volume']
+    }
+  ]}
+/>
 
 **Container Communication Patterns:**
 - **External Access**: `10.244.1.5:8080` (web) and `10.244.1.5:5005` (logs)
@@ -181,9 +184,9 @@ spec:
 - **Pending**: No suitable node found (check resources/constraints)
 - **Failed**: Scheduling impossible (insufficient cluster capacity)
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Resource requests and limits are critical for scheduling efficiency. Without them, the scheduler cannot make optimal decisions and may place workloads on inadequate nodes, leading to performance issues.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.4. Pod Lifecycle
 
@@ -255,19 +258,30 @@ Every Kubernetes cluster implements a pod network that automatically connects al
 
 **Network Architecture:**
 
-```
-Kubernetes Cluster Network
-┌──────────────────────────────────────────────────┐
-│                                                  │
-│ Node 1           Node 2           Node 3         │
-│ ┌──────────┐    ┌──────────┐    ┌──────────┐     │
-│ │ Pod A    │    │ Pod B    │    │ Pod C    │     │
-│ │ 10.1.1.2 │◄──►│ 10.1.2.5 │◄──►│ 10.1.3.8 │     │
-│ └──────────┘    └──────────┘    └──────────┘     │
-│                                                  │
-│ Pod Network: Direct communication across nodes   │
-└──────────────────────────────────────────────────┘
-```
+<CardGrid
+  cards={[
+    {
+      title: 'Node 1',
+      description: 'Pod A',
+      items: ['IP: 10.1.1.2'],
+      color: colors.blue
+    },
+    {
+      title: 'Node 2',
+      description: 'Pod B',
+      items: ['IP: 10.1.2.5'],
+      color: colors.green
+    },
+    {
+      title: 'Node 3',
+      description: 'Pod C',
+      items: ['IP: 10.1.3.8'],
+      color: colors.purple
+    }
+  ]}
+/>
+
+**Pod Network: Direct communication across nodes**
 
 **CNI Plugin Options:**
 
@@ -308,9 +322,9 @@ spec:
 - **Application Segmentation**: Multi-tier applications with controlled access
 - **Service Mesh**: Advanced traffic management and security
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The pod network starts completely open for ease of use and learning. In production environments, implement network policies to control traffic flow, just like security checkpoints in logistics networks.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -340,14 +354,25 @@ Init containers run before application containers and must complete successfully
 
 **Execution Flow:**
 
-```
-Init Container Sequence:
-┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-│   Init 1    │→ │   Init 2    │→ │ Application │
-│ Setup DB    │  │ Check API   │  │   Server    │
-│ (must pass) │  │ (must pass) │  │ (starts)    │
-└─────────────┘  └─────────────┘  └─────────────┘
-```
+<ProcessFlow
+  steps={[
+    {
+      title: 'Init 1',
+      description: 'Setup DB (must pass)',
+      color: colors.orange
+    },
+    {
+      title: 'Init 2',
+      description: 'Check API (must pass)',
+      color: colors.orange
+    },
+    {
+      title: 'Application',
+      description: 'Server (starts)',
+      color: colors.green
+    }
+  ]}
+/>
 
 **Init Container Example:**
 
@@ -414,16 +439,35 @@ Sidecars are defined as init containers with `restartPolicy: Always`, which make
 
 **Sidecar Lifecycle:**
 
-```
-Sidecar Container Lifecycle:
-┌─────────────────────────────────────────────┐
-│ 1. Sidecar starts first                     │
-│ 2. Main application starts after sidecar   │
-│ 3. Both containers run together             │
-│ 4. Main application shuts down              │
-│ 5. Sidecar shuts down after main app       │
-└─────────────────────────────────────────────┘
-```
+<ProcessFlow
+  steps={[
+    {
+      title: 'Sidecar Starts',
+      description: 'Sidecar container starts first',
+      color: colors.purple
+    },
+    {
+      title: 'Main App Starts',
+      description: 'Main application starts after sidecar',
+      color: colors.blue
+    },
+    {
+      title: 'Running Together',
+      description: 'Both containers run together',
+      color: colors.green
+    },
+    {
+      title: 'Main App Shutdown',
+      description: 'Main application shuts down',
+      color: colors.orange
+    },
+    {
+      title: 'Sidecar Shutdown',
+      description: 'Sidecar shuts down after main app',
+      color: colors.red
+    }
+  ]}
+/>
 
 **Content Synchronization Example:**
 
@@ -475,9 +519,9 @@ As of Kubernetes v1.29+, native sidecar support is in beta, providing:
 - **Lifecycle Management**: Proper shutdown sequencing
 - **Status Tracking**: Clear sidecar vs main container status
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Sidecar containers implement the single responsibility principle - each container has one focused job. This separation makes components simpler, more reusable, and easier to troubleshoot than monolithic applications.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -764,9 +808,9 @@ HOSTNAME=hello-pod
 | `kubectl logs` | Container output | Application debugging |
 | `kubectl exec` | Container access | Interactive debugging |
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The Pod name becomes the hostname for all containers inside it, making networking and debugging intuitive. A Pod named "web-server" has hostname "web-server" for all its containers.
-`─────────────────────────────────────────────────`
+:::
 
 ### 4.4. Multi-Container Examples
 
@@ -1012,9 +1056,9 @@ Pods are the fundamental building blocks of Kubernetes, providing a standardized
 **Looking Forward:**
 While Pods are fundamental, production deployments typically use higher-level controllers like Deployments, StatefulSets, and DaemonSets that provide additional capabilities like self-healing, scaling, and rolling updates.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Pods embody the separation of concerns principle - they handle application packaging and resource sharing while letting Kubernetes manage scheduling and orchestration. This separation enables the flexibility and power of the Kubernetes platform.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

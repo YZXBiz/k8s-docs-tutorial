@@ -61,9 +61,9 @@ Kubernetes implements a strictly API-centric architecture where all cluster reso
 
 Think of this like an ordering system where everything must go through a central catalog (the API). Just as you can only order items that exist in a catalog, you can only deploy resources that are defined in the Kubernetes API.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The API-centric design eliminates the traditional problem of configuration drift between different management tools. Since everything must go through the same API, all tools have identical access to cluster resources, ensuring consistent behavior and preventing conflicts.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.2. Request Processing Flow
 
@@ -179,9 +179,9 @@ $ kubectl get pods --namespace shield
 GET /api/v1/namespaces/shield/pods
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Kubernetes verb names don't always match HTTP methods exactly. For example, `kubectl edit` uses the "update" verb but sends an HTTP PATCH request. This abstraction allows Kubernetes to optimize the underlying protocol while maintaining consistent user experience.
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.3. CRUD Operations
 
@@ -411,9 +411,9 @@ $ curl -X DELETE \
 
 The response shows the namespace entering "Terminating" phase, indicating graceful deletion is in progress.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 This hands-on exercise demonstrates that kubectl is essentially a sophisticated HTTP client that translates user-friendly commands into REST API calls. Understanding these underlying mechanics helps with debugging, automation, and building custom tools that interact with Kubernetes.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -562,9 +562,9 @@ If designed today, some core resources would likely be organized differently:
 
 This reorganization demonstrates how the named group architecture provides better logical organization than the original monolithic approach.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The named group architecture enables parallel development and evolution of different Kubernetes functional areas. Teams can work independently on networking, storage, or security features without conflicts, while maintaining a cohesive API experience.
-`─────────────────────────────────────────────────`
+:::
 
 ### 3.4. API Discovery and Exploration
 
@@ -782,9 +782,9 @@ kubectl apply -f deployment-beta.yaml  # Uses apps/v1beta2
 kubectl edit deployment myapp  # Uses apps/v1
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The progressive maturation process protects users from unstable APIs while enabling continuous innovation. This approach allows developers to experiment with new features in alpha while maintaining production stability through the GA APIs.
-`─────────────────────────────────────────────────`
+:::
 
 ### 4.2. Resource Deprecation
 
@@ -989,9 +989,9 @@ While CRDs provide the API schema, controllers implement the operational logic. 
 - **RBAC Integration**: Define appropriate access controls for custom resources
 - **Monitoring**: Implement metrics and alerting for custom controllers
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Custom Resource Definitions transform Kubernetes into a universal control plane for any domain-specific system. By following Kubernetes patterns, custom resources inherit all the benefits of the platform: declarative management, version control, RBAC, and tooling compatibility.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

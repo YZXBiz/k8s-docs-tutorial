@@ -79,9 +79,9 @@ Your Kubernetes learning environment should progress from simple to complex base
 **Cost-Effective Approach:**
 Start with local development for foundational concepts, then use cloud environments only when specific cloud-native features are required.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Master fundamentals locally before moving to cloud environments. This approach builds solid foundations while minimizing costs and complexity during the learning process.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -230,9 +230,9 @@ This local setup supports:
 - ConfigMap and Secret management
 - Most Kubernetes learning scenarios
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 This local cluster handles 90% of Kubernetes learning scenarios. Master Pods, Deployments, Services, and advanced concepts locally before moving to cloud environments for specific integrations.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -418,9 +418,9 @@ lke349416-551020-47ad6c5c0000    Ready     <none>    19m    v1.32.1
 - **Authentication failures**: Confirm kubeconfig downloaded correctly
 - **Context issues**: Use `kubectl config current-context` to verify active cluster
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Managed clusters hide infrastructure complexity while providing production features. You only see worker nodes, but gain access to cloud load balancers, persistent storage, and enterprise-grade reliability.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -546,9 +546,9 @@ Docker Desktop provides graphical context switching through the whale icon menu 
 - **Backup Strategy**: Maintain secure backups of working configurations
 - **Environment Separation**: Use separate contexts for different environments
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 kubeconfig enables seamless multi-cluster workflows. Develop locally, test in staging, and deploy to production using identical kubectl commands - context switching changes the target cluster without changing your workflow.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

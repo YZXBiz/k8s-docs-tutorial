@@ -1,5 +1,7 @@
 # Chapter 8: Ingress
 
+import { ProcessFlow, StackDiagram, CardGrid, colors } from '@site/src/components/diagrams';
+
 **Previous:** [Chapter 7: Kubernetes Services](07-kubernetes-services.md) | **Next:** [Chapter 9: Wasm on Kubernetes](09-wasm-on-kubernetes.md)
 
 ---
@@ -37,9 +39,9 @@ Kubernetes Ingress provides HTTP and HTTPS routing to services within a cluster.
 
 Think of Ingress like a hotel lobby system. Instead of having each service (restaurant, spa, conference rooms) require its own separate entrance with dedicated security and reception, Ingress provides one magnificent lobby where a knowledgeable concierge directs guests to the right building based on their needs.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **NodePort Services are like back-door entrances** - they work, but guests need to know specific door numbers (high ports) and remember which building entrance to use. **LoadBalancer Services are like having a dedicated valet** for each building - professional but expensive when you have 25 buildings requiring 25 valets!
-`─────────────────────────────────────────────────`
+:::
 
 **Core Ingress Benefits:**
 - **Cost efficiency**: One load balancer serves multiple services instead of one per service
@@ -77,24 +79,41 @@ spec:
 Ingress operates through a combination of Ingress Controllers and Ingress Resources that work together to route external traffic to internal services.
 
 **Ingress Components:**
-```
-Internet Traffic
-         │
-         ▼
-    [Cloud Load Balancer] ◄─── Created automatically
-         │
-         ▼
-    [Ingress Controller] ◄─── You install this
-         │
-         ▼
-    [Ingress Rules] ◄─── You create these
-         │
-         ▼
-    [ClusterIP Services] ◄─── Your backend services
-         │
-         ▼
-    [Application Pods] ◄─── Your actual applications
-```
+
+<ProcessFlow
+  steps={[
+    {
+      title: 'Internet Traffic',
+      description: 'External requests from the internet',
+      color: colors.slate
+    },
+    {
+      title: 'Cloud Load Balancer',
+      description: 'Created automatically - main entrance for all traffic',
+      color: colors.blue
+    },
+    {
+      title: 'Ingress Controller',
+      description: 'You install this - the routing engine (NGINX, Traefik, etc.)',
+      color: colors.purple
+    },
+    {
+      title: 'Ingress Rules',
+      description: 'You create these - routing configuration based on host/path',
+      color: colors.green
+    },
+    {
+      title: 'ClusterIP Services',
+      description: 'Your backend services - internal service endpoints',
+      color: colors.orange
+    },
+    {
+      title: 'Application Pods',
+      description: 'Your actual applications - running containers',
+      color: colors.cyan
+    }
+  ]}
+/>
 
 This is like a hotel where the cloud load balancer is the main entrance, the Ingress Controller is the concierge staff, Ingress Rules are the directory board, and Services are the actual hotel buildings.
 
@@ -174,9 +193,9 @@ NAME                                      READY   STATUS    RESTARTS   AGE
 ingress-nginx-controller-7445ddc6c4-csf98   1/1     Running   0          2m
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **The "Completed" pods you see are like overnight setup crews** - they configured the environment and finished. The "Running" pod is your actual controller handling traffic. In production, you'd want multiple controller pods for high availability.
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.2. Ingress Classes
 
@@ -568,9 +587,9 @@ Rules:
                      /web    web-service:80 (10.244.1.6:80)
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **The backend IPs show actual Pod locations** - when Pods restart or scale, Ingress automatically updates these mappings. The controller continuously monitors service endpoints to ensure traffic routes to healthy pods only.
-`─────────────────────────────────────────────────`
+:::
 
 **Common troubleshooting commands:**
 ```bash

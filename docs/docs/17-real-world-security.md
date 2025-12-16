@@ -230,9 +230,9 @@ Development → Security Scanning → Staging → Production Validation → Prod
 - **Functional Testing**: Automated quality assurance
 - **Security Review**: Manual assessment for critical applications
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Image promotion workflows function like bank vault access procedures - multiple independent verifications ensure only authorized, secure content reaches production environments. Each gate provides an opportunity to detect and prevent security issues before they impact critical systems.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -553,9 +553,9 @@ $ kubectl logs job.batch/kube-bench
 - **Access Review Frequency**: Regular permission audits
 - **Security Training Completion**: Staff security awareness levels
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Continuous security assessment mirrors the regular inspection and maintenance of physical vault systems. Automated compliance checking ensures security controls remain effective while manual assessments identify evolving threats and gaps in protection.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

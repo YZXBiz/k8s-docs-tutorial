@@ -114,9 +114,9 @@ This separation enables:
 - **Backup and recovery** independent of application state
 - **Storage migration** between nodes and availability zones
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Storage lifecycle independence is crucial for stateful applications** - databases, file systems, and other persistent workloads depend on data surviving longer than individual Pod instances. This separation allows Kubernetes to manage compute and storage resources independently.
-`─────────────────────────────────────────────────`
+:::
 
 ## 2. Storage Provisioning
 
@@ -553,9 +553,9 @@ kubectl get pods -n kube-system | grep csi
 kubectl get volumeattachment
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Storage troubleshooting requires understanding the entire stack** - from application PVC requests through Kubernetes storage objects to external storage providers. Most issues stem from mismatched requirements, access mode conflicts, or provider-specific limitations.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

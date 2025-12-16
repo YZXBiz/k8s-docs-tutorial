@@ -151,9 +151,9 @@ Understanding when to use StatefulSets versus Deployments is crucial for proper 
 - Applications requiring stable network identity
 - Systems where Pod startup order matters
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **StatefulSets trade simplicity for stability** - while Deployments optimize for fungibility and parallel operations, StatefulSets prioritize persistent identity and ordered operations, making them essential for applications where data consistency and node identity matter more than deployment speed.
-`─────────────────────────────────────────────────`
+:::
 
 ## 2. StatefulSet Components
 
@@ -705,9 +705,9 @@ kubectl logs mongodb-1 -f
 kubectl exec mongodb-0 -- ping mongodb-1.mongodb-headless
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **StatefulSet troubleshooting requires understanding the interdependencies** - Pod identity, storage binding, and network configuration work together to enable stateful applications. Issues in one area often cascade to others, making systematic diagnosis essential.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

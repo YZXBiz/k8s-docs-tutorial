@@ -1,4 +1,4 @@
-# 5. Virtual Clusters with Namespaces
+# Chapter 5: Virtual Clusters with Namespaces
 
 *Understanding how Kubernetes organizes cluster resources through logical separation*
 

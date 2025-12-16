@@ -1,5 +1,7 @@
 # Chapter 7: Kubernetes Services
 
+import { ProcessFlow, StackDiagram, CardGrid, colors } from '@site/src/components/diagrams';
+
 **Previous:** [Chapter 6: Kubernetes Deployments](06-kubernetes-deployments.md) | **Next:** [Chapter 8: Ingress](08-ingress.md)
 
 ---
@@ -59,24 +61,35 @@ curl my-service:8080   # Always works, routes to healthy Pods
 Services work through a combination of stable virtual IPs, DNS names, and dynamic endpoint tracking:
 
 **Service Components:**
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│    Service      │    │   EndpointSlice │    │     Pods        │
-│                 │    │                 │    │                 │
-│ Virtual IP      │───▶│ Pod IPs         │───▶│ Actual Apps     │
-│ DNS Name        │    │ Health Status   │    │ Running Code    │
-│ Load Balancing  │    │ Real-time List  │    │ Dynamic IPs     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+
+<StackDiagram
+  layers={[
+    {
+      label: 'Service',
+      color: colors.blue,
+      items: ['Virtual IP', 'DNS Name', 'Load Balancing']
+    },
+    {
+      label: 'EndpointSlice',
+      color: colors.purple,
+      items: ['Pod IPs', 'Health Status', 'Real-time List']
+    },
+    {
+      label: 'Pods',
+      color: colors.green,
+      items: ['Actual Apps', 'Running Code', 'Dynamic IPs']
+    }
+  ]}
+/>
 
 This is like a business phone system where:
 - **Service** = Main company number that customers call
 - **EndpointSlice** = Current directory of available employees
 - **Pods** = Individual employees at their current desk extensions
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Services use virtual IPs (ClusterIPs) that don't belong to any physical interface** - they exist only in iptables/IPVS rules managed by kube-proxy on each node. When traffic hits a Service IP, it's redirected to actual Pod IPs automatically.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.3. Labels and Selectors
 

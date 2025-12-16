@@ -58,9 +58,9 @@ A Kubernetes cluster provides the computing infrastructure for applications thro
 - **Scalability**: Add or remove nodes based on demand
 - **Abstraction**: Hide infrastructure complexity from applications
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Kubernetes abstracts distributed computing complexity similarly to how a concert hall abstracts acoustics and power management. Applications simply "show up and perform" without worrying about underlying infrastructure details.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.2. Control Plane Nodes
 
@@ -408,9 +408,9 @@ spec:
 4. **Corrective Actions**: Controllers make necessary changes
 5. **Continuous Monitoring**: Controllers maintain desired state over time
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The declarative model separates intent from implementation. You describe the "musical piece" you want performed, and Kubernetes orchestrates all the complex coordination needed to make it happen continuously and reliably.
-`─────────────────────────────────────────────────`
+:::
 
 ### 4.2. Pods
 
@@ -621,9 +621,9 @@ Client → Service (stable IP) → kube-proxy → Pod (dynamic IP)
 - **Session Affinity**: Route requests from same client to same pod
 - **Least Connections**: Route to pod with fewest active connections (external LB)
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Services solve the "moving target" problem inherent in dynamic container environments. Without Services, connecting to applications would be like trying to call specific musicians during a performance - you'd never know if they're available or where to reach them.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -669,9 +669,9 @@ This chapter explored the fundamental principles and architecture that enable Ku
 **Looking Forward:**
 Subsequent chapters will build on these architectural concepts to explore Kubernetes installation, configuration, and practical application deployment scenarios. The principles covered here underpin all Kubernetes operations.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Kubernetes success stems from clear architectural separation of concerns - like a well-orchestrated symphony where each section has specific responsibilities but all work toward creating beautiful music. This organizational clarity enables both reliable operations and sophisticated automation.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

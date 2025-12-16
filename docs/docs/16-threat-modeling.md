@@ -77,9 +77,9 @@ STRIDE provides a comprehensive threat categorization framework, originally deve
 **Framework Limitations:**
 While STRIDE provides excellent coverage, no single framework captures all possible threats. Effective security assessment combines multiple methodologies and incorporates organization-specific considerations.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 STRIDE's systematic approach mirrors how professional auditors assess risk across different domains. Each category represents a distinct threat class requiring specific detection and mitigation strategies, ensuring comprehensive security coverage without gaps.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.3. Kubernetes Threat Landscape
 
@@ -161,9 +161,9 @@ spec:
 3. **Scope Limitation**: Internal certificates only trusted within cluster boundaries
 4. **CSR Approval**: Manual review of certificate signing requests
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The dual-CA approach mirrors enterprise security models where internal and external authentication use separate trust chains. This isolation prevents compromise of one domain from affecting the other, implementing effective security compartmentalization.
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.3. Pod Identity Management
 
@@ -625,9 +625,9 @@ spec:
 EOF
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Pod Security Admission provides automated policy enforcement similar to automated compliance checking in regulated industries. By standardizing security baselines, organizations can prevent configuration drift while maintaining development velocity.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

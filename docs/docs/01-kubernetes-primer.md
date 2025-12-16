@@ -52,9 +52,9 @@ Kubernetes orchestrates your applications by:
 | Manual updates | Rolling updates with zero downtime |
 | Manual monitoring | Built-in health checking |
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The best orchestration is invisible. When Kubernetes works properly, applications simply function - scaling during traffic spikes, recovering from failures, and updating seamlessly. The complexity is hidden, but the operational benefits are immense.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.2. Containerization Technology
 
@@ -132,9 +132,9 @@ Microservices applications are built from many small, specialized, independent s
 **Operational Considerations:**
 Microservices provide unprecedented flexibility but require sophisticated orchestration to manage distributed system complexity. This is where Kubernetes provides essential coordination capabilities.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Microservices aren't just about technology - they're fundamentally about organizational structure. Each service enables independent team ownership, release cycles, and technology choices, creating flexibility that requires orchestration platforms like Kubernetes to manage effectively.
-`─────────────────────────────────────────────────`
+:::
 
 ## 3. The Story Behind Kubernetes
 
@@ -256,9 +256,9 @@ Kubernetes enables true application portability across different infrastructure 
 - **Vendor Independence**: Avoid cloud provider lock-in through standardized APIs
 - **Migration Flexibility**: Move workloads based on cost, performance, or compliance requirements
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 The power of abstraction lies in hiding complexity while providing enhanced capabilities. Just as modern operating systems manage thousands of processes across multiple CPU cores, Kubernetes manages thousands of applications across multiple cloud data centers with similar elegance.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 
@@ -310,9 +310,9 @@ Kubernetes enables organizations of any size to operate with the same sophistica
 **Looking Forward:**
 Subsequent chapters will explore Kubernetes internal architecture, installation procedures, and practical application deployment scenarios. The foundational concepts covered here provide the context for understanding Kubernetes' technical implementation and operational patterns.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 Kubernetes represents more than technology advancement - it enables new organizational and operational patterns. Small teams can now operate resilient, scalable applications with automation and reliability previously available only to companies with Google's resources and expertise.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

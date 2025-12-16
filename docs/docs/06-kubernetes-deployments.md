@@ -63,9 +63,9 @@ This is similar to restaurant management hierarchy:
 
 The Deployment controller watches for changes and ensures the ReplicaSet maintains the desired number of Pod replicas.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Deployments never manage Pods directly** - they always work through ReplicaSets. When you update a Deployment, it creates a new ReplicaSet with the updated configuration while gradually scaling down the old one. This enables rolling updates and easy rollbacks.
-`─────────────────────────────────────────────────`
+:::
 
 ### 1.3. Self-Healing and Scaling
 
@@ -128,9 +128,9 @@ The Deployment controller continuously monitors the actual state and compares it
 
 This is similar to how a restaurant manager continuously walks the floor, checking if the right number of staff are working, if service quality is maintained, and making adjustments when needed.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **The controller pattern is fundamental to Kubernetes** - controllers continuously reconcile desired state with actual state. This self-healing behavior ensures your applications maintain the configuration you specified, even when individual components fail.
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.3. Monitoring and Maintenance
 
@@ -186,9 +186,9 @@ spec:
 - **maxUnavailable**: Maximum number of Pods that can be unavailable during updates
 - **maxSurge**: Maximum number of Pods that can be created above desired replica count
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Rolling updates use two ReplicaSets** - the old one scales down while the new one scales up. This dual-ReplicaSet approach enables zero-downtime updates and makes rollbacks simple - just scale the old ReplicaSet back up and the new one down.
-`─────────────────────────────────────────────────`
+:::
 
 ### 3.3. Rollback Operations
 
@@ -438,9 +438,9 @@ spec:
            periodSeconds: 20
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **Health checks are crucial for reliable deployments** - readiness probes ensure Pods are ready to serve traffic before routing requests to them, while liveness probes restart Pods that become unresponsive. Without proper health checks, rolling updates can deploy broken versions.
-`─────────────────────────────────────────────────`
+:::
 
 ---
 

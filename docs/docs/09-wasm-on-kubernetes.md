@@ -35,9 +35,9 @@
 
 Imagine a massive international conference center where every speaker speaks a different programming language - Rust, Go, JavaScript, Python, C++, and dozens more. In the traditional computing world, this creates a "Tower of Babel" problem: each language needs its own specialized hosting environment, and applications written in one language can't easily run in environments designed for another.
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **WebAssembly (Wasm) is like the Universal Translator from Star Trek** - it breaks down language barriers by converting any programming language into a common format that can run anywhere. Just as the universal translator allows different alien species to communicate seamlessly, Wasm allows different programming languages to run on any platform with the same efficiency and security.
-`─────────────────────────────────────────────────`
+:::
 
 **The Traditional Language Barrier Problem:**
 - **JavaScript** applications need Node.js environments
@@ -157,9 +157,9 @@ Wasm App + WASI → Can access:
   └─ Other system services (with permission)
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **WASI is the "protocol handbook" for universal translators** - it defines how translated applications can safely request access to external resources. Unlike traditional containers that start with everything accessible, WASI requires explicit permission for every system interaction, making it inherently more secure.
-`─────────────────────────────────────────────────`
+:::
 
 ### 2.2. Translator Deployment Systems
 
@@ -322,9 +322,9 @@ Building component tkb-wasm with `cargo build --target wasm32-wasip1 --release`
 Finished building all Spin components
 ```
 
-`★ Insight ─────────────────────────────────────`
+:::info[Insight]
 **The spin build command performs universal translation** - it converts your Rust source code into wasm32-wasip1 bytecode that can run on any platform with a Wasm runtime. The resulting .wasm file is like a universal message that any translator device can interpret and execute.
-`─────────────────────────────────────────────────`
+:::
 
 ### 3.3. Packaging for Global Distribution
 
